@@ -22,6 +22,13 @@ final class ListHeroesView: UIView {
         return sb
     }()
     
+    let loadingIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.hidesWhenStopped = true
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+    }()
+    
     init() {
         super.init(frame: .zero)
         setup()
@@ -40,10 +47,14 @@ final class ListHeroesView: UIView {
     private func addSubviews() {
         addSubview(searchBar)
         addSubview(heroesTableView)
+        addSubview(loadingIndicator)
     }
     
     private func addContraints() {
         NSLayoutConstraint.activate([
+            loadingIndicator.centerXAnchor.constraint(equalTo: centerXAnchor),
+            loadingIndicator.centerYAnchor.constraint(equalTo: centerYAnchor),
+            
             searchBar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             searchBar.leadingAnchor.constraint(equalTo: leadingAnchor),
             searchBar.trailingAnchor.constraint(equalTo: trailingAnchor),
