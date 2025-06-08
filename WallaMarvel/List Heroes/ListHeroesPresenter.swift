@@ -9,6 +9,7 @@ protocol ListHeroesPresenterProtocol: AnyObject {
 
 protocol ListHeroesUI: AnyObject {
     func update(heroes: [CharacterDataModel])
+    func showLoading(_ show: Bool)
 }
 
 final class ListHeroesPresenter: ListHeroesPresenterProtocol {
@@ -33,11 +34,19 @@ final class ListHeroesPresenter: ListHeroesPresenterProtocol {
     func getHeroes() {
         guard !isLoading else { return }
         isLoading = true
+        DispatchQueue.main.async {
+            self.ui?.showLoading(true)
+        }
         
         getHeroesUseCase.execute(offset: currentOffset) { container in
             self.currentOffset += container.count
             self.allHeroes += container.characters
             self.ui?.update(heroes: self.allHeroes)
+            
+            DispatchQueue.main.async {
+                self.ui?.showLoading(false)
+            }
+            
             self.isLoading = false
         }
     }
@@ -51,4 +60,3 @@ final class ListHeroesPresenter: ListHeroesPresenterProtocol {
         }
     }
 }
-

@@ -27,6 +27,13 @@ extension ListHeroesViewController: ListHeroesUI {
     func update(heroes: [CharacterDataModel]) {
         listHeroesProvider?.heroes = heroes
     }
+    
+    func showLoading(_ show: Bool) {
+        DispatchQueue.main.async {
+            show ? self.mainView.loadingIndicator.startAnimating()
+            : self.mainView.loadingIndicator.stopAnimating()
+        }
+    }
 }
 
 extension ListHeroesViewController: UITableViewDelegate {
