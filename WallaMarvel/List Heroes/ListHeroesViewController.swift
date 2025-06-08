@@ -9,7 +9,7 @@ final class ListHeroesViewController: UIViewController {
     override func loadView() {
         view = ListHeroesView()
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         listHeroesProvider = ListHeroesAdapter(tableView: mainView.heroesTableView)
@@ -30,11 +30,23 @@ extension ListHeroesViewController: ListHeroesUI {
 
 extension ListHeroesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let presenter = ListHeroesPresenter()
-        let listHeroesViewController = ListHeroesViewController()
-        listHeroesViewController.presenter = presenter
+        guard let selectedHero = listHeroesProvider?.heroes[indexPath.row] else { return }
         
-        navigationController?.pushViewController(listHeroesViewController, animated: true)
+        let detailVC = HeroDetailViewController()
+        let presenter = HeroDetailPresenter(hero: selectedHero, ui: detailVC)
+        detailVC.presenter = presenter
+        
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let position = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let scrollViewHeight = scrollView.frame.size.height
+        
+        if position > (contentHeight - scrollViewHeight - 100) {
+            presenter?.getHeroes()
+        }
     }
 }
 
