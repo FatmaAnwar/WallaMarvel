@@ -14,6 +14,10 @@ final class ListHeroesPresenter: ListHeroesPresenterProtocol {
     var ui: ListHeroesUI?
     private let getHeroesUseCase: GetHeroesUseCaseProtocol
     
+    private var currentOffset = 0
+    private var isLoading = false
+    private var allHeroes: [CharacterDataModel] = []
+    
     init(getHeroesUseCase: GetHeroesUseCaseProtocol = GetHeroes()) {
         self.getHeroesUseCase = getHeroesUseCase
     }
@@ -25,9 +29,14 @@ final class ListHeroesPresenter: ListHeroesPresenterProtocol {
     // MARK: UseCases
     
     func getHeroes() {
-        getHeroesUseCase.execute { characterDataContainer in
-            print("Characters \(characterDataContainer.characters)")
-            self.ui?.update(heroes: characterDataContainer.characters)
+        guard !isLoading else { return }
+        isLoading = true
+        
+        getHeroesUseCase.execute(offset: currentOffset) { container in
+            self.currentOffset += container.count
+            self.allHeroes += container.characters
+            self.ui?.update(heroes: self.allHeroes)
+            self.isLoading = false
         }
     }
 }

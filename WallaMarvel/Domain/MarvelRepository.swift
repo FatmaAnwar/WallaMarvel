@@ -1,7 +1,7 @@
 import Foundation
 
 protocol MarvelRepositoryProtocol {
-    func getHeroes(completionBlock: @escaping (CharacterDataContainer) -> Void)
+    func getHeroes(offset: Int, completionBlock: @escaping (CharacterDataContainer) -> Void)
 }
 
 final class MarvelRepository: MarvelRepositoryProtocol {
@@ -11,7 +11,7 @@ final class MarvelRepository: MarvelRepositoryProtocol {
         self.dataSource = dataSource
     }
     
-    func getHeroes(completionBlock: @escaping (CharacterDataContainer) -> Void) {
-        dataSource.getHeroes(completionBlock: completionBlock)
+    func getHeroes(offset: Int, completionBlock: @escaping (CharacterDataContainer) -> Void) {
+        dataSource.getHeroes(offset: offset, completionBlock: completionBlock)
     }
 }
