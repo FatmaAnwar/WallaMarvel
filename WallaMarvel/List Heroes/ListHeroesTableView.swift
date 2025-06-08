@@ -15,6 +15,13 @@ final class ListHeroesView: UIView {
         return tableView
     }()
     
+    let searchBar: UISearchBar = {
+        let sb = UISearchBar()
+        sb.placeholder = "Search heroes"
+        sb.translatesAutoresizingMaskIntoConstraints = false
+        return sb
+    }()
+    
     init() {
         super.init(frame: .zero)
         setup()
@@ -27,17 +34,23 @@ final class ListHeroesView: UIView {
     private func setup() {
         addSubviews()
         addContraints()
+        self.backgroundColor = .systemBackground
     }
     
     private func addSubviews() {
+        addSubview(searchBar)
         addSubview(heroesTableView)
     }
     
     private func addContraints() {
         NSLayoutConstraint.activate([
+            searchBar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            searchBar.leadingAnchor.constraint(equalTo: leadingAnchor),
+            searchBar.trailingAnchor.constraint(equalTo: trailingAnchor),
+            
+            heroesTableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
             heroesTableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             heroesTableView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            heroesTableView.topAnchor.constraint(equalTo: topAnchor),
             heroesTableView.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
     }

@@ -19,6 +19,7 @@ final class ListHeroesViewController: UIViewController {
         title = presenter?.screenTitle()
         
         mainView.heroesTableView.delegate = self
+        mainView.searchBar.delegate = self
     }
 }
 
@@ -50,3 +51,8 @@ extension ListHeroesViewController: UITableViewDelegate {
     }
 }
 
+extension ListHeroesViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        presenter?.searchHeroes(with: searchText)
+    }
+}
