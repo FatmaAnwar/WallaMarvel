@@ -46,13 +46,11 @@ extension ListHeroesViewController: UITableViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let position = scrollView.contentOffset.y
-        let contentHeight = scrollView.contentSize.height
-        let scrollViewHeight = scrollView.frame.size.height
-        
-        if position > (contentHeight - scrollViewHeight - 100) {
-            viewModel?.getHeroes()
-        }
+        viewModel?.didScrollToBottom(
+            currentOffsetY: scrollView.contentOffset.y,
+            contentHeight: scrollView.contentSize.height,
+            scrollViewHeight: scrollView.frame.size.height
+        )
     }
 }
 

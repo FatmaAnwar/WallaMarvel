@@ -12,4 +12,5 @@ protocol ListHeroesViewModelProtocol: AnyObject {
     func screenTitle() -> String
     func getHeroes()
     func searchHeroes(with text: String)
+    func didScrollToBottom(currentOffsetY: CGFloat, contentHeight: CGFloat, scrollViewHeight: CGFloat)
 }

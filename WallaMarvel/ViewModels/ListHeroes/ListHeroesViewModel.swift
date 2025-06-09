@@ -52,4 +52,11 @@ final class ListHeroesViewModel: ListHeroesViewModelProtocol {
             delegate?.update(heroes: result)
         }
     }
+    
+    func didScrollToBottom(currentOffsetY: CGFloat, contentHeight: CGFloat, scrollViewHeight: CGFloat) {
+        let threshold: CGFloat = 100.0
+        if currentOffsetY > (contentHeight - scrollViewHeight - threshold) {
+            getHeroes()
+        }
+    }
 }
