@@ -6,6 +6,8 @@ final class ListHeroesViewController: UIViewController {
     var viewModel: ListHeroesViewModelProtocol?
     var listHeroesProvider: ListHeroesAdapter?
     
+    var onHeroSelected: ((CharacterDataModel) -> Void)?
+    
     override func loadView() {
         view = ListHeroesView()
     }
@@ -40,11 +42,7 @@ extension ListHeroesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let selectedHero = listHeroesProvider?.heroes[indexPath.row] else { return }
         
-        let detailVC = HeroDetailViewController()
-        let viewModel = HeroDetailViewModel(hero: selectedHero, delegate: detailVC)
-        detailVC.viewModel = viewModel
-        
-        navigationController?.pushViewController(detailVC, animated: true)
+        onHeroSelected?(selectedHero)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

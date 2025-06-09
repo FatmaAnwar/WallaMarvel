@@ -21,6 +21,18 @@ final class HeroesCoordinator {
         viewModel.delegate = listVC
         listVC.viewModel = viewModel
         
+        listVC.onHeroSelected = { [weak self] hero in
+            self?.navigateToDetail(hero: hero)
+        }
+
         navigationController.pushViewController(listVC, animated: false)
+    }
+    
+    private func navigateToDetail(hero: CharacterDataModel) {
+        let detailVC = HeroDetailViewController()
+        let viewModel = HeroDetailViewModel(hero: hero, delegate: detailVC)
+        detailVC.viewModel = viewModel
+
+        navigationController.pushViewController(detailVC, animated: true)
     }
 }
