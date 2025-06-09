@@ -1,7 +1,7 @@
 import Foundation
 
 protocol ListHeroesViewModelDelegate: AnyObject {
-    func update(heroes: [CharacterDataModel])
+    func update(heroes: [HeroCellViewModel])
     func showLoading(_ show: Bool)
 }
 
@@ -34,7 +34,8 @@ final class ListHeroesViewModel: ListHeroesViewModelProtocol {
         getHeroesUseCase.execute(offset: currentOffset) { container in
             self.currentOffset += container.count
             self.allHeroes += container.characters
-            self.delegate?.update(heroes: self.allHeroes)
+            let viewModels = self.allHeroes.map { HeroCellViewModel(from: $0) }
+            self.delegate?.update(heroes: viewModels)
             
             DispatchQueue.main.async {
                 self.delegate?.showLoading(false)
@@ -46,10 +47,12 @@ final class ListHeroesViewModel: ListHeroesViewModelProtocol {
     
     func searchHeroes(with text: String) {
         if text.isEmpty {
-            delegate?.update(heroes: allHeroes)
+            let viewModels = self.allHeroes.map { HeroCellViewModel(from: $0) }
+            self.delegate?.update(heroes: viewModels)
         } else {
             let result = allHeroes.filter { $0.name.lowercased().contains(text.lowercased()) }
-            delegate?.update(heroes: result)
+            let viewModels = result.map { HeroCellViewModel(from: $0) }
+            self.delegate?.update(heroes: viewModels)
         }
     }
     

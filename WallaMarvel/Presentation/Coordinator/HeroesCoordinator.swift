@@ -21,10 +21,11 @@ final class HeroesCoordinator {
         viewModel.delegate = listVC
         listVC.viewModel = viewModel
         
-        listVC.onHeroSelected = { [weak self] hero in
-            self?.navigateToDetail(hero: hero)
+        listVC.onHeroSelected = { [weak self] heroCellViewModel in
+            let originalHero = heroCellViewModel.originalHero
+            self?.navigateToDetail(hero: originalHero)
         }
-
+        
         navigationController.pushViewController(listVC, animated: false)
     }
     
@@ -32,7 +33,7 @@ final class HeroesCoordinator {
         let detailVC = HeroDetailViewController()
         let viewModel = HeroDetailViewModel(hero: hero, delegate: detailVC)
         detailVC.viewModel = viewModel
-
+        
         navigationController.pushViewController(detailVC, animated: true)
     }
 }

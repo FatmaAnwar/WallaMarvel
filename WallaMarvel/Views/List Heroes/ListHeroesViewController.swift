@@ -6,7 +6,7 @@ final class ListHeroesViewController: UIViewController {
     var viewModel: ListHeroesViewModelProtocol?
     var listHeroesProvider: ListHeroesAdapter?
     
-    var onHeroSelected: ((CharacterDataModel) -> Void)?
+    var onHeroSelected: ((HeroCellViewModel) -> Void)?
     
     override func loadView() {
         view = ListHeroesView()
@@ -26,8 +26,8 @@ final class ListHeroesViewController: UIViewController {
 }
 
 extension ListHeroesViewController: ListHeroesViewModelDelegate {
-    func update(heroes: [CharacterDataModel]) {
-        listHeroesProvider?.heroes = heroes
+    func update(heroes: [HeroCellViewModel]) {
+        listHeroesProvider?.heroCellViewModels = heroes
     }
     
     func showLoading(_ show: Bool) {
@@ -40,8 +40,7 @@ extension ListHeroesViewController: ListHeroesViewModelDelegate {
 
 extension ListHeroesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let selectedHero = listHeroesProvider?.heroes[indexPath.row] else { return }
-        
+        guard let selectedHero = listHeroesProvider?.heroCellViewModels[indexPath.row] else { return }
         onHeroSelected?(selectedHero)
     }
     
