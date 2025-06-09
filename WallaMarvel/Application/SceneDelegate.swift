@@ -1,22 +1,20 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
+    
     var window: UIWindow?
+    var coordinator: HeroesCoordinator?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let window = UIWindow(windowScene: windowScene)
-        
-        let viewModel = ListHeroesViewModel()
-        let listHeroesViewController = ListHeroesViewController()
-        listHeroesViewController.viewModel = viewModel
-        
-        let navigationController = UINavigationController(rootViewController: listHeroesViewController)
+        let navigationController = UINavigationController()
         window.rootViewController = navigationController
         self.window = window
-        self.window?.makeKeyAndVisible()
+        window.makeKeyAndVisible()
+        
+        coordinator = HeroesCoordinator(navigationController: navigationController)
+        coordinator?.start()
     }
 }
-
