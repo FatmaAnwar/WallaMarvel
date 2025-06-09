@@ -29,7 +29,7 @@ final class HeroesCoordinator {
         navigationController.pushViewController(listVC, animated: false)
     }
     
-    private func navigateToDetail(hero: CharacterDataModel) {
+    private func navigateToDetail(hero: Character) {
         let detailVC = HeroDetailViewController()
         let viewModel = HeroDetailViewModel(hero: hero, delegate: detailVC)
         detailVC.viewModel = viewModel

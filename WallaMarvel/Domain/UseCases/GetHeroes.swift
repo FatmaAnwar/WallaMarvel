@@ -1,7 +1,7 @@
 import Foundation
 
 protocol GetHeroesUseCaseProtocol {
-    func execute(offset: Int, completionBlock: @escaping (CharacterDataContainer) -> Void)
+    func execute(offset: Int, completionBlock: @escaping (Result<[Character], Error>) -> Void)
 }
 
 struct GetHeroes: GetHeroesUseCaseProtocol {
@@ -11,7 +11,7 @@ struct GetHeroes: GetHeroesUseCaseProtocol {
         self.repository = repository
     }
     
-    func execute(offset: Int, completionBlock: @escaping (CharacterDataContainer) -> Void) {
+    func execute(offset: Int, completionBlock: @escaping (Result<[Character], Error>) -> Void) {
         repository.getHeroes(offset: offset, completionBlock: completionBlock)
     }
 }

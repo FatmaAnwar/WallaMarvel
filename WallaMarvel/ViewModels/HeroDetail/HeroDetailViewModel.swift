@@ -17,15 +17,15 @@ protocol HeroDetailViewModelProtocol {
 
 final class HeroDetailViewModel: HeroDetailViewModelProtocol {
     weak var delegate: HeroDetailViewModelDelegate?
-    private let hero: CharacterDataModel
+    private let hero: Character
     
-    init(hero: CharacterDataModel, delegate: HeroDetailViewModelDelegate?) {
+    init(hero: Character, delegate: HeroDetailViewModelDelegate?) {
         self.hero = hero
         self.delegate = delegate
     }
     
     func viewDidLoad() {
-        let url = URL(string: "\(hero.thumbnail.path).\(hero.thumbnail.extension)")
-        delegate?.displayHero(name: hero.name, description: hero.description ?? "", imageURL: url)
+        let url = URL(string: hero.imageUrl)
+        delegate?.displayHero(name: hero.name, description: hero.description, imageURL: url)
     }
 }
