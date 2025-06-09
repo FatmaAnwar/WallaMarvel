@@ -19,9 +19,9 @@ final class HeroDetailViewModel: HeroDetailViewModelProtocol {
     weak var delegate: HeroDetailViewModelDelegate?
     private let hero: CharacterDataModel
     
-    init(hero: CharacterDataModel, ui: HeroDetailViewModelDelegate?) {
+    init(hero: CharacterDataModel, delegate: HeroDetailViewModelDelegate?) {
         self.hero = hero
-        self.delegate = ui
+        self.delegate = delegate
     }
     
     func viewDidLoad() {

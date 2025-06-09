@@ -41,7 +41,7 @@ extension ListHeroesViewController: UITableViewDelegate {
         guard let selectedHero = listHeroesProvider?.heroes[indexPath.row] else { return }
         
         let detailVC = HeroDetailViewController()
-        let viewModel = HeroDetailViewModel(hero: selectedHero, ui: detailVC)
+        let viewModel = HeroDetailViewModel(hero: selectedHero, delegate: detailVC)
         detailVC.viewModel = viewModel
         
         navigationController?.pushViewController(detailVC, animated: true)
