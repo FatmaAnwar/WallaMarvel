@@ -3,8 +3,10 @@ import UIKit
 final class ListHeroesViewController: UIViewController {
     var mainView: ListHeroesView { return view as! ListHeroesView  }
     
-    var presenter: ListHeroesPresenterProtocol?
+    var viewModel: ListHeroesViewModelProtocol?
     var listHeroesProvider: ListHeroesAdapter?
+    
+    var onHeroSelected: ((HeroCellViewModel) -> Void)?
     
     override func loadView() {
         view = ListHeroesView()
@@ -13,19 +15,19 @@ final class ListHeroesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         listHeroesProvider = ListHeroesAdapter(tableView: mainView.heroesTableView)
-        presenter?.getHeroes()
-        presenter?.ui = self
+        viewModel?.getHeroes()
+        viewModel?.delegate = self
         
-        title = presenter?.screenTitle()
+        title = viewModel?.screenTitle()
         
         mainView.heroesTableView.delegate = self
         mainView.searchBar.delegate = self
     }
 }
 
-extension ListHeroesViewController: ListHeroesUI {
-    func update(heroes: [CharacterDataModel]) {
-        listHeroesProvider?.heroes = heroes
+extension ListHeroesViewController: ListHeroesViewModelDelegate {
+    func update(heroes: [HeroCellViewModel]) {
+        listHeroesProvider?.heroCellViewModels = heroes
     }
     
     func showLoading(_ show: Bool) {
@@ -38,28 +40,21 @@ extension ListHeroesViewController: ListHeroesUI {
 
 extension ListHeroesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let selectedHero = listHeroesProvider?.heroes[indexPath.row] else { return }
-        
-        let detailVC = HeroDetailViewController()
-        let presenter = HeroDetailPresenter(hero: selectedHero, ui: detailVC)
-        detailVC.presenter = presenter
-        
-        navigationController?.pushViewController(detailVC, animated: true)
+        guard let selectedHero = listHeroesProvider?.heroCellViewModels[indexPath.row] else { return }
+        onHeroSelected?(selectedHero)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let position = scrollView.contentOffset.y
-        let contentHeight = scrollView.contentSize.height
-        let scrollViewHeight = scrollView.frame.size.height
-        
-        if position > (contentHeight - scrollViewHeight - 100) {
-            presenter?.getHeroes()
-        }
+        viewModel?.didScrollToBottom(
+            currentOffsetY: scrollView.contentOffset.y,
+            contentHeight: scrollView.contentSize.height,
+            scrollViewHeight: scrollView.frame.size.height
+        )
     }
 }
 
 extension ListHeroesViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        presenter?.searchHeroes(with: searchText)
+        viewModel?.searchHeroes(with: searchText)
     }
 }

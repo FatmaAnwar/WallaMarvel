@@ -1,19 +1,12 @@
 import Foundation
 
-protocol ListHeroesPresenterProtocol: AnyObject {
-    var ui: ListHeroesUI? { get set }
-    func screenTitle() -> String
-    func getHeroes()
-    func searchHeroes(with text: String)
-}
-
-protocol ListHeroesUI: AnyObject {
-    func update(heroes: [CharacterDataModel])
+protocol ListHeroesViewModelDelegate: AnyObject {
+    func update(heroes: [HeroCellViewModel])
     func showLoading(_ show: Bool)
 }
 
-final class ListHeroesPresenter: ListHeroesPresenterProtocol {
-    var ui: ListHeroesUI?
+final class ListHeroesViewModel: ListHeroesViewModelProtocol {
+    var delegate: ListHeroesViewModelDelegate?
     private let getHeroesUseCase: GetHeroesUseCaseProtocol
     
     private var currentOffset = 0
@@ -35,16 +28,17 @@ final class ListHeroesPresenter: ListHeroesPresenterProtocol {
         guard !isLoading else { return }
         isLoading = true
         DispatchQueue.main.async {
-            self.ui?.showLoading(true)
+            self.delegate?.showLoading(true)
         }
         
         getHeroesUseCase.execute(offset: currentOffset) { container in
             self.currentOffset += container.count
             self.allHeroes += container.characters
-            self.ui?.update(heroes: self.allHeroes)
+            let viewModels = self.allHeroes.map { HeroCellViewModel(from: $0) }
+            self.delegate?.update(heroes: viewModels)
             
             DispatchQueue.main.async {
-                self.ui?.showLoading(false)
+                self.delegate?.showLoading(false)
             }
             
             self.isLoading = false
@@ -53,10 +47,19 @@ final class ListHeroesPresenter: ListHeroesPresenterProtocol {
     
     func searchHeroes(with text: String) {
         if text.isEmpty {
-            ui?.update(heroes: allHeroes)
+            let viewModels = self.allHeroes.map { HeroCellViewModel(from: $0) }
+            self.delegate?.update(heroes: viewModels)
         } else {
             let result = allHeroes.filter { $0.name.lowercased().contains(text.lowercased()) }
-            ui?.update(heroes: result)
+            let viewModels = result.map { HeroCellViewModel(from: $0) }
+            self.delegate?.update(heroes: viewModels)
+        }
+    }
+    
+    func didScrollToBottom(currentOffsetY: CGFloat, contentHeight: CGFloat, scrollViewHeight: CGFloat) {
+        let threshold: CGFloat = 100.0
+        if currentOffsetY > (contentHeight - scrollViewHeight - threshold) {
+            getHeroes()
         }
     }
 }
