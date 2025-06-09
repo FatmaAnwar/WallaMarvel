@@ -11,7 +11,7 @@ import Kingfisher
 
 final class HeroDetailViewController: UIViewController {
     
-    var presenter: HeroDetailPresenterProtocol!
+    var viewModel: HeroDetailViewModelProtocol!
     private let heroImageView = UIImageView()
     private let heroNameLabel = UILabel()
     private let heroDescriptionLabel = UILabel()
@@ -26,7 +26,7 @@ final class HeroDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        presenter.viewDidLoad()
+        viewModel.viewDidLoad()
     }
     
     private func setupUI() {
@@ -59,7 +59,7 @@ final class HeroDetailViewController: UIViewController {
     }
 }
 
-extension HeroDetailViewController: HeroDetailUI {
+extension HeroDetailViewController: HeroDetailViewModelDelegate {
     func displayHero(name: String, description: String, imageURL: URL?) {
         heroNameLabel.text = name
         heroDescriptionLabel.text = description.isEmpty ? "No description available." : description
