@@ -10,12 +10,11 @@ import Foundation
 struct HeroCellViewModel {
     let name: String
     let imageURL: URL?
-    let originalHero: CharacterDataModel
+    let originalHero: Character
     
-    init(from model: CharacterDataModel) {
+    init(from model: Character) {
         self.name = model.name
-        self.imageURL = URL(string: "\(model.thumbnail.path)/portrait_small.\(model.thumbnail.extension)")
+        self.imageURL = URL(string: model.imageUrl)
         self.originalHero = model
     }
 }
-

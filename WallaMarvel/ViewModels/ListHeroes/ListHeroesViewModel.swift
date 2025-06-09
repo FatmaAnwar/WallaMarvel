@@ -11,8 +11,8 @@ final class ListHeroesViewModel: ListHeroesViewModelProtocol {
     
     private var currentOffset = 0
     private var isLoading = false
-    private var allHeroes: [CharacterDataModel] = []
-    private var filteredHeroes: [CharacterDataModel] = []
+    private var allHeroes: [Character] = []
+    private var filteredHeroes: [Character] = []
     
     init(getHeroesUseCase: GetHeroesUseCaseProtocol = GetHeroes()) {
         self.getHeroesUseCase = getHeroesUseCase
@@ -33,9 +33,9 @@ final class ListHeroesViewModel: ListHeroesViewModelProtocol {
         
         getHeroesUseCase.execute(offset: currentOffset) { result in
             switch result {
-            case .success(let container):
-                self.currentOffset += container.count
-                self.allHeroes += container.characters
+            case .success(let characters):
+                self.currentOffset += characters.count
+                self.allHeroes += characters
                 let viewModels = self.allHeroes.map { HeroCellViewModel(from: $0) }
                 self.delegate?.update(heroes: viewModels)
                 
