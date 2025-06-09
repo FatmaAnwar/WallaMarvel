@@ -14,14 +14,7 @@ struct GetHeroes: GetHeroesUseCaseProtocol {
         self.repository = repository
     }
 
-    func execute(offset: Int, completionBlock: @escaping (Result<[Character], Error>) -> Void) {
-        Task {
-            do {
-                let characters = try await repository.getHeroes(offset: offset)
-                completionBlock(.success(characters))
-            } catch {
-                completionBlock(.failure(error))
-            }
-        }
+    func execute(offset: Int) async throws -> [Character] {
+        try await repository.getHeroes(offset: offset)
     }
 }

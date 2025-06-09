@@ -24,31 +24,25 @@ final class ListHeroesViewModel: ListHeroesViewModelProtocol {
     
     // MARK: UseCases
     
-    func getHeroes() {
+    func getHeroes() async {
         guard !isLoading else { return }
         isLoading = true
-        DispatchQueue.main.async {
-            self.delegate?.showLoading(true)
+        
+        delegate?.showLoading(true)
+        
+        do {
+            let characters = try await getHeroesUseCase.execute(offset: currentOffset)
+            currentOffset += characters.count
+            allHeroes += characters
+            
+            let viewModels = allHeroes.map { HeroCellViewModel(from: $0) }
+            delegate?.update(heroes: viewModels)
+        } catch {
+            print("Failed to load heroes:", error.localizedDescription)
         }
         
-        getHeroesUseCase.execute(offset: currentOffset) { result in
-            switch result {
-            case .success(let characters):
-                self.currentOffset += characters.count
-                self.allHeroes += characters
-                let viewModels = self.allHeroes.map { HeroCellViewModel(from: $0) }
-                self.delegate?.update(heroes: viewModels)
-                
-            case .failure(let error):
-                print("Failed to load heroes:", error.localizedDescription)
-            }
-            
-            DispatchQueue.main.async {
-                self.delegate?.showLoading(false)
-            }
-            
-            self.isLoading = false
-        }
+        delegate?.showLoading(false)
+        isLoading = false
     }
     
     func searchHeroes(with text: String) {
@@ -65,7 +59,9 @@ final class ListHeroesViewModel: ListHeroesViewModelProtocol {
     func didScrollToBottom(currentOffsetY: CGFloat, contentHeight: CGFloat, scrollViewHeight: CGFloat) {
         let threshold: CGFloat = 100.0
         if currentOffsetY > (contentHeight - scrollViewHeight - threshold) {
-            getHeroes()
+            Task {
+                await getHeroes()
+            }
         }
     }
 }

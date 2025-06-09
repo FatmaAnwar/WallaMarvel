@@ -8,5 +8,5 @@
 import Foundation
 
 protocol GetHeroesUseCaseProtocol {
-    func execute(offset: Int, completionBlock: @escaping (Result<[Character], Error>) -> Void)
+    func execute(offset: Int) async throws -> [Character]
 }
