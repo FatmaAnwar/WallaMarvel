@@ -3,7 +3,7 @@ import UIKit
 final class ListHeroesViewController: UIViewController {
     var mainView: ListHeroesView { return view as! ListHeroesView  }
     
-    var presenter: ListHeroesPresenterProtocol?
+    var viewModel: ListHeroesViewModelProtocol?
     var listHeroesProvider: ListHeroesAdapter?
     
     override func loadView() {
@@ -13,17 +13,17 @@ final class ListHeroesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         listHeroesProvider = ListHeroesAdapter(tableView: mainView.heroesTableView)
-        presenter?.getHeroes()
-        presenter?.ui = self
+        viewModel?.getHeroes()
+        viewModel?.delegate = self
         
-        title = presenter?.screenTitle()
+        title = viewModel?.screenTitle()
         
         mainView.heroesTableView.delegate = self
         mainView.searchBar.delegate = self
     }
 }
 
-extension ListHeroesViewController: ListHeroesUI {
+extension ListHeroesViewController: ListHeroesViewModelDelegate {
     func update(heroes: [CharacterDataModel]) {
         listHeroesProvider?.heroes = heroes
     }
@@ -53,13 +53,13 @@ extension ListHeroesViewController: UITableViewDelegate {
         let scrollViewHeight = scrollView.frame.size.height
         
         if position > (contentHeight - scrollViewHeight - 100) {
-            presenter?.getHeroes()
+            viewModel?.getHeroes()
         }
     }
 }
 
 extension ListHeroesViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        presenter?.searchHeroes(with: searchText)
+        viewModel?.searchHeroes(with: searchText)
     }
 }

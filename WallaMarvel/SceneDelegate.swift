@@ -9,9 +9,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(windowScene: windowScene)
         
-        let presenter = ListHeroesPresenter()
+        let viewModel = ListHeroesViewModel()
         let listHeroesViewController = ListHeroesViewController()
-        listHeroesViewController.presenter = presenter
+        listHeroesViewController.viewModel = viewModel
         
         let navigationController = UINavigationController(rootViewController: listHeroesViewController)
         window.rootViewController = navigationController

@@ -1,19 +1,12 @@
 import Foundation
 
-protocol ListHeroesPresenterProtocol: AnyObject {
-    var ui: ListHeroesUI? { get set }
-    func screenTitle() -> String
-    func getHeroes()
-    func searchHeroes(with text: String)
-}
-
-protocol ListHeroesUI: AnyObject {
+protocol ListHeroesViewModelDelegate: AnyObject {
     func update(heroes: [CharacterDataModel])
     func showLoading(_ show: Bool)
 }
 
-final class ListHeroesPresenter: ListHeroesPresenterProtocol {
-    var ui: ListHeroesUI?
+final class ListHeroesViewModel: ListHeroesViewModelProtocol {
+    var delegate: ListHeroesViewModelDelegate?
     private let getHeroesUseCase: GetHeroesUseCaseProtocol
     
     private var currentOffset = 0
@@ -35,16 +28,16 @@ final class ListHeroesPresenter: ListHeroesPresenterProtocol {
         guard !isLoading else { return }
         isLoading = true
         DispatchQueue.main.async {
-            self.ui?.showLoading(true)
+            self.delegate?.showLoading(true)
         }
         
         getHeroesUseCase.execute(offset: currentOffset) { container in
             self.currentOffset += container.count
             self.allHeroes += container.characters
-            self.ui?.update(heroes: self.allHeroes)
+            self.delegate?.update(heroes: self.allHeroes)
             
             DispatchQueue.main.async {
-                self.ui?.showLoading(false)
+                self.delegate?.showLoading(false)
             }
             
             self.isLoading = false
@@ -53,10 +46,10 @@ final class ListHeroesPresenter: ListHeroesPresenterProtocol {
     
     func searchHeroes(with text: String) {
         if text.isEmpty {
-            ui?.update(heroes: allHeroes)
+            delegate?.update(heroes: allHeroes)
         } else {
             let result = allHeroes.filter { $0.name.lowercased().contains(text.lowercased()) }
-            ui?.update(heroes: result)
+            delegate?.update(heroes: result)
         }
     }
 }
