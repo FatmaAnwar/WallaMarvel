@@ -8,30 +8,18 @@
 import Foundation
 
 final class MarvelAPIClient: MarvelAPIClientProtocol {
-    
-    func getHeroes(offset: Int, completionBlock: @escaping (Result<CharacterDataContainer, Error>) -> Void) {
+    func getHeroes(offset: Int) async throws -> CharacterDataContainer {
         guard let request = MarvelRequestBuilder.characters(offset: offset).buildRequest() else {
-            completionBlock(.failure(NetworkError.invalidURL))
-            return
+            throw NetworkError.invalidURL
         }
         
-        URLSession.shared.dataTask(with: request) { data, _, error in
-            if let error = error {
-                completionBlock(.failure(error))
-                return
-            }
-            
-            guard let data = data else {
-                completionBlock(.failure(NetworkError.noData))
-                return
-            }
-            
-            do {
-                let wrapper = try JSONDecoder().decode(CharacterResponseDataModel.self, from: data)
-                completionBlock(.success(wrapper.data))
-            } catch {
-                completionBlock(.failure(NetworkError.decodingError))
-            }
-        }.resume()
+        let (data, _) = try await URLSession.shared.data(for: request)
+        
+        do {
+            let wrapper = try JSONDecoder().decode(CharacterResponseDataModel.self, from: data)
+            return wrapper.data
+        } catch {
+            throw NetworkError.decodingError
+        }
     }
 }

@@ -8,5 +8,5 @@
 import Foundation
 
 protocol MarvelAPIClientProtocol {
-    func getHeroes(offset: Int, completionBlock: @escaping (Result<CharacterDataContainer, Error>) -> Void)
+    func getHeroes(offset: Int) async throws -> CharacterDataContainer
 }

@@ -1,17 +1,27 @@
-import Foundation
+//
+//  GetHeroes.swift
+//  WallaMarvel
+//
+//  Created by Fatma Anwar on 09/06/2025.
+//
 
-protocol GetHeroesUseCaseProtocol {
-    func execute(offset: Int, completionBlock: @escaping (Result<[Character], Error>) -> Void)
-}
+import Foundation
 
 struct GetHeroes: GetHeroesUseCaseProtocol {
     private let repository: MarvelRepositoryProtocol
-    
+
     init(repository: MarvelRepositoryProtocol = MarvelRepository()) {
         self.repository = repository
     }
-    
+
     func execute(offset: Int, completionBlock: @escaping (Result<[Character], Error>) -> Void) {
-        repository.getHeroes(offset: offset, completionBlock: completionBlock)
+        Task {
+            do {
+                let characters = try await repository.getHeroes(offset: offset)
+                completionBlock(.success(characters))
+            } catch {
+                completionBlock(.failure(error))
+            }
+        }
     }
 }
