@@ -31,11 +31,17 @@ final class ListHeroesViewModel: ListHeroesViewModelProtocol {
             self.delegate?.showLoading(true)
         }
         
-        getHeroesUseCase.execute(offset: currentOffset) { container in
-            self.currentOffset += container.count
-            self.allHeroes += container.characters
-            let viewModels = self.allHeroes.map { HeroCellViewModel(from: $0) }
-            self.delegate?.update(heroes: viewModels)
+        getHeroesUseCase.execute(offset: currentOffset) { result in
+            switch result {
+            case .success(let container):
+                self.currentOffset += container.count
+                self.allHeroes += container.characters
+                let viewModels = self.allHeroes.map { HeroCellViewModel(from: $0) }
+                self.delegate?.update(heroes: viewModels)
+                
+            case .failure(let error):
+                print("Failed to load heroes:", error.localizedDescription)
+            }
             
             DispatchQueue.main.async {
                 self.delegate?.showLoading(false)
