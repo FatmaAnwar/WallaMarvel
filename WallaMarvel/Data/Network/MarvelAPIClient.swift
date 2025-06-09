@@ -27,8 +27,8 @@ final class MarvelAPIClient: MarvelAPIClientProtocol {
             }
             
             do {
-                let decoded = try JSONDecoder().decode(CharacterDataContainer.self, from: data)
-                completionBlock(.success(decoded))
+                let wrapper = try JSONDecoder().decode(CharacterResponseDataModel.self, from: data)
+                completionBlock(.success(wrapper.data))
             } catch {
                 completionBlock(.failure(NetworkError.decodingError))
             }
