@@ -18,7 +18,7 @@ final class ListHeroesViewController: UIViewController {
         Task {
             await viewModel?.getHeroes()
         }
-
+        
         viewModel?.delegate = self
         
         title = viewModel?.screenTitle()
