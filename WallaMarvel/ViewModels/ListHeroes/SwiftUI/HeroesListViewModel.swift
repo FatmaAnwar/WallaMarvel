@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+@MainActor
 final class HeroesListViewModel: ObservableObject {
     @Published var heroCellViewModels: [HeroCellViewModel] = []
     @Published var searchText: String = ""

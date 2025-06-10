@@ -20,7 +20,7 @@ final class AppEntry {
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
 
-        let uiType: UIType = .uikit
+        let uiType: UIType = .swiftui
 
         switch uiType {
         case .uikit:
