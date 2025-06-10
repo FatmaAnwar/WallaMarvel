@@ -15,27 +15,39 @@ struct HeroesListView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                List {
-                    Section {
-                        TextField("Search heroes", text: $viewModel.searchText)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .padding(.vertical, 8)
-                    }
-                    
-                    ForEach(viewModel.heroCellViewModels, id: \.name) { hero in
-                        NavigationLink(destination: Text("Hero Detail for \(hero.name)")) {
-                            HeroCellView(viewModel: hero)
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("List of Heroes")
+                        .font(.system(size: 32, weight: .bold))
+                        .padding(.horizontal)
+
+                    TextField("Search heroes", text: $viewModel.searchText)
+                        .padding(10)
+                        .background(Color(.systemGray6))
+                        .cornerRadius(10)
+                        .padding(.horizontal)
+                        .shadow(radius: 1)
+                        .onChange(of: viewModel.searchText) { _ in
+                            viewModel.filterHeroes()
                         }
-                        .onAppear {
-                            viewModel.loadMoreIfNeeded(currentItem: hero)
+
+                    List {
+                        ForEach(viewModel.heroCellViewModels, id: \.name) { hero in
+                            NavigationLink(destination: Text("Hero Detail for \(hero.name)")) {
+                                HeroCellView(viewModel: hero)
+                            }
+                            .onAppear {
+                                viewModel.loadMoreIfNeeded(currentItem: hero)
+                            }
+                            .listRowSeparator(.hidden)
+                            .listRowBackground(Color.clear)
                         }
                     }
+                    .listStyle(.plain)
                 }
-                .listStyle(.plain)
-                .navigationTitle("List of Heroes")
-                
+
                 if viewModel.isLoading && viewModel.heroCellViewModels.isEmpty {
                     ProgressView("Loading...")
+                        .progressViewStyle(CircularProgressViewStyle())
                 }
             }
         }

@@ -47,7 +47,7 @@ final class HeroesListViewModel: ObservableObject {
         }
     }
 
-    private func filterHeroes() {
+    func filterHeroes() {
         if searchText.isEmpty {
             heroCellViewModels = allHeroes.map { HeroCellViewModel(from: $0) }
         } else {

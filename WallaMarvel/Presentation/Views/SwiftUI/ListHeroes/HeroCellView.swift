@@ -13,19 +13,24 @@ struct HeroCellView: View {
     let viewModel: HeroCellViewModel
     
     var body: some View {
-        HStack {
+        HStack(spacing: 12) {
             AsyncImage(url: viewModel.imageURL) { image in
                 image.resizable()
             } placeholder: {
-                ProgressView()
+                Color.gray.opacity(0.2)
             }
             .frame(width: 60, height: 60)
             .clipShape(Circle())
             
             Text(viewModel.name)
                 .font(.headline)
-                .padding(.leading, 8)
+                .foregroundColor(.primary)
+
+            Spacer()
         }
-        .padding(.vertical, 6)
+        .padding()
+        .background(Color(.systemBackground))
+        .cornerRadius(12)
+        .shadow(color: .black.opacity(0.05), radius: 2, x: 0, y: 1)
     }
 }
