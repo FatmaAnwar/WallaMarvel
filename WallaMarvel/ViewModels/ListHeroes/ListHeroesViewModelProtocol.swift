@@ -10,7 +10,7 @@ import Foundation
 protocol ListHeroesViewModelProtocol: AnyObject {
     var delegate: ListHeroesViewModelDelegate? { get set }
     func screenTitle() -> String
-    func getHeroes()
+    func getHeroes() async
     func searchHeroes(with text: String)
     func didScrollToBottom(currentOffsetY: CGFloat, contentHeight: CGFloat, scrollViewHeight: CGFloat)
 }

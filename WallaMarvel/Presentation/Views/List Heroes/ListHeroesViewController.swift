@@ -15,7 +15,10 @@ final class ListHeroesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         listHeroesProvider = ListHeroesAdapter(tableView: mainView.heroesTableView)
-        viewModel?.getHeroes()
+        Task {
+            await viewModel?.getHeroes()
+        }
+
         viewModel?.delegate = self
         
         title = viewModel?.screenTitle()

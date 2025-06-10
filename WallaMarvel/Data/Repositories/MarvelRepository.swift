@@ -1,8 +1,11 @@
-import Foundation
+//
+//  MarvelRepository.swift
+//  WallaMarvel
+//
+//  Created by Fatma Anwar on 09/06/2025.
+//
 
-protocol MarvelRepositoryProtocol {
-    func getHeroes(offset: Int, completionBlock: @escaping (Result<[Character], Error>) -> Void)
-}
+import Foundation
 
 final class MarvelRepository: MarvelRepositoryProtocol {
     private let dataSource: MarvelRemoteDataSourceProtocol
@@ -11,15 +14,8 @@ final class MarvelRepository: MarvelRepositoryProtocol {
         self.dataSource = dataSource
     }
     
-    func getHeroes(offset: Int, completionBlock: @escaping (Result<[Character], Error>) -> Void) {
-        dataSource.getHeroes(offset: offset) { result in
-            switch result {
-            case .success(let container):
-                let characters = CharacterMapper.map(from: container)
-                completionBlock(.success(characters))
-            case .failure(let error):
-                completionBlock(.failure(error))
-            }
-        }
+    func getHeroes(offset: Int) async throws -> [Character] {
+        let container = try await dataSource.getHeroes(offset: offset)
+        return CharacterMapper.map(from: container)
     }
 }

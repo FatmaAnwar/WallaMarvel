@@ -14,8 +14,7 @@ final class MarvelRemoteDataSource: MarvelRemoteDataSourceProtocol {
         self.apiClient = apiClient
     }
     
-    func getHeroes(offset: Int, completionBlock: @escaping (Result<CharacterDataContainer, Error>) -> Void) {
-        apiClient.getHeroes(offset: offset, completionBlock: completionBlock)
+    func getHeroes(offset: Int) async throws -> CharacterDataContainer {
+        try await apiClient.getHeroes(offset: offset)
     }
 }
-
