@@ -19,6 +19,8 @@ final class HeroesListViewModel: ObservableObject {
     private var currentOffset = 0
     private var allHeroes: [Character] = []
     
+    static let shared = HeroesListViewModel()
+    
     init(
         getHeroesUseCase: GetHeroesUseCaseProtocol = GetHeroes(),
         cacheRepository: CharacterCacheRepositoryProtocol = CharacterCacheRepository()
