@@ -69,5 +69,15 @@ struct HeroesListView: View {
             await viewModel.getHeroes()
             animateList = true
         }
+        .onChange(of: network.isConnected) { isConnected in
+            if isConnected {
+                viewModel.heroCellViewModels = []
+                Task {
+                    viewModel.isLoading = true
+                    await viewModel.getHeroes()
+                    viewModel.isLoading = false
+                }
+            }
+        }
     }
 }

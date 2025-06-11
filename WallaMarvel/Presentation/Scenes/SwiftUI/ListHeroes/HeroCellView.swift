@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Kingfisher
 
 @available(iOS 15.0, *)
 struct HeroCellView: View {
@@ -14,18 +15,24 @@ struct HeroCellView: View {
     
     var body: some View {
         HStack(spacing: 12) {
-            AsyncImage(url: viewModel.imageURL) { image in
-                image.resizable()
-            } placeholder: {
-                Color.gray.opacity(0.2)
-            }
-            .frame(width: 60, height: 60)
-            .clipShape(Circle())
+            KFImage(viewModel.imageURL)
+                .placeholder {
+                    Color.gray.opacity(0.2)
+                }
+                .cacheMemoryOnly(false)
+                .cacheOriginalImage()
+                .onFailure { error in
+                    print("Failed to load image for \(viewModel.name): \(error.localizedDescription)")
+                }
+                .resizable()
+                .scaledToFill()
+                .frame(width: 60, height: 60)
+                .clipShape(Circle())
             
             Text(viewModel.name)
                 .font(.headline)
                 .foregroundColor(.primary)
-
+            
             Spacer()
         }
         .padding()
