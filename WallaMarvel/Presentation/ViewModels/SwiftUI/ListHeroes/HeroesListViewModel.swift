@@ -84,15 +84,18 @@ final class HeroesListViewModel: ObservableObject {
             }
         }
         
-        let unique = Dictionary(grouping: filtered, by: \.id).compactMap { $0.value.first }
-        heroCellViewModels = unique.map { HeroCellViewModel(from: $0) }
+        let uniqueSorted = Dictionary(grouping: filtered, by: \.id)
+            .compactMap { $0.value.first }
+            .sorted(by: { $0.name.lowercased() < $1.name.lowercased() })
+        
+        heroCellViewModels = uniqueSorted.map { HeroCellViewModel(from: $0) }
     }
     
     func preloadCachedHeroesIfAvailable() {
         if allHeroes.isEmpty,
            let cached = try? cacheRepository.fetchCachedHeroes() {
             allHeroes = cached
-            heroCellViewModels = cached.map { HeroCellViewModel(from: $0) }
+            filterHeroes()
             
             Task {
                 try? await cacheRepository.save(characters: allHeroes)
