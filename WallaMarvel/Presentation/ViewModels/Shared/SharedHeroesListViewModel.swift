@@ -30,7 +30,10 @@ class SharedHeroesListViewModel {
         do {
             let characters = try await getHeroesUseCase.execute(offset: currentOffset)
             currentOffset += characters.count
-            allHeroes += characters
+            let newUniqueCharacters = characters.filter { newChar in
+                !allHeroes.contains(where: { $0.id == newChar.id })
+            }
+            allHeroes += newUniqueCharacters
             
             try await cacheRepository.save(characters: allHeroes)
             

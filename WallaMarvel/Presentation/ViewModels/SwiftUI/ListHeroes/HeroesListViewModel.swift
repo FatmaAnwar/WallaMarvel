@@ -29,16 +29,26 @@ final class HeroesListViewModel: ObservableObject {
         self.cacheRepository = cacheRepository
     }
     
-    func getHeroes() async {
+    func getHeroes(resetBeforeFetch: Bool = false) async {
         guard !isLoading else { return }
         isLoading = true
+        
+        if resetBeforeFetch {
+            currentOffset = 0
+            allHeroes = []
+            heroCellViewModels = []
+        }
         
         do {
             let characters = try await getHeroesUseCase.execute(offset: currentOffset)
             currentOffset += characters.count
-            allHeroes += characters
-            filterHeroes()
             
+            let newUniqueCharacters = characters.filter { newChar in
+                !allHeroes.contains(where: { $0.id == newChar.id })
+            }
+            allHeroes += newUniqueCharacters
+            
+            filterHeroes()
             try await cacheRepository.save(characters: allHeroes)
         } catch {
             print("Error fetching heroes: \(error.localizedDescription)")
@@ -64,14 +74,18 @@ final class HeroesListViewModel: ObservableObject {
     }
     
     func filterHeroes() {
+        let filtered: [Character]
+        
         if searchText.isEmpty {
-            heroCellViewModels = allHeroes.map { HeroCellViewModel(from: $0) }
+            filtered = allHeroes
         } else {
-            let filtered = allHeroes.filter {
+            filtered = allHeroes.filter {
                 $0.name.lowercased().contains(searchText.lowercased())
             }
-            heroCellViewModels = filtered.map { HeroCellViewModel(from: $0) }
         }
+        
+        let unique = Dictionary(grouping: filtered, by: \.id).compactMap { $0.value.first }
+        heroCellViewModels = unique.map { HeroCellViewModel(from: $0) }
     }
     
     func preloadCachedHeroesIfAvailable() {
