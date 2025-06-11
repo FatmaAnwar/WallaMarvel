@@ -7,6 +7,8 @@
 
 import Foundation
 import SwiftUI
+import Network
+import Combine
 
 @MainActor
 final class HeroesListViewModel: ObservableObject {
@@ -14,19 +16,64 @@ final class HeroesListViewModel: ObservableObject {
     @Published var searchText: String = ""
     @Published var isLoading: Bool = false
     
+    @Published var showOfflineBanner: Bool = false
+    @Published var showOnlineToast: Bool = false
+    
     private let getHeroesUseCase: GetHeroesUseCaseProtocol
     private let cacheRepository: CharacterCacheRepositoryProtocol
     private var currentOffset = 0
     private var allHeroes: [Character] = []
-    
-    static let shared = HeroesListViewModel()
+    private var cancellables = Set<AnyCancellable>()
+    private var wasOffline = false
     
     init(
         getHeroesUseCase: GetHeroesUseCaseProtocol = GetHeroes(),
-        cacheRepository: CharacterCacheRepositoryProtocol = CharacterCacheRepository()
+        cacheRepository: CharacterCacheRepositoryProtocol = CharacterCacheRepository(),
+        networkMonitor: NetworkMonitor = .shared
     ) {
         self.getHeroesUseCase = getHeroesUseCase
         self.cacheRepository = cacheRepository
+        
+        networkMonitor.$isConnected
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isConnected in
+                self?.handleNetworkChange(isConnected: isConnected)
+            }
+            .store(in: &cancellables)
+    }
+    
+    func handleNetworkChange(isConnected: Bool) {
+        if isConnected {
+            if wasOffline {
+                showOfflineBanner = false
+                showOnlineToast = true
+                
+                Task {
+                    await getHeroes(resetBeforeFetch: true)
+                }
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                    self.showOnlineToast = false
+                }
+                
+                wasOffline = false
+            }
+        } else {
+            wasOffline = true
+            showOfflineBanner = true
+            persistCurrentListIfNeeded()
+        }
+    }
+    
+    func initialLoad(isConnected: Bool) {
+        if isConnected {
+            Task {
+                await getHeroes()
+            }
+        } else {
+            preloadCachedHeroesIfAvailable()
+            showOfflineBanner = true
+        }
     }
     
     func getHeroes(resetBeforeFetch: Bool = false) async {

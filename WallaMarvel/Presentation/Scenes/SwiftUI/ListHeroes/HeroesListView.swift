@@ -11,16 +11,13 @@ import SwiftUI
 @available(iOS 15.0, *)
 struct HeroesListView: View {
     @StateObject private var viewModel = HeroesListViewModel()
-    @ObservedObject private var network = NetworkMonitor.shared
-    @State private var animateList = false
-    @State private var showOnlineToast = false
-    @State private var showOfflineBanner = false
+    private let network = NetworkMonitor.shared
     
     var body: some View {
         NavigationView {
             ZStack {
                 VStack(spacing: 0) {
-                    if showOfflineBanner {
+                    if viewModel.showOfflineBanner {
                         Text("You're offline")
                             .frame(maxWidth: .infinity)
                             .padding()
@@ -28,7 +25,7 @@ struct HeroesListView: View {
                             .foregroundColor(.white)
                             .font(.caption)
                             .transition(.move(edge: .top).combined(with: .opacity))
-                            .animation(.easeInOut(duration: 0.3), value: showOfflineBanner)
+                            .animation(.easeInOut, value: viewModel.showOfflineBanner)
                     }
                     
                     VStack(alignment: .leading, spacing: 12) {
@@ -64,7 +61,7 @@ struct HeroesListView: View {
                     }
                 }
                 
-                if showOnlineToast {
+                if viewModel.showOnlineToast {
                     VStack {
                         Spacer()
                         Text("Back online. Refreshing...")
@@ -74,7 +71,7 @@ struct HeroesListView: View {
                             .foregroundColor(.white)
                             .font(.caption)
                             .transition(.move(edge: .bottom).combined(with: .opacity))
-                            .animation(.easeInOut(duration: 0.3), value: showOnlineToast)
+                            .animation(.easeInOut(duration: 0.3), value: viewModel.showOnlineToast)
                     }
                     .zIndex(1)
                 }
@@ -85,32 +82,9 @@ struct HeroesListView: View {
                 }
             }
         }
-        .task {
-            viewModel.preloadCachedHeroesIfAvailable()
-            if network.isConnected {
-                await viewModel.getHeroes()
-            }
-            animateList = true
-        }
-        .onReceive(network.$isConnected) { isConnected in
-            if isConnected {
-                showOfflineBanner = false
-                showOnlineToast = true
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                    showOnlineToast = false
-                }
-                
-                Task {
-                    viewModel.isLoading = true
-                    viewModel.preloadCachedHeroesIfAvailable()
-                    await viewModel.getHeroes(resetBeforeFetch: true)
-                    viewModel.isLoading = false
-                }
-            } else {
-                showOfflineBanner = true
-                viewModel.persistCurrentListIfNeeded()
-            }
+        .onAppear {
+            let isConnected = network.currentStatus == .satisfied
+            viewModel.initialLoad(isConnected: isConnected)
         }
     }
 }

@@ -17,10 +17,14 @@ final class NetworkMonitor: ObservableObject {
     
     @Published private(set) var isConnected: Bool = true
     
+    var currentStatus: NWPath.Status {
+        monitor.currentPath.status
+    }
+    
     private init() {
-        monitor.pathUpdateHandler = { path in
+        monitor.pathUpdateHandler = { [weak self] path in
             DispatchQueue.main.async {
-                self.isConnected = (path.status == .satisfied)
+                self?.isConnected = (path.status == .satisfied)
             }
         }
         monitor.start(queue: queue)

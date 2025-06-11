@@ -22,7 +22,7 @@ final class CharacterCacheRepository: CharacterCacheRepositoryProtocol {
     }
     
     func save(characters: [Character]) async throws {
-        try clearCache() // Optional: clear old cache before saving new
+        try clearCache()
         
         for character in characters {
             let cdCharacter = CDCharacter(context: context)
