@@ -28,6 +28,7 @@
 		9ECC74D72DF9638B00236EEE /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECC74D62DF9638B00236EEE /* CoreDataStack.swift */; };
 		9ECC74DA2DF963AE00236EEE /* WallaMarvel .xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9ECC74D82DF963AE00236EEE /* WallaMarvel .xcdatamodeld */; };
 		9ECC74DD2DF9643E00236EEE /* CharacterCacheRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECC74DC2DF9643E00236EEE /* CharacterCacheRepository.swift */; };
+		9ECC74DF2DF9665500236EEE /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECC74DE2DF9665500236EEE /* NetworkMonitor.swift */; };
 		9ED8DC042DF68D0900A44B55 /* ListHeroesViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED8DC032DF68D0900A44B55 /* ListHeroesViewModelProtocol.swift */; };
 		9ED8DC0F2DF695F200A44B55 /* HeroesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED8DC0E2DF695F200A44B55 /* HeroesCoordinator.swift */; };
 		9ED8DC132DF6D26300A44B55 /* HeroCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED8DC122DF6D26300A44B55 /* HeroCellViewModel.swift */; };
@@ -101,6 +102,7 @@
 		9ECC74D62DF9638B00236EEE /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		9ECC74D92DF963AE00236EEE /* WallaMarvel .xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "WallaMarvel .xcdatamodel"; sourceTree = "<group>"; };
 		9ECC74DC2DF9643E00236EEE /* CharacterCacheRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCacheRepository.swift; sourceTree = "<group>"; };
+		9ECC74DE2DF9665500236EEE /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		9ED8DC032DF68D0900A44B55 /* ListHeroesViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListHeroesViewModelProtocol.swift; sourceTree = "<group>"; };
 		9ED8DC0E2DF695F200A44B55 /* HeroesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesCoordinator.swift; sourceTree = "<group>"; };
 		9ED8DC122DF6D26300A44B55 /* HeroCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroCellViewModel.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 			children = (
 				1A821ECB2862FF990024D397 /* String+MD5.swift */,
 				9ED8DC262DF6FF8900A44B55 /* AppConstants.swift */,
+				9ECC74DE2DF9665500236EEE /* NetworkMonitor.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -668,6 +671,7 @@
 				1A0E3A9B2862F7E200132FCB /* SceneDelegate.swift in Sources */,
 				1A3B7326286ADD1E007BF626 /* ListHeroesTableView.swift in Sources */,
 				9ECC74DA2DF963AE00236EEE /* WallaMarvel .xcdatamodeld in Sources */,
+				9ECC74DF2DF9665500236EEE /* NetworkMonitor.swift in Sources */,
 				9ED8DC372DF7240B00A44B55 /* CharacterDataContainer.swift in Sources */,
 				9ED8DC272DF6FF8900A44B55 /* AppConstants.swift in Sources */,
 				9ED8DC292DF705B300A44B55 /* MarvelRemoteDataSource.swift in Sources */,

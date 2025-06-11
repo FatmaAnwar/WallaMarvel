@@ -11,6 +11,8 @@ import SwiftUI
 @available(iOS 15.0, *)
 struct HeroesListView: View {
     @StateObject private var viewModel = HeroesListViewModel()
+    @ObservedObject private var network = NetworkMonitor.shared
+    @State private var animateList = false
     
     var body: some View {
         NavigationView {
@@ -30,9 +32,20 @@ struct HeroesListView: View {
                             viewModel.filterHeroes()
                         }
                     
+                    if !network.isConnected {
+                        Text("You're offline")
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.red.opacity(0.95))
+                            .foregroundColor(.white)
+                            .font(.caption)
+                    }
+                    
                     List {
                         ForEach(viewModel.heroCellViewModels, id: \.name) { hero in
-                            NavigationLink(destination: HeroDetailScreen(viewModel: HeroDetailVM(hero: hero.originalHero))) {
+                            NavigationLink(
+                                destination: HeroDetailScreen(viewModel: HeroDetailVM(hero: hero.originalHero))
+                            ) {
                                 HeroCellView(viewModel: hero)
                             }
                             .onAppear {
@@ -52,7 +65,9 @@ struct HeroesListView: View {
             }
         }
         .task {
+            viewModel.preloadCachedHeroesIfAvailable()
             await viewModel.getHeroes()
+            animateList = true
         }
     }
 }
