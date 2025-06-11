@@ -13,10 +13,26 @@ struct HeroesListView: View {
     @StateObject private var viewModel = HeroesListViewModel()
     @ObservedObject private var network = NetworkMonitor.shared
     @State private var animateList = false
+    @State private var showOnlineToast = false
     
     var body: some View {
         NavigationView {
             ZStack {
+                if showOnlineToast {
+                    VStack {
+                        Spacer()
+                        Text("Back online. Refreshing...")
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.green.opacity(0.95))
+                            .foregroundColor(.white)
+                            .font(.caption)
+                            .transition(.move(edge: .bottom).combined(with: .opacity))
+                            .animation(.easeInOut(duration: 0.3), value: showOnlineToast)
+                    }
+                    .zIndex(1)
+                }
+                
                 VStack(alignment: .leading, spacing: 12) {
                     Text("List of Heroes")
                         .font(.system(size: 32, weight: .bold))
@@ -66,17 +82,27 @@ struct HeroesListView: View {
         }
         .task {
             viewModel.preloadCachedHeroesIfAvailable()
-            await viewModel.getHeroes()
+            if network.isConnected {
+                await viewModel.getHeroes()
+            }
+            
             animateList = true
         }
         .onChange(of: network.isConnected) { isConnected in
             if isConnected {
+                showOnlineToast = true
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                    showOnlineToast = false
+                }
+                
                 viewModel.heroCellViewModels = []
                 Task {
                     viewModel.isLoading = true
                     await viewModel.getHeroes()
                     viewModel.isLoading = false
                 }
+            } else {
+                viewModel.persistCurrentListIfNeeded()
             }
         }
     }

@@ -77,6 +77,18 @@ final class HeroesListViewModel: ObservableObject {
            let cached = try? cacheRepository.fetchCachedHeroes() {
             allHeroes = cached
             heroCellViewModels = cached.map { HeroCellViewModel(from: $0) }
+            
+            Task {
+                try? await cacheRepository.save(characters: allHeroes)
+            }
+        }
+    }
+    
+    func persistCurrentListIfNeeded() {
+        if !allHeroes.isEmpty {
+            Task {
+                try? await cacheRepository.save(characters: allHeroes)
+            }
         }
     }
 }
