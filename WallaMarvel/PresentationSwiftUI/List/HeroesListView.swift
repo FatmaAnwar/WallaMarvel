@@ -5,14 +5,13 @@
 //  Created by Fatma Anwar on 10/06/2025.
 //
 
-import Foundation
 import SwiftUI
+import Kingfisher
 
 @available(iOS 15.0, *)
 struct HeroesListView: View {
     @StateObject private var viewModel = HeroesListViewModel()
-    private let network = NetworkMonitor.shared
-    
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -27,12 +26,12 @@ struct HeroesListView: View {
                             .transition(.move(edge: .top).combined(with: .opacity))
                             .animation(.easeInOut, value: viewModel.showOfflineBanner)
                     }
-                    
+
                     VStack(alignment: .leading, spacing: 12) {
                         Text("List of Heroes")
                             .font(.system(size: 32, weight: .bold))
                             .padding(.horizontal)
-                        
+
                         TextField("Search heroes", text: $viewModel.searchText)
                             .padding(10)
                             .background(Color(.systemGray6))
@@ -42,7 +41,7 @@ struct HeroesListView: View {
                             .onChange(of: viewModel.searchText) { _ in
                                 viewModel.filterHeroes()
                             }
-                        
+
                         List {
                             ForEach(viewModel.heroCellViewModels) { hero in
                                 NavigationLink(
@@ -60,7 +59,7 @@ struct HeroesListView: View {
                         .listStyle(.plain)
                     }
                 }
-                
+
                 if viewModel.showOnlineToast {
                     VStack {
                         Spacer()
@@ -75,16 +74,16 @@ struct HeroesListView: View {
                     }
                     .zIndex(1)
                 }
-                
+
                 if viewModel.isLoading && viewModel.heroCellViewModels.isEmpty {
                     ProgressView("Loading...")
                         .progressViewStyle(CircularProgressViewStyle())
                 }
             }
+            .navigationBarTitleDisplayMode(.inline)
         }
         .onAppear {
-            let isConnected = network.currentStatus == .satisfied
-            viewModel.initialLoad(isConnected: isConnected)
+            viewModel.initialLoad()
         }
     }
 }

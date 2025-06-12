@@ -29,6 +29,8 @@
 		9ECC74DD2DF9643E00236EEE /* CharacterCacheRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECC74DC2DF9643E00236EEE /* CharacterCacheRepository.swift */; };
 		9ECC74DF2DF9665500236EEE /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECC74DE2DF9665500236EEE /* NetworkMonitor.swift */; };
 		9ECC74E62DF979B000236EEE /* WallaMarvel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9ECC74E42DF979B000236EEE /* WallaMarvel.xcdatamodeld */; };
+		9ECC750B2DFAC5BE00236EEE /* FetchHeroesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECC750A2DFAC5BE00236EEE /* FetchHeroesUseCase.swift */; };
+		9ECC750E2DFAC5F300236EEE /* HeroesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECC750D2DFAC5F300236EEE /* HeroesService.swift */; };
 		9ED8DC042DF68D0900A44B55 /* ListHeroesViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED8DC032DF68D0900A44B55 /* ListHeroesViewModelProtocol.swift */; };
 		9ED8DC0F2DF695F200A44B55 /* HeroesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED8DC0E2DF695F200A44B55 /* HeroesCoordinator.swift */; };
 		9ED8DC132DF6D26300A44B55 /* HeroCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED8DC122DF6D26300A44B55 /* HeroCellViewModel.swift */; };
@@ -103,6 +105,8 @@
 		9ECC74DC2DF9643E00236EEE /* CharacterCacheRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCacheRepository.swift; sourceTree = "<group>"; };
 		9ECC74DE2DF9665500236EEE /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		9ECC74E52DF979B000236EEE /* WallaMarvel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WallaMarvel.xcdatamodel; sourceTree = "<group>"; };
+		9ECC750A2DFAC5BE00236EEE /* FetchHeroesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchHeroesUseCase.swift; sourceTree = "<group>"; };
+		9ECC750D2DFAC5F300236EEE /* HeroesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesService.swift; sourceTree = "<group>"; };
 		9ED8DC032DF68D0900A44B55 /* ListHeroesViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListHeroesViewModelProtocol.swift; sourceTree = "<group>"; };
 		9ED8DC0E2DF695F200A44B55 /* HeroesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesCoordinator.swift; sourceTree = "<group>"; };
 		9ED8DC122DF6D26300A44B55 /* HeroCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroCellViewModel.swift; sourceTree = "<group>"; };
@@ -213,6 +217,7 @@
 		1A821EC62862FD650024D397 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				9ECC750C2DFAC5EC00236EEE /* Services */,
 				9ED8DC302DF70BDC00A44B55 /* Models */,
 				9ECC74FC2DFAC01E00236EEE /* Protocols */,
 				1AC0347D286320F000E93178 /* UseCases */,
@@ -247,6 +252,7 @@
 			children = (
 				9ED8DC402DF7445900A44B55 /* GetHeroes.swift */,
 				9ED8DC3C2DF743F700A44B55 /* MarvelRepository.swift */,
+				9ECC750A2DFAC5BE00236EEE /* FetchHeroesUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -420,6 +426,14 @@
 				9ED8DC5C2DF7DC5600A44B55 /* SwiftUIHeroesCoordinator.swift */,
 			);
 			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		9ECC750C2DFAC5EC00236EEE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				9ECC750D2DFAC5F300236EEE /* HeroesService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		9ED8DC052DF68D3600A44B55 /* Resources */ = {
@@ -625,8 +639,10 @@
 				1A3B7326286ADD1E007BF626 /* ListHeroesTableView.swift in Sources */,
 				9ECC74DF2DF9665500236EEE /* NetworkMonitor.swift in Sources */,
 				9ED8DC372DF7240B00A44B55 /* CharacterDataContainer.swift in Sources */,
+				9ECC750E2DFAC5F300236EEE /* HeroesService.swift in Sources */,
 				9ED8DC272DF6FF8900A44B55 /* AppConstants.swift in Sources */,
 				9ED8DC292DF705B300A44B55 /* MarvelRemoteDataSource.swift in Sources */,
+				9ECC750B2DFAC5BE00236EEE /* FetchHeroesUseCase.swift in Sources */,
 				9EC0D9DD2DF7EF4100D35DE5 /* HeroDetailScreen.swift in Sources */,
 				9ED8DC132DF6D26300A44B55 /* HeroCellViewModel.swift in Sources */,
 				1A3B7328286ADEE6007BF626 /* ListHeroesTableViewCell.swift in Sources */,
