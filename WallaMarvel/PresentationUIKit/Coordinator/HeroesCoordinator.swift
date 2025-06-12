@@ -10,20 +10,26 @@ import UIKit
 
 final class HeroesCoordinator {
     private let navigationController: UINavigationController
+    private let heroesService: HeroesServiceProtocol
     
-    init(navigationController: UINavigationController) {
+    init(
+        navigationController: UINavigationController,
+        heroesService: HeroesServiceProtocol = HeroesService()
+    ) {
         self.navigationController = navigationController
+        self.heroesService = heroesService
     }
     
     func start() {
         let listVC = ListHeroesViewController()
-        let viewModel = ListHeroesViewModel()
+        let viewModel = ListHeroesViewModel(heroesService: heroesService)
+        
         viewModel.delegate = listVC
         listVC.viewModel = viewModel
         
         listVC.onHeroSelected = { [weak self] heroCellViewModel in
-            let originalHero = heroCellViewModel.originalHero
-            self?.navigateToDetail(hero: originalHero)
+            let hero = heroCellViewModel.originalHero
+            self?.navigateToDetail(hero: hero)
         }
         
         navigationController.pushViewController(listVC, animated: false)

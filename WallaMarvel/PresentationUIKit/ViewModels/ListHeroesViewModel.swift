@@ -10,26 +10,52 @@ import UIKit
 
 final class ListHeroesViewModel: ListHeroesViewModelProtocol {
     weak var delegate: ListHeroesViewModelDelegate?
-    private let sharedViewModel = SharedHeroesListViewModel()
+    
+    private var allHeroes: [Character] = []
+    private var currentOffset = 0
+    private var isLoading = false
+    private let heroesService: HeroesServiceProtocol
+    
+    init(heroesService: HeroesServiceProtocol = HeroesService()) {
+        self.heroesService = heroesService
+    }
     
     func screenTitle() -> String {
         "List of Heroes"
     }
     
     func getHeroes() async {
+        guard !isLoading else { return }
+        isLoading = true
         delegate?.showLoading(true)
+        
         do {
-            let viewModels = try await sharedViewModel.fetchMoreHeroes()
-            delegate?.update(heroes: viewModels)
+            let newHeroes = try await heroesService.fetchMore(offset: currentOffset)
+            currentOffset += newHeroes.count
+            
+            let uniqueNew = newHeroes.filter { newHero in
+                !allHeroes.contains(where: { $0.id == newHero.id })
+            }
+            
+            allHeroes += uniqueNew
+            delegate?.update(heroes: allHeroes.map { HeroCellViewModel(from: $0) })
+            
+            try await heroesService.save(characters: allHeroes)
         } catch {
-            print("Error fetching heroes:", error)
+            print("Error fetching heroes: \(error.localizedDescription)")
+            loadCachedIfNeeded()
         }
+        
         delegate?.showLoading(false)
+        isLoading = false
     }
     
     func searchHeroes(with text: String) {
-        let viewModels = sharedViewModel.searchHeroes(text)
-        delegate?.update(heroes: viewModels)
+        let filtered = text.isEmpty
+        ? allHeroes
+        : allHeroes.filter { $0.name.lowercased().contains(text.lowercased()) }
+        
+        delegate?.update(heroes: filtered.map { HeroCellViewModel(from: $0) })
     }
     
     func didScrollToBottom(currentOffsetY: CGFloat, contentHeight: CGFloat, scrollViewHeight: CGFloat) {
@@ -38,6 +64,15 @@ final class ListHeroesViewModel: ListHeroesViewModelProtocol {
             Task {
                 await getHeroes()
             }
+        }
+    }
+    
+    private func loadCachedIfNeeded() {
+        guard allHeroes.isEmpty else { return }
+        
+        if let cached = try? heroesService.fetchCachedHeroes() {
+            allHeroes = cached
+            delegate?.update(heroes: cached.map { HeroCellViewModel(from: $0) })
         }
     }
 }

@@ -51,5 +51,6 @@ final class ListHeroesTableViewCell: UITableViewCell {
     func configure(viewModel: HeroCellViewModel) {
         heroeImageView.kf.setImage(with: viewModel.imageURL)
         heroeName.text = viewModel.name
+        selectionStyle = .default
     }
 }

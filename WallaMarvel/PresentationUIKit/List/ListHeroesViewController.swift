@@ -1,12 +1,13 @@
 import UIKit
 
 final class ListHeroesViewController: UIViewController {
-    var mainView: ListHeroesView { return view as! ListHeroesView  }
-    
     var viewModel: ListHeroesViewModelProtocol?
     var listHeroesProvider: ListHeroesAdapter?
-    
     var onHeroSelected: ((HeroCellViewModel) -> Void)?
+    
+    var mainView: ListHeroesView {
+        return view as! ListHeroesView
+    }
     
     override func loadView() {
         view = ListHeroesView()
@@ -14,17 +15,20 @@ final class ListHeroesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         listHeroesProvider = ListHeroesAdapter(tableView: mainView.heroesTableView)
+        listHeroesProvider?.onHeroSelected = { [weak self] heroCellViewModel in
+            self?.onHeroSelected?(heroCellViewModel)
+        }
+        mainView.heroesTableView.delegate = self
+        mainView.searchBar.delegate = self
+
+        viewModel?.delegate = self
+        title = viewModel?.screenTitle()
+
         Task {
             await viewModel?.getHeroes()
         }
-        
-        viewModel?.delegate = self
-        
-        title = viewModel?.screenTitle()
-        
-        mainView.heroesTableView.delegate = self
-        mainView.searchBar.delegate = self
     }
 }
 
