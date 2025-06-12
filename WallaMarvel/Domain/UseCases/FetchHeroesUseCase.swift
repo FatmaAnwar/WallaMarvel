@@ -7,18 +7,22 @@
 
 import Foundation
 
-protocol FetchHeroesUseCaseProtocol {
-    func fetch(offset: Int) async throws -> [Character]
-}
-
 final class FetchHeroesUseCase: FetchHeroesUseCaseProtocol {
     private let repository: MarvelRepositoryProtocol
-
+    
     init(repository: MarvelRepositoryProtocol = MarvelRepository()) {
         self.repository = repository
     }
-
-    func fetch(offset: Int) async throws -> [Character] {
-        try await repository.getHeroes(offset: offset)
+    
+    func execute(offset: Int) async throws -> [Character] {
+        try await repository.fetchCharacters(offset: offset)
+    }
+    
+    func save(characters: [Character]) async throws {
+        try await repository.save(characters: characters)
+    }
+    
+    func fetchCachedHeroes() throws -> [Character] {
+        try repository.fetchCachedHeroes()
     }
 }

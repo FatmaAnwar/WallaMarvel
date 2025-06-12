@@ -23,14 +23,14 @@ final class HeroesListViewModel: ObservableObject {
     private var wasOffline = false
     private var cancellables = Set<AnyCancellable>()
 
-    private let heroesService: HeroesServiceProtocol
+    private let fetchHeroesUseCase: FetchHeroesUseCaseProtocol
     private let networkMonitor: NetworkMonitor
 
     init(
-        heroesService: HeroesServiceProtocol = HeroesService(),
+        fetchHeroesUseCase: FetchHeroesUseCaseProtocol = FetchHeroesUseCase(),
         networkMonitor: NetworkMonitor = .shared
     ) {
-        self.heroesService = heroesService
+        self.fetchHeroesUseCase = fetchHeroesUseCase
         self.networkMonitor = networkMonitor
 
         observeNetwork()
@@ -90,7 +90,7 @@ final class HeroesListViewModel: ObservableObject {
         }
 
         do {
-            let characters = try await heroesService.fetchMore(offset: currentOffset)
+            let characters = try await fetchHeroesUseCase.execute(offset: currentOffset)
             currentOffset += characters.count
 
             let newUnique = characters.filter { newChar in
@@ -100,7 +100,7 @@ final class HeroesListViewModel: ObservableObject {
             allHeroes += newUnique
             filterHeroes()
 
-            try await heroesService.save(characters: allHeroes)
+            try await fetchHeroesUseCase.save(characters: allHeroes)
         } catch {
             print("Error fetching heroes: \(error.localizedDescription)")
             loadFromCacheIfNeeded()
@@ -131,12 +131,12 @@ final class HeroesListViewModel: ObservableObject {
     private func preloadCachedHeroesIfAvailable() {
         guard allHeroes.isEmpty else { return }
 
-        if let cached = try? heroesService.fetchCachedHeroes() {
+        if let cached = try? fetchHeroesUseCase.fetchCachedHeroes() {
             allHeroes = cached
             filterHeroes()
 
             Task {
-                try? await heroesService.save(characters: allHeroes)
+                try? await fetchHeroesUseCase.save(characters: allHeroes)
             }
         }
     }
@@ -145,13 +145,13 @@ final class HeroesListViewModel: ObservableObject {
         guard !allHeroes.isEmpty else { return }
 
         Task {
-            try? await heroesService.save(characters: allHeroes)
+            try? await fetchHeroesUseCase.save(characters: allHeroes)
         }
     }
 
     private func loadFromCacheIfNeeded() {
         if allHeroes.isEmpty {
-            if let cached = try? heroesService.fetchCachedHeroes() {
+            if let cached = try? fetchHeroesUseCase.fetchCachedHeroes() {
                 allHeroes = cached
                 filterHeroes()
             }

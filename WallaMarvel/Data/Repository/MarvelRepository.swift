@@ -8,14 +8,31 @@
 import Foundation
 
 final class MarvelRepository: MarvelRepositoryProtocol {
-    private let dataSource: MarvelRemoteDataSourceProtocol
     
-    init(dataSource: MarvelRemoteDataSourceProtocol = MarvelRemoteDataSource()) {
-        self.dataSource = dataSource
+    private let remoteDataSource: MarvelRemoteDataSourceProtocol
+    private let cacheRepository: CharacterCacheRepositoryProtocol
+    private let characterMapper: CharacterMapperProtocol
+    
+    init(
+        remoteDataSource: MarvelRemoteDataSourceProtocol = MarvelRemoteDataSource(),
+        cacheRepository: CharacterCacheRepositoryProtocol = CharacterCacheRepository(),
+        characterMapper: CharacterMapperProtocol = CharacterMapper()
+    ) {
+        self.remoteDataSource = remoteDataSource
+        self.cacheRepository = cacheRepository
+        self.characterMapper = characterMapper
     }
     
-    func getHeroes(offset: Int) async throws -> [Character] {
-        let container = try await dataSource.getHeroes(offset: offset)
-        return CharacterMapper.map(from: container)
+    func fetchCharacters(offset: Int) async throws -> [Character] {
+        let dtoList: [CharacterDataModel] = try await remoteDataSource.fetchCharacters(offset: offset)
+        return characterMapper.map(dtoList)
+    }
+    
+    func save(characters: [Character]) async throws {
+        try await cacheRepository.save(characters: characters)
+    }
+    
+    func fetchCachedHeroes() throws -> [Character] {
+        try cacheRepository.fetchCachedHeroes()
     }
 }
