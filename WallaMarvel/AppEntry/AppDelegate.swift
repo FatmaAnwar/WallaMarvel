@@ -12,20 +12,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             object: nil,
             queue: .main
         ) { _ in
-            HeroesListViewModel.shared.persistCurrentListIfNeeded()
-            CoreDataStack.shared.saveContext()
+            self.persistCachedHeroes()
         }
-
+        
         NotificationCenter.default.addObserver(
             forName: UIApplication.willResignActiveNotification,
             object: nil,
             queue: .main
         ) { _ in
-            HeroesListViewModel.shared.persistCurrentListIfNeeded()
-            CoreDataStack.shared.saveContext()
+            self.persistCachedHeroes()
         }
         
         return true
+    }
+    
+    private func persistCachedHeroes() {
+        HeroesListViewModel().persistCurrentListIfNeeded()
+        CoreDataStack.shared.saveContext()
     }
     
     // MARK: UISceneSession Lifecycle
