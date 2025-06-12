@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Kingfisher
 
 enum UIType {
     case uikit, swiftui
@@ -30,6 +31,11 @@ final class AppEntry {
             let coordinator = SwiftUIHeroesCoordinator(navigationController: navigationController)
             coordinator.start()
         }
+
+        let cache = ImageCache.default
+        cache.diskStorage.config.expiration = .days(7)
+        cache.memoryStorage.config.totalCostLimit = 100 * 1024 * 1024
+        cache.memoryStorage.config.countLimit = 100
 
         return window
     }
