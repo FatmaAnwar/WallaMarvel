@@ -228,8 +228,9 @@
 		1A821EC72862FD6E0024D397 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				9ECC75102DFACE7E00236EEE /* Repository */,
 				1A821ED2286302D40024D397 /* Entities */,
-				9ECC74FD2DFAC0B400236EEE /* Sources */,
+				9ECC74FD2DFAC0B400236EEE /* Remote */,
 				9ECC74DB2DF9642B00236EEE /* Cache */,
 				9ED8DC332DF70C0100A44B55 /* Mappers */,
 			);
@@ -251,7 +252,6 @@
 			isa = PBXGroup;
 			children = (
 				9ED8DC402DF7445900A44B55 /* GetHeroes.swift */,
-				9ED8DC3C2DF743F700A44B55 /* MarvelRepository.swift */,
 				9ECC750A2DFAC5BE00236EEE /* FetchHeroesUseCase.swift */,
 			);
 			path = UseCases;
@@ -271,8 +271,8 @@
 			children = (
 				9ECC74DE2DF9665500236EEE /* NetworkMonitor.swift */,
 				9ED8DC262DF6FF8900A44B55 /* AppConstants.swift */,
-				1A821ECB2862FF990024D397 /* String+MD5.swift */,
 				9ED8DC1A2DF6FDB800A44B55 /* NetworkError.swift */,
+				9ECC750F2DFACE5500236EEE /* Extensions */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -335,13 +335,12 @@
 		9ECC74FC2DFAC01E00236EEE /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				9ED8DC3A2DF743D900A44B55 /* MarvelRepositoryProtocol.swift */,
 				9ED8DC3E2DF7444700A44B55 /* GetHeroesUseCaseProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		9ECC74FD2DFAC0B400236EEE /* Sources */ = {
+		9ECC74FD2DFAC0B400236EEE /* Remote */ = {
 			isa = PBXGroup;
 			children = (
 				9ED8DC2C2DF7071100A44B55 /* MarvelAPIClient.swift */,
@@ -350,7 +349,7 @@
 				9ED8DC2A2DF7065700A44B55 /* MarvelRemoteDataSourceProtocol.swift */,
 				9ED8DC1C2DF6FDCD00A44B55 /* MarvelRequestBuilder.swift */,
 			);
-			path = Sources;
+			path = Remote;
 			sourceTree = "<group>";
 		};
 		9ECC74FE2DFAC25D00236EEE /* List */ = {
@@ -434,6 +433,23 @@
 				9ECC750D2DFAC5F300236EEE /* HeroesService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		9ECC750F2DFACE5500236EEE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1A821ECB2862FF990024D397 /* String+MD5.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9ECC75102DFACE7E00236EEE /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				9ED8DC3C2DF743F700A44B55 /* MarvelRepository.swift */,
+				9ED8DC3A2DF743D900A44B55 /* MarvelRepositoryProtocol.swift */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 		9ED8DC052DF68D3600A44B55 /* Resources */ = {
