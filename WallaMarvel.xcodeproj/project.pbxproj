@@ -21,6 +21,8 @@
 		1A7B9BBD286D81AA00EBC1A6 /* CharacterDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7B9BBC286D81AA00EBC1A6 /* CharacterDataModel.swift */; };
 		1A7B9BBF286D81B600EBC1A6 /* Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7B9BBE286D81B600EBC1A6 /* Thumbnail.swift */; };
 		1A821ECC2862FF990024D397 /* String+MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A821ECB2862FF990024D397 /* String+MD5.swift */; };
+		9E369E442DFBCB8A00116C97 /* HeroCellViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E369E432DFBCB8A00116C97 /* HeroCellViewModelProtocol.swift */; };
+		9E369E462DFBCBAD00116C97 /* SwiftUIHeroCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E369E452DFBCBAD00116C97 /* SwiftUIHeroCellViewModel.swift */; };
 		9E6C42332DF5329A00ABBC68 /* HeroDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6C42322DF5329A00ABBC68 /* HeroDetailViewController.swift */; };
 		9E6C42352DF532CF00ABBC68 /* HeroDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6C42342DF532CF00ABBC68 /* HeroDetailViewModel.swift */; };
 		9EC0D9DB2DF7EEF900D35DE5 /* HeroDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC0D9DA2DF7EEF900D35DE5 /* HeroDetailVM.swift */; };
@@ -105,6 +107,8 @@
 		1A7B9BBC286D81AA00EBC1A6 /* CharacterDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDataModel.swift; sourceTree = "<group>"; };
 		1A7B9BBE286D81B600EBC1A6 /* Thumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
 		1A821ECB2862FF990024D397 /* String+MD5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+MD5.swift"; sourceTree = "<group>"; };
+		9E369E432DFBCB8A00116C97 /* HeroCellViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroCellViewModelProtocol.swift; sourceTree = "<group>"; };
+		9E369E452DFBCBAD00116C97 /* SwiftUIHeroCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIHeroCellViewModel.swift; sourceTree = "<group>"; };
 		9E6C42322DF5329A00ABBC68 /* HeroDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDetailViewController.swift; sourceTree = "<group>"; };
 		9E6C42342DF532CF00ABBC68 /* HeroDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDetailViewModel.swift; sourceTree = "<group>"; };
 		9EC0D9DA2DF7EEF900D35DE5 /* HeroDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDetailVM.swift; sourceTree = "<group>"; };
@@ -426,6 +430,8 @@
 			children = (
 				9ED8DC422DF7D4BA00A44B55 /* HeroesListViewModel.swift */,
 				9EC0D9DA2DF7EEF900D35DE5 /* HeroDetailVM.swift */,
+				9E369E432DFBCB8A00116C97 /* HeroCellViewModelProtocol.swift */,
+				9E369E452DFBCBAD00116C97 /* SwiftUIHeroCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -657,6 +663,7 @@
 				9EC0D9DB2DF7EEF900D35DE5 /* HeroDetailVM.swift in Sources */,
 				9ECC75282DFAF37E00236EEE /* SearchBarView.swift in Sources */,
 				9ED8DC5B2DF7DB0100A44B55 /* HeroCellView.swift in Sources */,
+				9E369E442DFBCB8A00116C97 /* HeroCellViewModelProtocol.swift in Sources */,
 				9ED8DC432DF7D4BA00A44B55 /* HeroesListViewModel.swift in Sources */,
 				9ED8DC172DF6DCDE00A44B55 /* HeroDetailView.swift in Sources */,
 				9ECC75182DFAD02B00236EEE /* FetchHeroesUseCaseProtocol.swift in Sources */,
@@ -689,6 +696,7 @@
 				9ED8DC042DF68D0900A44B55 /* ListHeroesViewModelProtocol.swift in Sources */,
 				9ECC751C2DFADA9600236EEE /* String+Constants.swift in Sources */,
 				9ED8DC3F2DF7444700A44B55 /* GetHeroesUseCaseProtocol.swift in Sources */,
+				9E369E462DFBCBAD00116C97 /* SwiftUIHeroCellViewModel.swift in Sources */,
 				1A0E3A9B2862F7E200132FCB /* SceneDelegate.swift in Sources */,
 				1A3B7326286ADD1E007BF626 /* ListHeroesTableView.swift in Sources */,
 				9ECC74DF2DF9665500236EEE /* NetworkMonitor.swift in Sources */,

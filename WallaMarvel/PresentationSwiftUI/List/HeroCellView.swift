@@ -5,25 +5,17 @@
 //  Created by Fatma Anwar on 10/06/2025.
 //
 
-import Foundation
 import SwiftUI
 import Kingfisher
 
 @available(iOS 15.0, *)
-struct HeroCellView: View {
-    let viewModel: HeroCellViewModel
+struct HeroCellView<VM: HeroCellViewModelProtocol>: View {
+    let viewModel: VM
     
     var body: some View {
         HStack(spacing: 12) {
             KFImage(viewModel.imageURL)
-                .placeholder {
-                    Color.gray.opacity(0.2)
-                }
-                .cacheMemoryOnly(false)
-                .cacheOriginalImage()
-                .onFailure { error in
-                    print("Failed to load image for \(viewModel.name): \(error.localizedDescription)")
-                }
+                .placeholder { Color.gray.opacity(0.2) }
                 .resizable()
                 .scaledToFill()
                 .frame(width: 60, height: 60)

@@ -11,7 +11,7 @@ import Combine
 
 @MainActor
 final class HeroesListViewModel: ObservableObject {
-    @Published var heroCellViewModels: [HeroCellViewModel] = []
+    @Published var heroCellViewModels: [SwiftUIHeroCellViewModel] = []
     @Published var searchText: String = ""
     @Published var isLoading: Bool = false
 
@@ -109,7 +109,7 @@ final class HeroesListViewModel: ObservableObject {
         isLoading = false
     }
 
-    func loadMoreIfNeeded(currentItem: HeroCellViewModel) {
+    func loadMoreIfNeeded(currentItem: SwiftUIHeroCellViewModel) {
         guard let lastItem = heroCellViewModels.last else { return }
         if currentItem.id == lastItem.id {
             Task { await getHeroes() }
@@ -125,7 +125,7 @@ final class HeroesListViewModel: ObservableObject {
             .compactMap { $0.value.first }
             .sorted { $0.name.lowercased() < $1.name.lowercased() }
 
-        heroCellViewModels = uniqueSorted.map { HeroCellViewModel(from: $0) }
+        heroCellViewModels = uniqueSorted.map { SwiftUIHeroCellViewModel(character: $0) }
     }
 
     private func preloadCachedHeroesIfAvailable() {
