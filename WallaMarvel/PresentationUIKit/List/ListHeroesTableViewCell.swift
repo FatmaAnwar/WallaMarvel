@@ -13,6 +13,8 @@ final class ListHeroesTableViewCell: UITableViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.adjustsFontForContentSizeCategory = true
+        label.font = UIFont.preferredFont(forTextStyle: .headline)
         return label
     }()
     
@@ -52,5 +54,16 @@ final class ListHeroesTableViewCell: UITableViewCell {
         heroeImageView.kf.setImage(with: viewModel.imageURL)
         heroeName.text = viewModel.name
         selectionStyle = .default
+        
+        heroeImageView.isAccessibilityElement = true
+        heroeImageView.accessibilityLabel = .accHeroImage(name: viewModel.name)
+        
+        heroeName.isAccessibilityElement = true
+        heroeName.accessibilityLabel = .accHeroDetailLabel(name: viewModel.name)
+        
+        self.isAccessibilityElement = true
+        self.accessibilityLabel = .accHeroCell(name: viewModel.name)
+        self.accessibilityHint = .accHeroCellHint
+        self.accessibilityTraits = .button
     }
 }
