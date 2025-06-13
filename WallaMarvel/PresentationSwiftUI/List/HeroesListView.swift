@@ -37,7 +37,9 @@ struct HeroesListView: View {
             .accessibilityLabel(String.accHeroListLabel)
         }
         .onAppear {
-            viewModel.initialLoad()
+            Task {
+                await viewModel.initialLoad()
+            }
         }
     }
     
