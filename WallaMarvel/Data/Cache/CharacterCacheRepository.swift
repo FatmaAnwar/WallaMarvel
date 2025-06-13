@@ -8,12 +8,6 @@
 import Foundation
 import CoreData
 
-protocol CharacterCacheRepositoryProtocol {
-    func save(characters: [Character]) async throws
-    func fetchCachedHeroes() throws -> [Character]
-    func clearCache() throws
-}
-
 final class CharacterCacheRepository: CharacterCacheRepositoryProtocol {
     private let context: NSManagedObjectContext
     
