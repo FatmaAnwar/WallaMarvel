@@ -5,58 +5,62 @@
 //  Created by Fatma Anwar on 10/06/2025.
 //
 
-import Foundation
 import SwiftUI
 import Kingfisher
 
 @available(iOS 15.0, *)
-struct HeroDetailScreen: View {
-    @StateObject var viewModel: HeroDetailVM
+struct HeroDetailScreen<ViewModel: SwiftUIHeroDetailViewModelProtocol>: View {
+    @StateObject var viewModel: ViewModel
     
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-                if let imageURL = viewModel.imageURL {
-                    KFImage(imageURL)
-                        .placeholder {
-                            RoundedRectangle(cornerRadius: 20)
-                                .fill(Color.gray.opacity(0.2))
-                                .frame(width: 250, height: 250)
-                                .overlay(ProgressView())
-                                .padding(.top, 24)
-                        }
-                        .cacheMemoryOnly(false)
-                        .cacheOriginalImage()
-                        .onFailure { error in
-                            print("Failed to load hero image: \(error.localizedDescription)")
-                        }
-                        .resizable()
-                        .scaledToFit()
-                        .frame(maxWidth: 250)
-                        .clipShape(RoundedRectangle(cornerRadius: 20))
-                        .shadow(color: .black.opacity(0.15), radius: 10, x: 0, y: 4)
-                        .padding(.top, 24)
-                }
-                
-                Text(viewModel.name)
-                    .font(.system(size: 28, weight: .bold))
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal)
-                    .foregroundColor(.primary)
-                
-                Text(viewModel.description)
-                    .font(.body)
-                    .foregroundColor(.secondary)
-                    .multilineTextAlignment(.leading)
-                    .padding(.horizontal)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                
+                heroImage
+                heroName
+                heroDescription
                 Spacer()
             }
             .padding(.bottom, 40)
         }
         .background(Color(.systemGroupedBackground))
-        .navigationTitle("Hero Detail")
+        .navigationTitle(String.heroDetailTitle)
         .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    private var heroImage: some View {
+        Group {
+            if let url = viewModel.imageURL {
+                KFImage(url)
+                    .placeholder {
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(Color.gray.opacity(0.2))
+                            .frame(width: 250, height: 250)
+                            .overlay(ProgressView())
+                    }
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxWidth: 250)
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                    .shadow(color: .black.opacity(0.15), radius: 10, x: 0, y: 4)
+                    .padding(.top, 24)
+            }
+        }
+    }
+    
+    private var heroName: some View {
+        Text(viewModel.name)
+            .font(.system(size: 28, weight: .bold))
+            .multilineTextAlignment(.center)
+            .padding(.horizontal)
+            .foregroundColor(.primary)
+    }
+    
+    private var heroDescription: some View {
+        Text(viewModel.description)
+            .font(.body)
+            .foregroundColor(.secondary)
+            .multilineTextAlignment(.leading)
+            .padding(.horizontal)
+            .frame(maxWidth: .infinity, alignment: .leading)
     }
 }

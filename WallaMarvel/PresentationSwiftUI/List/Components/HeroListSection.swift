@@ -15,7 +15,7 @@ struct HeroListSection: View {
         List {
             ForEach(viewModel.heroCellViewModels) { hero in
                 NavigationLink(
-                    destination: HeroDetailScreen(viewModel: HeroDetailVM(hero: hero.character))
+                    destination: HeroDetailScreen(viewModel: SwiftUIHeroDetailViewModel(character: hero.character))
                 ) {
                     HeroCellView(viewModel: hero)
                 }
