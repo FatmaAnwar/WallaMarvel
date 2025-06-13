@@ -11,6 +11,7 @@ import Kingfisher
 @available(iOS 15.0, *)
 struct HeroDetailScreen<ViewModel: SwiftUIHeroDetailViewModelProtocol>: View {
     @StateObject var viewModel: ViewModel
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     
     var body: some View {
         ScrollView {
@@ -43,6 +44,8 @@ struct HeroDetailScreen<ViewModel: SwiftUIHeroDetailViewModelProtocol>: View {
                     .clipShape(RoundedRectangle(cornerRadius: 20))
                     .shadow(color: .black.opacity(0.15), radius: 10, x: 0, y: 4)
                     .padding(.top, 24)
+                    .accessibilityLabel(String.accHeroImage(name: viewModel.name))
+                    .accessibilitySortPriority(1)
             }
         }
     }
@@ -53,6 +56,8 @@ struct HeroDetailScreen<ViewModel: SwiftUIHeroDetailViewModelProtocol>: View {
             .multilineTextAlignment(.center)
             .padding(.horizontal)
             .foregroundColor(.primary)
+            .dynamicTypeSize(.xSmall ... .accessibility5)
+            .accessibilityLabel(String.accHeroDetailLabel(name: viewModel.name))
     }
     
     private var heroDescription: some View {
@@ -62,5 +67,7 @@ struct HeroDetailScreen<ViewModel: SwiftUIHeroDetailViewModelProtocol>: View {
             .multilineTextAlignment(.leading)
             .padding(.horizontal)
             .frame(maxWidth: .infinity, alignment: .leading)
+            .dynamicTypeSize(.xSmall ... .accessibility5)
+            .accessibilityLabel(String.accHeroDescription(text: viewModel.description))
     }
 }

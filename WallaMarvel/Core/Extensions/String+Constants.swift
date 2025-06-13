@@ -21,6 +21,15 @@ extension String {
     static let unknownName = "Unknown"
     static let noDescription = "No description available."
     
+    // MARK: - Accessibility
+    static let accHeroListLabel = "Marvel Heroes List"
+    static func accHeroImage(name: String) -> String { "Image of \(name)" }
+    static func accHeroCell(name: String) -> String { "Hero: \(name)" }
+    static func accHeroDetailLabel(name: String) -> String { "Hero name: \(name)" }
+    static func accHeroDescription(text: String) -> String { "Hero description: \(text)" }
+    static let accHeroCellHint = "Tap to view details"
+    static let accLoadingHint = "Loading data from the server"
+    
     // MARK: - Errors
     static let imageLoadFailed = "Failed to load image"
     static let heroFetchError = "Error fetching heroes"
