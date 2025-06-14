@@ -29,6 +29,7 @@ extension String {
     static func accHeroDescription(text: String) -> String { "Hero description: \(text)" }
     static let accHeroCellHint = "Tap to view details"
     static let accLoadingHint = "Loading data from the server"
+    static func accHeroImageUnavailable(name: String) -> String { "No image available for \(name)" }
     
     // MARK: - Errors
     static let imageLoadFailed = "Failed to load image"
