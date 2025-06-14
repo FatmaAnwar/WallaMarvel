@@ -17,6 +17,7 @@ final class MockFetchHeroesUseCase: FetchHeroesUseCaseProtocol {
         if shouldReturnError {
             throw URLError(.badServerResponse)
         }
+        try await Task.sleep(nanoseconds: 200_000_000)
         return Array(heroesToReturn.dropFirst(offset).prefix(20))
     }
     

@@ -61,7 +61,6 @@ final class CharacterCacheRepositoryTests: XCTestCase {
         XCTAssertEqual(results.first?.description, "Strongest Avenger")
     }
     
-    func test_clearCache_deletesAllEntries() async throws {
     func test_clearCache_deletesAllEntries() throws {
         // Given
         let cd1 = CDCharacter(context: context)
@@ -86,7 +85,7 @@ final class CharacterCacheRepositoryTests: XCTestCase {
         XCTAssertTrue(remaining.isEmpty)
     }
     
-
+    
     func test_fetchCachedHeroes_returnsDefaultValuesIfNilOrEmpty() throws {
         // Given
         let cd = CDCharacter(context: context)
