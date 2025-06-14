@@ -62,14 +62,19 @@ final class CharacterCacheRepositoryTests: XCTestCase {
     }
     
     func test_clearCache_deletesAllEntries() async throws {
+    func test_clearCache_deletesAllEntries() throws {
         // Given
         let cd1 = CDCharacter(context: context)
         cd1.id = 1
         cd1.name = "A"
+        cd1.imageUrl = ""
+        cd1.desc = ""
         
         let cd2 = CDCharacter(context: context)
         cd2.id = 2
         cd2.name = "B"
+        cd2.imageUrl = ""
+        cd2.desc = ""
         
         try context.save()
         
@@ -81,11 +86,14 @@ final class CharacterCacheRepositoryTests: XCTestCase {
         XCTAssertTrue(remaining.isEmpty)
     }
     
-    func test_fetchCachedHeroes_returnsDefaultValuesIfNil() throws {
+
+    func test_fetchCachedHeroes_returnsDefaultValuesIfNilOrEmpty() throws {
         // Given
         let cd = CDCharacter(context: context)
         cd.id = 5
-        // Do not assign name, desc, or imageUrl (simulate nil values)
+        cd.name = ""
+        cd.desc = nil
+        cd.imageUrl = nil
         try context.save()
         
         // When
@@ -101,7 +109,36 @@ final class CharacterCacheRepositoryTests: XCTestCase {
     // MARK: - Helpers
     
     private func makeInMemoryContext() -> NSManagedObjectContext {
-        let container = NSPersistentContainer(name: "WallaMarvel")
+        let entity = NSEntityDescription()
+        entity.name = "CDCharacter"
+        entity.managedObjectClassName = NSStringFromClass(CDCharacter.self)
+        
+        let idAttribute = NSAttributeDescription()
+        idAttribute.name = "id"
+        idAttribute.attributeType = .integer64AttributeType
+        idAttribute.isOptional = false
+        
+        let nameAttribute = NSAttributeDescription()
+        nameAttribute.name = "name"
+        nameAttribute.attributeType = .stringAttributeType
+        nameAttribute.isOptional = true
+        
+        let imageUrlAttribute = NSAttributeDescription()
+        imageUrlAttribute.name = "imageUrl"
+        imageUrlAttribute.attributeType = .stringAttributeType
+        imageUrlAttribute.isOptional = true
+        
+        let descAttribute = NSAttributeDescription()
+        descAttribute.name = "desc"
+        descAttribute.attributeType = .stringAttributeType
+        descAttribute.isOptional = true
+        
+        entity.properties = [idAttribute, nameAttribute, imageUrlAttribute, descAttribute]
+        
+        let model = NSManagedObjectModel()
+        model.entities = [entity]
+        
+        let container = NSPersistentContainer(name: "InMemoryModel", managedObjectModel: model)
         let description = NSPersistentStoreDescription()
         description.type = NSInMemoryStoreType
         container.persistentStoreDescriptions = [description]

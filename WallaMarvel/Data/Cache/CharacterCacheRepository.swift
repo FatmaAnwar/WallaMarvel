@@ -36,7 +36,7 @@ final class CharacterCacheRepository: CharacterCacheRepositoryProtocol {
         return results.map {
             Character(
                 id: Int($0.id),
-                name: $0.name ?? "Unknown",
+                name: ($0.name?.isEmpty ?? true) ? "Unknown" : $0.name!,
                 imageUrl: $0.imageUrl ?? "",
                 description: $0.desc ?? ""
             )
@@ -45,7 +45,17 @@ final class CharacterCacheRepository: CharacterCacheRepositoryProtocol {
     
     func clearCache() throws {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = CDCharacter.fetchRequest()
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        try context.execute(deleteRequest)
+        
+        if context.persistentStoreCoordinator?.persistentStores.first?.type == NSInMemoryStoreType {
+            let objects = try context.fetch(fetchRequest) as? [NSManagedObject] ?? []
+            for object in objects {
+                context.delete(object)
+            }
+        } else {
+            let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+            try context.execute(deleteRequest)
+        }
+        
+        try context.save()
     }
 }
