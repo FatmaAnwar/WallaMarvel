@@ -12,7 +12,12 @@ final class SwiftUIHeroCellViewModel: HeroCellViewModelProtocol, ObservableObjec
     let character: Character
     
     var name: String { character.name }
-    var imageURL: URL? { URL(string: character.imageUrl) }
+    var imageURL: URL? {
+        guard let url = URL(string: character.imageUrl),
+              url.scheme == "https" || url.scheme == "http",
+              url.host != nil else { return nil }
+        return url
+    }
     
     init(character: Character) {
         self.id = character.id
