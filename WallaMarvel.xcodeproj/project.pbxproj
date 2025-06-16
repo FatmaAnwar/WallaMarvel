@@ -415,7 +415,6 @@
 			children = (
 				9ECC74F92DFABF7200236EEE /* WallaMarvelUnitTests */,
 				9ECC74FA2DFABF7B00236EEE /* WallaMarvelUITests */,
-				9ECC74FB2DFABF8800236EEE /* WallaMarvelIntegrationTests */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -445,13 +444,6 @@
 				9E35D1F32DFFE33F0083FE6A /* EmptyStateUITests.swift */,
 			);
 			path = WallaMarvelUITests;
-			sourceTree = "<group>";
-		};
-		9ECC74FB2DFABF8800236EEE /* WallaMarvelIntegrationTests */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = WallaMarvelIntegrationTests;
 			sourceTree = "<group>";
 		};
 		9ECC74FC2DFAC01E00236EEE /* Protocols */ = {
