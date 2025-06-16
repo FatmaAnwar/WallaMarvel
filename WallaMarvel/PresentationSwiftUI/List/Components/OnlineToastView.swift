@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(iOS 14.0, *)
 struct OnlineToastView: View {
     var body: some View {
         VStack {
@@ -19,6 +20,8 @@ struct OnlineToastView: View {
                 .font(.caption)
                 .transition(.move(edge: .bottom).combined(with: .opacity))
                 .animation(.easeInOut(duration: 0.3), value: true)
+                .accessibilityIdentifier(String.identifierOnlineToast)
+            
         }
         .zIndex(1)
     }

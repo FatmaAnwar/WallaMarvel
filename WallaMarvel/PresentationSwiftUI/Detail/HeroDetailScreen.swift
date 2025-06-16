@@ -55,6 +55,7 @@ struct HeroDetailScreen<ViewModel: SwiftUIHeroDetailViewModelProtocol>: View {
                     .padding(.top, 24)
                     .accessibilityLabel(String.accHeroImageUnavailable(name: viewModel.name))
                     .accessibilitySortPriority(1)
+                    .accessibilityIdentifier(String.identifierFallbackImage)
             }
         }
     }
@@ -67,6 +68,7 @@ struct HeroDetailScreen<ViewModel: SwiftUIHeroDetailViewModelProtocol>: View {
             .foregroundColor(.primary)
             .dynamicTypeSize(.xSmall ... .accessibility5)
             .accessibilityLabel(String.accHeroDetailLabel(name: viewModel.name))
+            .accessibilityIdentifier(String.identifierHeroDetailName)
     }
     
     private var heroDescription: some View {
@@ -79,5 +81,6 @@ struct HeroDetailScreen<ViewModel: SwiftUIHeroDetailViewModelProtocol>: View {
             .dynamicTypeSize(.xSmall ... .accessibility5)
             .accessibilityLabel(String.accHeroDescription(text: viewModel.description))
             .textSelection(.enabled)
+            .accessibilityIdentifier(String.identifierHeroDetailDescription)
     }
 }

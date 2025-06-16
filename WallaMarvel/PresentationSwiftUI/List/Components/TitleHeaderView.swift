@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(iOS 14.0, *)
 struct TitleHeaderView: View {
     let title: String
     
@@ -14,5 +15,6 @@ struct TitleHeaderView: View {
         Text(verbatim: title)
             .font(.system(size: 32, weight: .bold))
             .padding(.horizontal)
+            .accessibilityIdentifier(String.identifierHeroListTitle)
     }
 }

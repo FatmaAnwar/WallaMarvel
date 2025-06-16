@@ -20,5 +20,6 @@ struct SearchBarView: View {
             .padding(.horizontal)
             .shadow(radius: 1)
             .onChange(of: text) { _ in onChange() }
+            .accessibilityIdentifier(String.identifierSearchField)
     }
 }
