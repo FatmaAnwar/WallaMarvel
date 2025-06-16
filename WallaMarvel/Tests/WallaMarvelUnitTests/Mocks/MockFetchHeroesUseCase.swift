@@ -12,8 +12,10 @@ final class MockFetchHeroesUseCase: FetchHeroesUseCaseProtocol {
     var shouldReturnError = false
     var heroesToReturn: [Character] = []
     var cachedHeroes: [Character] = []
+    var didExecute: Bool = false
     
     func execute(offset: Int) async throws -> [Character] {
+        didExecute = true
         if shouldReturnError {
             throw URLError(.badServerResponse)
         }

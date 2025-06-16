@@ -1,5 +1,5 @@
 //
-//  HeroesListViewModelTests.swift
+//  SwiftUIHeroesListViewModelTests.swift
 //  WallaMarvel
 //
 //  Created by Fatma Anwar on 13/06/2025.
@@ -8,7 +8,7 @@
 import XCTest
 @testable import WallaMarvel
 
-final class HeroesListViewModelTests: XCTestCase {
+final class SwiftUIHeroesListViewModelTests: XCTestCase {
     
     private var mockUseCase: MockFetchHeroesUseCase!
     private var mockNetwork: MockNetworkMonitor!
