@@ -26,6 +26,13 @@ final class HeroDetailViewModel: HeroDetailViewModelProtocol {
     
     func viewDidLoad() {
         let url = URL(string: hero.imageUrl)
-        delegate?.displayHero(name: hero.name, description: hero.description, imageURL: url)
+        let isValid = url?.scheme == "https" || url?.scheme == "http"
+        let isUsable = url?.host != nil
+
+        delegate?.displayHero(
+            name: hero.name,
+            description: hero.description,
+            imageURL: isValid && isUsable ? url : nil
+        )
     }
 }
