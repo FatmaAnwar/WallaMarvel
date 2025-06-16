@@ -12,11 +12,18 @@ struct HeroCellViewModel: Identifiable {
     let name: String
     let imageURL: URL?
     let originalHero: Character
-
+    
     init(from model: Character) {
         self.id = model.id
         self.name = model.name
-        self.imageURL = URL(string: model.imageUrl)
+        if let url = URL(string: model.imageUrl),
+           let scheme = url.scheme,
+           (scheme == "http" || scheme == "https"),
+           url.host != nil {
+            self.imageURL = url
+        } else {
+            self.imageURL = nil
+        }
         self.originalHero = model
     }
 }

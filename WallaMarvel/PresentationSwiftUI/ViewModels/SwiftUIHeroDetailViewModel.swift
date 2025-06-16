@@ -23,9 +23,10 @@ final class SwiftUIHeroDetailViewModel: SwiftUIHeroDetailViewModelProtocol {
     
     private func loadHeroDetails() {
         name = character.name
-        description = character.description.isEmpty
-        ? String.noDescription
-        : character.description
+        
+        let trimmedDescription = character.description.trimmingCharacters(in: .whitespacesAndNewlines)
+        description = trimmedDescription.isEmpty ? String.noDescription : trimmedDescription
+        
         imageURL = URL(string: character.imageUrl)
     }
 }

@@ -9,6 +9,6 @@ import Foundation
 
 protocol FetchHeroesUseCaseProtocol {
     func execute(offset: Int) async throws -> [Character]
-    func save(characters: [Character]) async throws
     func fetchCachedHeroes() throws -> [Character]
+    func save(characters: [Character]) async throws
 }

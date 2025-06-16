@@ -18,9 +18,8 @@ final class HeroesListViewModel: ObservableObject {
     @Published var showOnlineToast: Bool = false
     
     private let fetchHeroesUseCase: FetchHeroesUseCaseProtocol
-    private let networkMonitor: NetworkMonitor
+    private let networkMonitor: NetworkMonitoringProtocol
     private let debounceDuration: TimeInterval = 0.4
-    
     private var cancellables = Set<AnyCancellable>()
     private var currentOffset = 0
     private var wasOffline = false
@@ -28,17 +27,16 @@ final class HeroesListViewModel: ObservableObject {
     
     init(
         fetchHeroesUseCase: FetchHeroesUseCaseProtocol = FetchHeroesUseCase(),
-        networkMonitor: NetworkMonitor = .shared
+        networkMonitor: NetworkMonitoringProtocol = NetworkMonitor.shared
     ) {
         self.fetchHeroesUseCase = fetchHeroesUseCase
         self.networkMonitor = networkMonitor
-        
         observeNetwork()
         observeSearchText()
     }
     
     private func observeNetwork() {
-        networkMonitor.$isConnected
+        networkMonitor.isConnectedPublisher
             .removeDuplicates()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] isConnected in
@@ -57,9 +55,9 @@ final class HeroesListViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
-    func initialLoad() {
+    func initialLoad() async {
         if networkMonitor.isConnected {
-            Task { await fetchHeroes() }
+            await fetchHeroes()
         } else {
             loadCachedHeroes()
             showOfflineBanner = true
@@ -81,6 +79,9 @@ final class HeroesListViewModel: ObservableObject {
         
         do {
             let characters = try await fetchHeroesUseCase.execute(offset: currentOffset)
+            
+            if characters.isEmpty { return }
+            
             currentOffset += characters.count
             
             let uniqueNew = characters.filter { new in

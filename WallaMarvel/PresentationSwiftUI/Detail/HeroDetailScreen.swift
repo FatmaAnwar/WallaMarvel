@@ -46,6 +46,15 @@ struct HeroDetailScreen<ViewModel: SwiftUIHeroDetailViewModelProtocol>: View {
                     .padding(.top, 24)
                     .accessibilityLabel(String.accHeroImage(name: viewModel.name))
                     .accessibilitySortPriority(1)
+            } else {
+                Image(systemName: "person.crop.square")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 120, height: 120)
+                    .foregroundColor(.gray)
+                    .padding(.top, 24)
+                    .accessibilityLabel(String.accHeroImageUnavailable(name: viewModel.name))
+                    .accessibilitySortPriority(1)
             }
         }
     }
@@ -69,5 +78,6 @@ struct HeroDetailScreen<ViewModel: SwiftUIHeroDetailViewModelProtocol>: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .dynamicTypeSize(.xSmall ... .accessibility5)
             .accessibilityLabel(String.accHeroDescription(text: viewModel.description))
+            .textSelection(.enabled)
     }
 }
