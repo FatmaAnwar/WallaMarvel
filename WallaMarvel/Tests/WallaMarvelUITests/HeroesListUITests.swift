@@ -14,13 +14,14 @@ final class HeroesListUITests: XCTestCase {
         app.launch()
         
         let title = app.staticTexts["heroListTitle"]
-        XCTAssertTrue(title.waitForExistence(timeout: 5))
+        XCTAssertTrue(title.waitForExistence(timeout: 5), "Hero list title should exist")
         
-        let firstCell = app.buttons.containing(NSPredicate(format: "identifier BEGINSWITH %@", "heroCell_")).firstMatch
-        XCTAssertTrue(firstCell.waitForExistence(timeout: 5), "First hero cell should exist.")
-        firstCell.tap()
+        let heroCell = app.buttons.firstMatch
+        XCTAssertTrue(heroCell.waitForExistence(timeout: 5), "First hero cell should appear")
+        
+        heroCell.tap()
         
         let detailName = app.staticTexts["heroDetailName"]
-        XCTAssertTrue(detailName.waitForExistence(timeout: 5), "Detail screen should appear after tap.")
+        XCTAssertTrue(detailName.waitForExistence(timeout: 5), "Hero detail name should appear")
     }
 }

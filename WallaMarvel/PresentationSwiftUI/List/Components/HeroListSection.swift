@@ -17,7 +17,7 @@ struct HeroListSection: View {
                 NavigationLink(
                     destination: HeroDetailScreen(viewModel: SwiftUIHeroDetailViewModel(character: hero.character))
                 ) {
-                    HeroCellView(viewModel: hero)
+                    HeroCellView(viewModel: hero) {}
                 }
                 .onAppear {
                     viewModel.loadMoreIfNeeded(currentItem: hero)

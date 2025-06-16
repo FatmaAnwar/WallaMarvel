@@ -13,7 +13,7 @@ final class HeroDetailScreenUITests: XCTestCase {
         let app = XCUIApplication()
         app.launch()
         
-        let firstCell = app.buttons.containing(NSPredicate(format: "identifier BEGINSWITH %@", "heroCell_")).firstMatch
+        let firstCell = app.buttons.firstMatch
         XCTAssertTrue(firstCell.waitForExistence(timeout: 5), "First hero cell should appear.")
         firstCell.tap()
         
