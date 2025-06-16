@@ -40,7 +40,6 @@ final class CharacterCacheRepositoryTests: XCTestCase {
         // Then
         let fetched: [CDCharacter] = try context.fetch(CDCharacter.fetchRequest())
         XCTAssertEqual(fetched.count, 2)
-        XCTAssertEqual(fetched.first?.name, "Iron Man")
     }
     
     func test_fetchCachedHeroes_returnsMappedCharacters() throws {

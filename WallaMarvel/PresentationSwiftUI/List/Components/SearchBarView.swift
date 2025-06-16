@@ -13,13 +13,27 @@ struct SearchBarView: View {
     var onChange: () -> Void
     
     var body: some View {
-        TextField(String.searchHeroesPlaceholder, text: $text)
-            .padding(10)
-            .background(Color(.systemGray6))
-            .cornerRadius(10)
-            .padding(.horizontal)
-            .shadow(radius: 1)
-            .onChange(of: text) { _ in onChange() }
-            .accessibilityIdentifier(String.identifierSearchField)
+        ZStack(alignment: .trailing) {
+            TextField(String.searchHeroesPlaceholder, text: $text)
+                .padding(10)
+                .background(Color(.systemGray6))
+                .cornerRadius(10)
+                .shadow(radius: 1)
+                .onChange(of: text) { _ in onChange() }
+                .accessibilityIdentifier(String.identifierSearchField)
+            
+            if !text.isEmpty {
+                Button(action: {
+                    text = ""
+                    onChange()
+                }) {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundColor(.gray)
+                        .padding(.trailing, 12)
+                }
+                .transition(.opacity)
+            }
+        }
+        .padding(.horizontal)
     }
 }

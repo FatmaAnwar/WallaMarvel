@@ -17,7 +17,7 @@ extension String {
     static let searchHeroesPlaceholder = "Search heroes"
     static let offlineBannerText = "You're offline"
     static let onlineToastText = "Back online. Refreshing..."
-    static let loadingText = "Loading..."
+    static let loadingHeroesText = "Loading heroes..."
     static let unknownName = "Unknown"
     static let noDescription = "No description available."
     
