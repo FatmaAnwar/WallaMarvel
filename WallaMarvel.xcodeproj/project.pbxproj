@@ -26,8 +26,6 @@
 		9E2EF7222DFD1D9C009D5836 /* CharacterDataContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2EF7212DFD1D9C009D5836 /* CharacterDataContainer.swift */; };
 		9E2EF7262DFD1ED0009D5836 /* MockCharacterCacheRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2EF7252DFD1ED0009D5836 /* MockCharacterCacheRepository.swift */; };
 		9E2EF7292DFD23D9009D5836 /* MockCharacterMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2EF7282DFD23D9009D5836 /* MockCharacterMapper.swift */; };
-		9E2EF72C2DFD3490009D5836 /* CharacterCachePersistingServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2EF72B2DFD3490009D5836 /* CharacterCachePersistingServiceTests.swift */; };
-		9E2EF7312DFD3606009D5836 /* CharacterCacheRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2EF7302DFD3606009D5836 /* CharacterCacheRepositoryTests.swift */; };
 		9E2EF7352DFD38DE009D5836 /* CharacterMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2EF7342DFD38DE009D5836 /* CharacterMapperTests.swift */; };
 		9E2EF7382DFD4514009D5836 /* SwiftUIHeroDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2EF7372DFD4514009D5836 /* SwiftUIHeroDetailViewModelTests.swift */; };
 		9E2EF73B2DFD485C009D5836 /* SwiftUIHeroCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2EF73A2DFD485C009D5836 /* SwiftUIHeroCellViewModelTests.swift */; };
@@ -141,8 +139,6 @@
 		9E2EF7212DFD1D9C009D5836 /* CharacterDataContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDataContainer.swift; sourceTree = "<group>"; };
 		9E2EF7252DFD1ED0009D5836 /* MockCharacterCacheRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCharacterCacheRepository.swift; sourceTree = "<group>"; };
 		9E2EF7282DFD23D9009D5836 /* MockCharacterMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCharacterMapper.swift; sourceTree = "<group>"; };
-		9E2EF72B2DFD3490009D5836 /* CharacterCachePersistingServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCachePersistingServiceTests.swift; sourceTree = "<group>"; };
-		9E2EF7302DFD3606009D5836 /* CharacterCacheRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCacheRepositoryTests.swift; sourceTree = "<group>"; };
 		9E2EF7342DFD38DE009D5836 /* CharacterMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterMapperTests.swift; sourceTree = "<group>"; };
 		9E2EF7372DFD4514009D5836 /* SwiftUIHeroDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIHeroDetailViewModelTests.swift; sourceTree = "<group>"; };
 		9E2EF73A2DFD485C009D5836 /* SwiftUIHeroCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIHeroCellViewModelTests.swift; sourceTree = "<group>"; };
@@ -333,22 +329,6 @@
 			path = Repository;
 			sourceTree = "<group>";
 		};
-		9E2EF72E2DFD3533009D5836 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				9E2EF72B2DFD3490009D5836 /* CharacterCachePersistingServiceTests.swift */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		9E2EF72F2DFD35EA009D5836 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				9E2EF7302DFD3606009D5836 /* CharacterCacheRepositoryTests.swift */,
-			);
-			path = Data;
-			sourceTree = "<group>";
-		};
 		9E2EF7332DFD38C8009D5836 /* Mappers */ = {
 			isa = PBXGroup;
 			children = (
@@ -463,8 +443,6 @@
 				9ECCCCCF2DFC2595004A68DC /* ViewModel */,
 				9E2EF7142DFC50E9009D5836 /* UseCase */,
 				9E2EF7242DFD1EA6009D5836 /* Repository */,
-				9E2EF72E2DFD3533009D5836 /* Services */,
-				9E2EF72F2DFD35EA009D5836 /* Data */,
 				9E2EF7332DFD38C8009D5836 /* Mappers */,
 				9ECCCCCA2DFC2505004A68DC /* Mocks */,
 			);
@@ -892,13 +870,11 @@
 				9E2EF71C2DFD1BA6009D5836 /* MarvelRepositoryTests.swift in Sources */,
 				9E2EF7382DFD4514009D5836 /* SwiftUIHeroDetailViewModelTests.swift in Sources */,
 				9E2EF7222DFD1D9C009D5836 /* CharacterDataContainer.swift in Sources */,
-				9E2EF7312DFD3606009D5836 /* CharacterCacheRepositoryTests.swift in Sources */,
 				9E35D1CB2DFFC0940083FE6A /* HeroCellViewModelTests.swift in Sources */,
 				9E35D1CE2DFFC1BD0083FE6A /* HeroDetailViewModelTests.swift in Sources */,
 				9E2EF73B2DFD485C009D5836 /* SwiftUIHeroCellViewModelTests.swift in Sources */,
 				9E2EF7162DFC5120009D5836 /* FetchHeroesUseCaseTests.swift in Sources */,
 				9ECCCCCC2DFC2516004A68DC /* MockFetchHeroesUseCase.swift in Sources */,
-				9E2EF72C2DFD3490009D5836 /* CharacterCachePersistingServiceTests.swift in Sources */,
 				9E35D1D92DFFC7D80083FE6A /* MockListHeroesDelegate.swift in Sources */,
 				9E2EF7292DFD23D9009D5836 /* MockCharacterMapper.swift in Sources */,
 				9ECCCCD32DFC25D5004A68DC /* MockNetworkMonitor.swift in Sources */,
