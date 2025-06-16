@@ -1,0 +1,44 @@
+name: iOS CI
+
+on:
+    push:
+    branches: [ main ]
+    pull_request:
+    branches: [ main ]
+
+jobs:
+    build:
+    runs-on: macos-latest
+    
+    steps:
+        - name: Checkout code
+        uses: actions/checkout@v3
+        
+        - name: Set up Xcode 15
+        run: sudo xcode-select -s /Applications/Xcode_15.0.app
+        
+        - name: Clean corrupted Package.resolved
+        run: |
+          find . -name "Package.resolved" -delete
+        
+        - name: Resolve Swift Package Dependencies
+        run: |
+          xcodebuild -resolvePackageDependencies -scheme WallaMarvel
+        
+        - name: Build the app
+        run: |
+            xcodebuild build \
+            -scheme WallaMarvel \
+            -destination 'platform=iOS Simulator,name=iPhone 14' \
+            CODE_SIGNING_ALLOWED=NO
+        
+        - name: Run Unit & UI Tests on iPhone Simulator
+            run: |
+            xcodebuild test \
+                -scheme WallaMarvel \
+                -sdk iphonesimulator \
+                -destination 'platform=iOS Simulator,name=iPhone 14,OS=latest' \
+                -enableCodeCoverage YES \
+                CODE_SIGNING_ALLOWED=NO
+
+
