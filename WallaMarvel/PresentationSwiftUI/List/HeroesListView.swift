@@ -31,6 +31,7 @@ struct HeroesListView: View {
                         .progressViewStyle(CircularProgressViewStyle())
                         .accessibilityLabel(String.loadingText)
                         .accessibilityHint(String.accLoadingHint)
+                        .accessibilityIdentifier(String.identifierLoadingIndicator)
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
@@ -52,6 +53,7 @@ struct HeroesListView: View {
             }
             
             HeroListSection(viewModel: viewModel)
+                .accessibilityIdentifier(String.identifierHeroListSection)
         }
         .padding(.horizontal)
     }

@@ -12,7 +12,6 @@
 		1A0E3A9D2862F7E200132FCB /* ListHeroesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0E3A9C2862F7E200132FCB /* ListHeroesViewController.swift */; };
 		1A0E3AA22862F7E300132FCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A0E3AA12862F7E300132FCB /* Assets.xcassets */; };
 		1A0E3AA52862F7E300132FCB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A0E3AA32862F7E300132FCB /* LaunchScreen.storyboard */; };
-		1A0E3ABA2862F7E300132FCB /* WallaMarvelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0E3AB92862F7E300132FCB /* WallaMarvelUITests.swift */; };
 		1A0E3ABC2862F7E300132FCB /* WallaMarvelUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0E3ABB2862F7E300132FCB /* WallaMarvelUITestsLaunchTests.swift */; };
 		1A3B7326286ADD1E007BF626 /* ListHeroesTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3B7325286ADD1E007BF626 /* ListHeroesTableView.swift */; };
 		1A3B7328286ADEE6007BF626 /* ListHeroesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3B7327286ADEE6007BF626 /* ListHeroesTableViewCell.swift */; };
@@ -36,6 +35,11 @@
 		9E35D1CE2DFFC1BD0083FE6A /* HeroDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E35D1CD2DFFC1BD0083FE6A /* HeroDetailViewModelTests.swift */; };
 		9E35D1D62DFFC3C40083FE6A /* ListHeroesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E35D1D52DFFC3C40083FE6A /* ListHeroesViewModelTests.swift */; };
 		9E35D1D92DFFC7D80083FE6A /* MockListHeroesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E35D1D82DFFC7D80083FE6A /* MockListHeroesDelegate.swift */; };
+		9E35D1E22DFFE17E0083FE6A /* HeroesListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E35D1E12DFFE17E0083FE6A /* HeroesListUITests.swift */; };
+		9E35D1E52DFFE1870083FE6A /* SearchFunctionalityUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E35D1E42DFFE1870083FE6A /* SearchFunctionalityUITests.swift */; };
+		9E35D1EB2DFFE2EC0083FE6A /* HeroDetailScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E35D1EA2DFFE2EC0083FE6A /* HeroDetailScreenUITests.swift */; };
+		9E35D1F12DFFE32F0083FE6A /* AccessibilityUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E35D1F02DFFE32F0083FE6A /* AccessibilityUITests.swift */; };
+		9E35D1F42DFFE33F0083FE6A /* EmptyStateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E35D1F32DFFE33F0083FE6A /* EmptyStateUITests.swift */; };
 		9E369E442DFBCB8A00116C97 /* HeroCellViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E369E432DFBCB8A00116C97 /* HeroCellViewModelProtocol.swift */; };
 		9E369E462DFBCBAD00116C97 /* SwiftUIHeroCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E369E452DFBCBAD00116C97 /* SwiftUIHeroCellViewModel.swift */; };
 		9E369E482DFBCCEE00116C97 /* SwiftUIHeroDetailViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E369E472DFBCCEE00116C97 /* SwiftUIHeroDetailViewModelProtocol.swift */; };
@@ -118,7 +122,6 @@
 		1A0E3AA62862F7E300132FCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A0E3AAB2862F7E300132FCB /* WallaMarvelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WallaMarvelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A0E3AB52862F7E300132FCB /* WallaMarvelUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WallaMarvelUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1A0E3AB92862F7E300132FCB /* WallaMarvelUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallaMarvelUITests.swift; sourceTree = "<group>"; };
 		1A0E3ABB2862F7E300132FCB /* WallaMarvelUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallaMarvelUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1A3B7325286ADD1E007BF626 /* ListHeroesTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListHeroesTableView.swift; sourceTree = "<group>"; };
 		1A3B7327286ADEE6007BF626 /* ListHeroesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListHeroesTableViewCell.swift; sourceTree = "<group>"; };
@@ -142,6 +145,11 @@
 		9E35D1CD2DFFC1BD0083FE6A /* HeroDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDetailViewModelTests.swift; sourceTree = "<group>"; };
 		9E35D1D52DFFC3C40083FE6A /* ListHeroesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListHeroesViewModelTests.swift; sourceTree = "<group>"; };
 		9E35D1D82DFFC7D80083FE6A /* MockListHeroesDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockListHeroesDelegate.swift; sourceTree = "<group>"; };
+		9E35D1E12DFFE17E0083FE6A /* HeroesListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesListUITests.swift; sourceTree = "<group>"; };
+		9E35D1E42DFFE1870083FE6A /* SearchFunctionalityUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFunctionalityUITests.swift; sourceTree = "<group>"; };
+		9E35D1EA2DFFE2EC0083FE6A /* HeroDetailScreenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDetailScreenUITests.swift; sourceTree = "<group>"; };
+		9E35D1F02DFFE32F0083FE6A /* AccessibilityUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityUITests.swift; sourceTree = "<group>"; };
+		9E35D1F32DFFE33F0083FE6A /* EmptyStateUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateUITests.swift; sourceTree = "<group>"; };
 		9E369E432DFBCB8A00116C97 /* HeroCellViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroCellViewModelProtocol.swift; sourceTree = "<group>"; };
 		9E369E452DFBCBAD00116C97 /* SwiftUIHeroCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIHeroCellViewModel.swift; sourceTree = "<group>"; };
 		9E369E472DFBCCEE00116C97 /* SwiftUIHeroDetailViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIHeroDetailViewModelProtocol.swift; sourceTree = "<group>"; };
@@ -429,8 +437,12 @@
 		9ECC74FA2DFABF7B00236EEE /* WallaMarvelUITests */ = {
 			isa = PBXGroup;
 			children = (
-				1A0E3AB92862F7E300132FCB /* WallaMarvelUITests.swift */,
 				1A0E3ABB2862F7E300132FCB /* WallaMarvelUITestsLaunchTests.swift */,
+				9E35D1E12DFFE17E0083FE6A /* HeroesListUITests.swift */,
+				9E35D1E42DFFE1870083FE6A /* SearchFunctionalityUITests.swift */,
+				9E35D1EA2DFFE2EC0083FE6A /* HeroDetailScreenUITests.swift */,
+				9E35D1F02DFFE32F0083FE6A /* AccessibilityUITests.swift */,
+				9E35D1F32DFFE33F0083FE6A /* EmptyStateUITests.swift */,
 			);
 			path = WallaMarvelUITests;
 			sourceTree = "<group>";
@@ -865,7 +877,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A0E3ABA2862F7E300132FCB /* WallaMarvelUITests.swift in Sources */,
+				9E35D1E22DFFE17E0083FE6A /* HeroesListUITests.swift in Sources */,
+				9E35D1EB2DFFE2EC0083FE6A /* HeroDetailScreenUITests.swift in Sources */,
+				9E35D1E52DFFE1870083FE6A /* SearchFunctionalityUITests.swift in Sources */,
+				9E35D1F12DFFE32F0083FE6A /* AccessibilityUITests.swift in Sources */,
+				9E35D1F42DFFE33F0083FE6A /* EmptyStateUITests.swift in Sources */,
 				1A0E3ABC2862F7E300132FCB /* WallaMarvelUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1023,8 +1039,7 @@
 				INFOPLIST_FILE = WallaMarvel/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1051,8 +1066,7 @@
 				INFOPLIST_FILE = WallaMarvel/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

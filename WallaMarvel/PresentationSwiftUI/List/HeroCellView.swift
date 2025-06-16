@@ -39,5 +39,6 @@ struct HeroCellView<VM: HeroCellViewModelProtocol>: View {
         .accessibilityHint(String.accHeroCellHint)
         .accessibilityAddTraits(.isButton)
         .accessibilitySortPriority(1)
+        .accessibilityIdentifier("heroCell_\(viewModel.id)")
     }
 }

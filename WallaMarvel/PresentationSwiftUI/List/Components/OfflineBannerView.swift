@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(iOS 14.0, *)
 struct OfflineBannerView: View {
     var body: some View {
         Text(verbatim: .offlineBannerText)
@@ -17,5 +18,6 @@ struct OfflineBannerView: View {
             .font(.caption)
             .transition(.move(edge: .top).combined(with: .opacity))
             .animation(.easeInOut, value: true)
+            .accessibilityIdentifier(String.identifierOfflineBanner)
     }
 }
