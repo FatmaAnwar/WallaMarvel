@@ -17,9 +17,13 @@ jobs:
       - name: Select Xcode 15.0.1
         run: sudo xcode-select -s /Applications/Xcode_15.0.1.app
 
-      - name: Delete corrupted Package.resolved
+      - name: Clean DerivedData & Reset Packages
         run: |
+          rm -rf ~/Library/Developer/Xcode/DerivedData/*
+          rm -rf .build
+          rm -rf ~/Library/Caches/org.swift.swiftpm
           find . -name "Package.resolved" -delete
+          xcodebuild -resolvePackageDependencies
 
       - name: Build for Testing
         run: |
@@ -30,7 +34,8 @@ jobs:
             -configuration Debug \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGN_IDENTITY="" \
-            CODE_SIGNING_REQUIRED=NO
+            CODE_SIGNING_REQUIRED=NO \
+            EXCLUDED_ARCHS=arm64
 
       - name: Run Tests
         run: |
@@ -41,4 +46,5 @@ jobs:
             -configuration Debug \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGN_IDENTITY="" \
-            CODE_SIGNING_REQUIRED=NO
+            CODE_SIGNING_REQUIRED=NO \
+            EXCLUDED_ARCHS=arm64
