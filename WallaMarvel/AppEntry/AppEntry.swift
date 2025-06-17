@@ -15,8 +15,6 @@ enum UIType {
 @available(iOS 15.0, *)
 final class AppEntry {
     
-    private static let currentUIType: UIType = .swiftui
-    
     static func start(using windowScene: UIWindowScene) -> UIWindow {
         let window = UIWindow(windowScene: windowScene)
         let navigationController = UINavigationController()
@@ -30,12 +28,7 @@ final class AppEntry {
     }
     
     private static func configureInitialUI(using navigationController: UINavigationController) {
-        switch currentUIType {
-        case .uikit:
-            HeroesCoordinator(navigationController: navigationController).start()
-        case .swiftui:
-            SwiftUIHeroesCoordinator(navigationController: navigationController).start()
-        }
+        SwiftUIHeroesCoordinator(navigationController: navigationController).start()
     }
     
     private static func configureImageCache() {
