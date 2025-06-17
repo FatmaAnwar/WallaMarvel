@@ -11,6 +11,8 @@ import Kingfisher
 @available(iOS 15.0, *)
 struct HeroGridSection: View {
     @ObservedObject var viewModel: HeroesListViewModel
+    let onHeroTap: (Character) -> Void
+    
     private let columns = [
         GridItem(.flexible(), spacing: 20),
         GridItem(.flexible(), spacing: 20)
@@ -20,16 +22,14 @@ struct HeroGridSection: View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 24) {
                 ForEach(viewModel.heroCellViewModels) { hero in
-                    NavigationLink(
-                        destination: HeroDetailScreen(viewModel: HeroDetailViewModel(character: hero.character))
-                    ) {
-                        HeroCardView(viewModel: hero)
-                            .transition(.scale)
-                    }
-                    .buttonStyle(PlainButtonStyle())
-                    .onAppear {
-                        viewModel.loadMoreIfNeeded(currentItem: hero)
-                    }
+                    HeroCardView(viewModel: hero)
+                        .onTapGesture {
+                            onHeroTap(hero.character)
+                        }
+                        .transition(.scale)
+                        .onAppear {
+                            viewModel.loadMoreIfNeeded(currentItem: hero)
+                        }
                 }
             }
             .padding(.horizontal, 16)
