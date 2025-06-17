@@ -20,7 +20,11 @@ final class AppCoordinator: ObservableObject {
             characterMapper: CharacterMapper()
         )
         let useCase = FetchCharactersUseCase(repository: repository)
-        let viewModel = HeroesListViewModel(fetchHeroesUseCase: useCase)
+        let networkMonitor = NetworkMonitor.shared
+        let viewModel = HeroesListViewModel(
+            fetchHeroesUseCase: useCase,
+            networkMonitor: networkMonitor
+        )
         
         return HeroesListView(viewModel: viewModel)
     }
