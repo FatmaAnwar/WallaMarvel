@@ -29,7 +29,8 @@
 		9EA1A7752E019D5000EB455A /* WallaMarvelApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA1A7742E019D5000EB455A /* WallaMarvelApp.swift */; };
 		9EA1A7772E019D6300EB455A /* AppLifecycleObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA1A7762E019D6300EB455A /* AppLifecycleObserver.swift */; };
 		9EA1A7792E01A25F00EB455A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA1A7782E01A25F00EB455A /* AppCoordinator.swift */; };
-		9EA1A77B2E01A8C600EB455A /* CoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA1A77A2E01A8C600EB455A /* CoordinatorView.swift */; };
+		9EA1A77B2E01A8C600EB455A /* HeroesListCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA1A77A2E01A8C600EB455A /* HeroesListCoordinatorView.swift */; };
+		9EA1A77D2E01B66400EB455A /* HeroesListCoordinatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA1A77C2E01B66400EB455A /* HeroesListCoordinatorViewModel.swift */; };
 		9EBA25852E003CE2000E2EF2 /* HeroCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBA25842E003CE2000E2EF2 /* HeroCardView.swift */; };
 		9EBA25892E003D03000E2EF2 /* HeroGridSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBA25882E003D03000E2EF2 /* HeroGridSection.swift */; };
 		9EBA258B2E005355000E2EF2 /* DiagonalHeroStreamBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBA258A2E005355000E2EF2 /* DiagonalHeroStreamBackgroundView.swift */; };
@@ -120,7 +121,8 @@
 		9EA1A7742E019D5000EB455A /* WallaMarvelApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallaMarvelApp.swift; sourceTree = "<group>"; };
 		9EA1A7762E019D6300EB455A /* AppLifecycleObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLifecycleObserver.swift; sourceTree = "<group>"; };
 		9EA1A7782E01A25F00EB455A /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
-		9EA1A77A2E01A8C600EB455A /* CoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorView.swift; sourceTree = "<group>"; };
+		9EA1A77A2E01A8C600EB455A /* HeroesListCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesListCoordinatorView.swift; sourceTree = "<group>"; };
+		9EA1A77C2E01B66400EB455A /* HeroesListCoordinatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesListCoordinatorViewModel.swift; sourceTree = "<group>"; };
 		9EBA25842E003CE2000E2EF2 /* HeroCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroCardView.swift; sourceTree = "<group>"; };
 		9EBA25882E003D03000E2EF2 /* HeroGridSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroGridSection.swift; sourceTree = "<group>"; };
 		9EBA258A2E005355000E2EF2 /* DiagonalHeroStreamBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagonalHeroStreamBackgroundView.swift; sourceTree = "<group>"; };
@@ -488,7 +490,8 @@
 			isa = PBXGroup;
 			children = (
 				9EA1A7782E01A25F00EB455A /* AppCoordinator.swift */,
-				9EA1A77A2E01A8C600EB455A /* CoordinatorView.swift */,
+				9EA1A77A2E01A8C600EB455A /* HeroesListCoordinatorView.swift */,
+				9EA1A77C2E01B66400EB455A /* HeroesListCoordinatorViewModel.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -708,7 +711,7 @@
 				9ECC75182DFAD02B00236EEE /* FetchCharactersUseCaseProtocol.swift in Sources */,
 				9ECC75162DFACFC600236EEE /* CharacterRepositoryProtocol.swift in Sources */,
 				9ED8DC3D2DF743F700A44B55 /* CharacterRepository.swift in Sources */,
-				9EA1A77B2E01A8C600EB455A /* CoordinatorView.swift in Sources */,
+				9EA1A77B2E01A8C600EB455A /* HeroesListCoordinatorView.swift in Sources */,
 				1A7B9BBD286D81AA00EBC1A6 /* CharacterDataModel.swift in Sources */,
 				9E369E482DFBCCEE00116C97 /* HeroDetailViewModelProtocol.swift in Sources */,
 				9EBA25952E005787000E2EF2 /* AnimatedFloatingImageView.swift in Sources */,
@@ -732,6 +735,7 @@
 				9E369E462DFBCBAD00116C97 /* HeroCellViewModel.swift in Sources */,
 				9EBA25932E0056A1000E2EF2 /* View+CardStyle.swift in Sources */,
 				9ECC74DF2DF9665500236EEE /* NetworkMonitor.swift in Sources */,
+				9EA1A77D2E01B66400EB455A /* HeroesListCoordinatorViewModel.swift in Sources */,
 				9ED8DC372DF7240B00A44B55 /* CharacterDataContainer.swift in Sources */,
 				9EA1A7772E019D6300EB455A /* AppLifecycleObserver.swift in Sources */,
 				9ED8DC272DF6FF8900A44B55 /* AppConstants.swift in Sources */,

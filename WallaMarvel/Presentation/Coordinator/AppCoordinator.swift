@@ -11,7 +11,7 @@ import SwiftUI
 @available(iOS 16.0, *)
 @MainActor
 final class AppCoordinator: ObservableObject {
-    func start(navigationPath: Binding<NavigationPath>) -> some View {
+    func start() -> some View {
         let apiService = MarvelAPIClient()
         let remoteDataSource = MarvelRemoteDataSource(apiClient: apiService)
         let repository = CharacterRepository(
@@ -26,8 +26,6 @@ final class AppCoordinator: ObservableObject {
             networkMonitor: networkMonitor
         )
         
-        return HeroesListView(viewModel: viewModel) { selectedHero in
-            navigationPath.wrappedValue.append(selectedHero)
-        }
+        return HeroesListCoordinatorView(viewModel: viewModel)
     }
 }

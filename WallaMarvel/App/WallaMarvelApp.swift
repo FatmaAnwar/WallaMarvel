@@ -11,10 +11,11 @@ import SwiftUI
 @main
 struct WallaMarvelApp: App {
     private let lifecycleObserver = AppLifecycleObserver()
+    private let coordinator = AppCoordinator()
     
     var body: some Scene {
         WindowGroup {
-            CoordinatorView()
+            coordinator.start()
         }
     }
 }
