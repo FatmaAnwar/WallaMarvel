@@ -9,7 +9,7 @@ import SwiftUI
 
 @available(iOS 15.0, *)
 struct HeroesListView: View {
-    @StateObject private var viewModel = HeroesListViewModel()
+    @StateObject var viewModel: HeroesListViewModel
     
     var body: some View {
         NavigationView {

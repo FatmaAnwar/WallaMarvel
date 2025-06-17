@@ -7,15 +7,15 @@
 
 import SwiftUI
 
-@available(iOS 15.0, *)
+@available(iOS 16.0, *)
 @main
 struct WallaMarvelApp: App {
     private let lifecycleObserver = AppLifecycleObserver()
-
+    private let coordinator = AppCoordinator()
+    
     var body: some Scene {
         WindowGroup {
-            HeroesListView()
+            coordinator.start()
         }
     }
 }
-
