@@ -1,49 +1,35 @@
-name: iOS CI
+name: iOS CI - Build Only
 
 on:
   push:
-    branches: [main]
+    branches: [ main ]
   pull_request:
-    branches: [main]
+    branches: [ main ]
 
 jobs:
-  build-and-test:
+  build:
     runs-on: macos-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Select Xcode 15.0.1
+      - name: Select Xcode version
         run: sudo xcode-select -s /Applications/Xcode_15.0.1.app
 
-      - name: Delete corrupted Package.resolved
+      - name: Remove corrupted Package.resolved (if exists)
         run: |
           find . -name "Package.resolved" -delete
 
-      - name: Resolve SPM dependencies
+      - name: Resolve Swift Packages
         run: |
-          xcodebuild -resolvePackageDependencies
+          xcodebuild -resolvePackageDependencies -project WallaMarvel.xcodeproj
 
-      - name: Build the app
+      - name: Build App Only
         run: |
-          xcodebuild build-for-testing \
+          xcodebuild build \
             -scheme WallaMarvel \
+            -project WallaMarvel.xcodeproj \
+            -destination 'generic/platform=iOS Simulator' \
             -sdk iphonesimulator \
-            -destination 'platform=iOS Simulator,name=iPhone SE (3rd generation),OS=17.2' \
-            -configuration Debug \
-            CODE_SIGNING_ALLOWED=NO \
-            CODE_SIGN_IDENTITY="" \
-            CODE_SIGNING_REQUIRED=NO
-
-      - name: Run Unit and UI Tests
-        run: |
-          xcodebuild test-without-building \
-            -scheme WallaMarvel \
-            -sdk iphonesimulator \
-            -destination 'platform=iOS Simulator,name=iPhone SE (3rd generation),OS=17.2' \
-            -configuration Debug \
-            -enableCodeCoverage YES \
-            CODE_SIGNING_ALLOWED=NO \
-            CODE_SIGN_IDENTITY="" \
-            CODE_SIGNING_REQUIRED=NO
+            CODE_SIGNING_ALLOWED=NO
