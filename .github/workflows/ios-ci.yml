@@ -8,38 +8,41 @@ on:
 
 jobs:
   build-and-test:
-    runs-on: macos-13  # macos-14 not yet universally stable with 16.2
+    runs-on: macos-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Select Xcode 16.2
-        run: sudo xcode-select -s /Applications/Xcode_16.2.app
+      - name: Select Xcode 15.3
+        run: sudo xcode-select -s /Applications/Xcode_15.3.app
 
-      - name: Delete corrupted Package.resolved
-        run: find . -name "Package.resolved" -delete
+      - name: Clean and delete corrupted Package.resolved
+        run: |
+          find . -name "Package.resolved" -delete
 
-      - name: Build for Testing
+      - name: Build for Testing (Exclude arm64 for simulator)
         run: |
           xcodebuild build-for-testing \
             -scheme WallaMarvel \
             -sdk iphonesimulator \
-            -destination 'platform=iOS Simulator,name=iPhone 14,OS=17.2' \
+            -destination 'platform=iOS Simulator,name=iPhone 14,OS=17.5' \
             -configuration Debug \
+            ARCHS="x86_64" \
+            EXCLUDED_ARCHS=arm64 \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGN_IDENTITY="" \
-            CODE_SIGNING_REQUIRED=NO \
-            EXCLUDED_ARCHS="arm64"
+            CODE_SIGNING_REQUIRED=NO
 
-      - name: Run Unit Tests
+      - name: Run Tests
         run: |
           xcodebuild test-without-building \
             -scheme WallaMarvel \
             -sdk iphonesimulator \
-            -destination 'platform=iOS Simulator,name=iPhone 14,OS=17.2' \
+            -destination 'platform=iOS Simulator,name=iPhone 14,OS=17.5' \
             -configuration Debug \
+            ARCHS="x86_64" \
+            EXCLUDED_ARCHS=arm64 \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGN_IDENTITY="" \
-            CODE_SIGNING_REQUIRED=NO \
-            EXCLUDED_ARCHS="arm64"
+            CODE_SIGNING_REQUIRED=NO
