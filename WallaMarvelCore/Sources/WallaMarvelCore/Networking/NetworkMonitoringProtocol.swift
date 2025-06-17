@@ -8,7 +8,8 @@
 import Foundation
 import Combine
 
-protocol NetworkMonitoringProtocol: AnyObject {
+@MainActor
+public protocol NetworkMonitoringProtocol: AnyObject {
     var isConnected: Bool { get }
     var isConnectedPublisher: AnyPublisher<Bool, Never> { get }
 }

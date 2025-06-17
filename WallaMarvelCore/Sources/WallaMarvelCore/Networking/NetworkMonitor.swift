@@ -8,18 +8,19 @@
 import Network
 import Combine
 
-final class NetworkMonitor: ObservableObject, NetworkMonitoringProtocol {
-    static let shared = NetworkMonitor()
-
+@MainActor
+public final class NetworkMonitor: ObservableObject, NetworkMonitoringProtocol {
+    public static let shared = NetworkMonitor()
+    
     private let monitor = NWPathMonitor()
     private let queue = DispatchQueue(label: "NetworkMonitorQueue")
-
-    @Published private(set) var isConnected: Bool = true
-
-    var isConnectedPublisher: AnyPublisher<Bool, Never> {
+    
+    @Published public private(set) var isConnected: Bool = true
+    
+    public var isConnectedPublisher: AnyPublisher<Bool, Never> {
         $isConnected.eraseToAnyPublisher()
     }
-
+    
     private init() {
         monitor.pathUpdateHandler = { [weak self] path in
             DispatchQueue.main.async {

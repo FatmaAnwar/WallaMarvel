@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension String {
+public extension String {
     
     // MARK: - Screen Titles
     static let heroListTitle = "List of Heroes"

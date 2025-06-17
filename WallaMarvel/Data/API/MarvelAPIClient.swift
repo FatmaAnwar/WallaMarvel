@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import WallaMarvelCore
 
 final class MarvelAPIClient: MarvelAPIClientProtocol {
     func getHeroes(offset: Int) async throws -> CharacterDataContainer {

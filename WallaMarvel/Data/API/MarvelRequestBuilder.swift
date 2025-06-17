@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import WallaMarvelCore
+import WallaMarvelDomain
 
 struct MarvelRequestBuilder {
     private let path: String
