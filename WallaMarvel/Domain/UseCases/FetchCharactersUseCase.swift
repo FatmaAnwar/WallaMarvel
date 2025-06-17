@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import WallaMarvelDomain
 
 final class FetchCharactersUseCase: FetchCharactersUseCaseProtocol {
     private let repository: CharacterRepositoryProtocol

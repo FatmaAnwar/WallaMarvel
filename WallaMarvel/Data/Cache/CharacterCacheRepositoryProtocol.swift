@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import WallaMarvelDomain
 
 protocol CharacterCacheRepositoryProtocol {
     func save(characters: [Character]) async throws

@@ -26,6 +26,7 @@
 		9E369E442DFBCB8A00116C97 /* HeroCellViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E369E432DFBCB8A00116C97 /* HeroCellViewModelProtocol.swift */; };
 		9E369E462DFBCBAD00116C97 /* HeroCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E369E452DFBCBAD00116C97 /* HeroCellViewModel.swift */; };
 		9E369E482DFBCCEE00116C97 /* HeroDetailViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E369E472DFBCCEE00116C97 /* HeroDetailViewModelProtocol.swift */; };
+		9E669E552E01E3DF00E86E9B /* WallaMarvelDomain in Frameworks */ = {isa = PBXBuildFile; productRef = 9E669E542E01E3DF00E86E9B /* WallaMarvelDomain */; };
 		9EA1A7752E019D5000EB455A /* WallaMarvelApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA1A7742E019D5000EB455A /* WallaMarvelApp.swift */; };
 		9EA1A7772E019D6300EB455A /* AppLifecycleObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA1A7762E019D6300EB455A /* AppLifecycleObserver.swift */; };
 		9EA1A7792E01A25F00EB455A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA1A7782E01A25F00EB455A /* AppCoordinator.swift */; };
@@ -47,8 +48,6 @@
 		9ECC74E62DF979B000236EEE /* WallaMarvel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9ECC74E42DF979B000236EEE /* WallaMarvel.xcdatamodeld */; };
 		9ECC750B2DFAC5BE00236EEE /* FetchCharactersUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECC750A2DFAC5BE00236EEE /* FetchCharactersUseCase.swift */; };
 		9ECC75142DFACF6E00236EEE /* CharacterCacheRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECC75132DFACF6E00236EEE /* CharacterCacheRepositoryProtocol.swift */; };
-		9ECC75162DFACFC600236EEE /* CharacterRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECC75152DFACFC600236EEE /* CharacterRepositoryProtocol.swift */; };
-		9ECC75182DFAD02B00236EEE /* FetchCharactersUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECC75172DFAD02B00236EEE /* FetchCharactersUseCaseProtocol.swift */; };
 		9ECC751A2DFAD1EA00236EEE /* CharacterMapperProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECC75192DFAD1EA00236EEE /* CharacterMapperProtocol.swift */; };
 		9ECC751C2DFADA9600236EEE /* String+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECC751B2DFADA9600236EEE /* String+Constants.swift */; };
 		9ECC751F2DFADB1D00236EEE /* CharacterCachePersistingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECC751E2DFADB1D00236EEE /* CharacterCachePersistingService.swift */; };
@@ -65,7 +64,6 @@
 		9ED8DC2B2DF7065700A44B55 /* MarvelRemoteDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED8DC2A2DF7065700A44B55 /* MarvelRemoteDataSourceProtocol.swift */; };
 		9ED8DC2D2DF7071100A44B55 /* MarvelAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED8DC2C2DF7071100A44B55 /* MarvelAPIClient.swift */; };
 		9ED8DC2F2DF7074900A44B55 /* MarvelAPIClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED8DC2E2DF7074900A44B55 /* MarvelAPIClientProtocol.swift */; };
-		9ED8DC322DF70BE800A44B55 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED8DC312DF70BE800A44B55 /* Character.swift */; };
 		9ED8DC352DF70C0B00A44B55 /* CharacterMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED8DC342DF70C0B00A44B55 /* CharacterMapper.swift */; };
 		9ED8DC372DF7240B00A44B55 /* CharacterDataContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED8DC362DF7240B00A44B55 /* CharacterDataContainer.swift */; };
 		9ED8DC392DF7243500A44B55 /* CharacterResponseDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED8DC382DF7243500A44B55 /* CharacterResponseDataModel.swift */; };
@@ -117,6 +115,7 @@
 		9E369E432DFBCB8A00116C97 /* HeroCellViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroCellViewModelProtocol.swift; sourceTree = "<group>"; };
 		9E369E452DFBCBAD00116C97 /* HeroCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroCellViewModel.swift; sourceTree = "<group>"; };
 		9E369E472DFBCCEE00116C97 /* HeroDetailViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDetailViewModelProtocol.swift; sourceTree = "<group>"; };
+		9E669E522E01E34700E86E9B /* WallaMarvelDomain */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = WallaMarvelDomain; sourceTree = "<group>"; };
 		9EA1A7742E019D5000EB455A /* WallaMarvelApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallaMarvelApp.swift; sourceTree = "<group>"; };
 		9EA1A7762E019D6300EB455A /* AppLifecycleObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLifecycleObserver.swift; sourceTree = "<group>"; };
 		9EA1A7782E01A25F00EB455A /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -138,8 +137,6 @@
 		9ECC74E52DF979B000236EEE /* WallaMarvel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WallaMarvel.xcdatamodel; sourceTree = "<group>"; };
 		9ECC750A2DFAC5BE00236EEE /* FetchCharactersUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCharactersUseCase.swift; sourceTree = "<group>"; };
 		9ECC75132DFACF6E00236EEE /* CharacterCacheRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCacheRepositoryProtocol.swift; sourceTree = "<group>"; };
-		9ECC75152DFACFC600236EEE /* CharacterRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterRepositoryProtocol.swift; sourceTree = "<group>"; };
-		9ECC75172DFAD02B00236EEE /* FetchCharactersUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCharactersUseCaseProtocol.swift; sourceTree = "<group>"; };
 		9ECC75192DFAD1EA00236EEE /* CharacterMapperProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterMapperProtocol.swift; sourceTree = "<group>"; };
 		9ECC751B2DFADA9600236EEE /* String+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Constants.swift"; sourceTree = "<group>"; };
 		9ECC751E2DFADB1D00236EEE /* CharacterCachePersistingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCachePersistingService.swift; sourceTree = "<group>"; };
@@ -156,7 +153,6 @@
 		9ED8DC2A2DF7065700A44B55 /* MarvelRemoteDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelRemoteDataSourceProtocol.swift; sourceTree = "<group>"; };
 		9ED8DC2C2DF7071100A44B55 /* MarvelAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelAPIClient.swift; sourceTree = "<group>"; };
 		9ED8DC2E2DF7074900A44B55 /* MarvelAPIClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelAPIClientProtocol.swift; sourceTree = "<group>"; };
-		9ED8DC312DF70BE800A44B55 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		9ED8DC342DF70C0B00A44B55 /* CharacterMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterMapper.swift; sourceTree = "<group>"; };
 		9ED8DC362DF7240B00A44B55 /* CharacterDataContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDataContainer.swift; sourceTree = "<group>"; };
 		9ED8DC382DF7243500A44B55 /* CharacterResponseDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterResponseDataModel.swift; sourceTree = "<group>"; };
@@ -172,6 +168,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9EE949822E0004390072558D /* Kingfisher in Frameworks */,
+				9E669E552E01E3DF00E86E9B /* WallaMarvelDomain in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,7 +192,9 @@
 		1A0E3A8C2862F7E200132FCB = {
 			isa = PBXGroup;
 			children = (
+				9E669E522E01E34700E86E9B /* WallaMarvelDomain */,
 				1A0E3A972862F7E200132FCB /* WallaMarvel */,
+				9E669E532E01E3DF00E86E9B /* Frameworks */,
 				1A0E3A962862F7E200132FCB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -228,7 +227,6 @@
 		1A821EC62862FD650024D397 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				9EA1A7672E016C9900EB455A /* Entities */,
 				9EA1A7662E016C9000EB455A /* Repositories */,
 				1AC0347D286320F000E93178 /* UseCases */,
 			);
@@ -262,7 +260,6 @@
 			isa = PBXGroup;
 			children = (
 				9ECC750A2DFAC5BE00236EEE /* FetchCharactersUseCase.swift */,
-				9ECC75172DFAD02B00236EEE /* FetchCharactersUseCaseProtocol.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -289,6 +286,13 @@
 				9E2EF7342DFD38DE009D5836 /* CharacterMapperTests.swift */,
 			);
 			path = Mappers;
+			sourceTree = "<group>";
+		};
+		9E669E532E01E3DF00E86E9B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		9EA1A7622E0169EA00EB455A /* Networking */ = {
@@ -326,17 +330,8 @@
 			isa = PBXGroup;
 			children = (
 				9ED8DC3C2DF743F700A44B55 /* CharacterRepository.swift */,
-				9ECC75152DFACFC600236EEE /* CharacterRepositoryProtocol.swift */,
 			);
 			path = Repositories;
-			sourceTree = "<group>";
-		};
-		9EA1A7672E016C9900EB455A /* Entities */ = {
-			isa = PBXGroup;
-			children = (
-				9ED8DC312DF70BE800A44B55 /* Character.swift */,
-			);
-			path = Entities;
 			sourceTree = "<group>";
 		};
 		9EA1A7682E016D3500EB455A /* Constants */ = {
@@ -697,7 +692,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9ED8DC322DF70BE800A44B55 /* Character.swift in Sources */,
 				9ECCCCD92DFC26E3004A68DC /* NetworkMonitoringProtocol.swift in Sources */,
 				9EA1A7792E01A25F00EB455A /* AppCoordinator.swift in Sources */,
 				9EC0D9DB2DF7EEF900D35DE5 /* HeroDetailViewModel.swift in Sources */,
@@ -705,8 +699,6 @@
 				9ED8DC5B2DF7DB0100A44B55 /* HeroCellView.swift in Sources */,
 				9E369E442DFBCB8A00116C97 /* HeroCellViewModelProtocol.swift in Sources */,
 				9ED8DC432DF7D4BA00A44B55 /* HeroesListViewModel.swift in Sources */,
-				9ECC75182DFAD02B00236EEE /* FetchCharactersUseCaseProtocol.swift in Sources */,
-				9ECC75162DFACFC600236EEE /* CharacterRepositoryProtocol.swift in Sources */,
 				9ED8DC3D2DF743F700A44B55 /* CharacterRepository.swift in Sources */,
 				9EA1A77B2E01A8C600EB455A /* HeroesListEntryView.swift in Sources */,
 				1A7B9BBD286D81AA00EBC1A6 /* CharacterDataModel.swift in Sources */,
@@ -936,7 +928,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -967,7 +959,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1122,6 +1114,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		9E669E542E01E3DF00E86E9B /* WallaMarvelDomain */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = WallaMarvelDomain;
+		};
 		9EE949812E0004390072558D /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9EE9497F2E0003B30072558D /* XCRemoteSwiftPackageReference "Kingfisher" */;

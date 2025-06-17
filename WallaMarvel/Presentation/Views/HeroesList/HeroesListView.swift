@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WallaMarvelDomain
 
 @available(iOS 16.0, *)
 struct HeroesListView: View {

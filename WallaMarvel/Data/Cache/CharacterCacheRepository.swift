@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import WallaMarvelDomain
 
 final class CharacterCacheRepository: CharacterCacheRepositoryProtocol {
     private let context: NSManagedObjectContext

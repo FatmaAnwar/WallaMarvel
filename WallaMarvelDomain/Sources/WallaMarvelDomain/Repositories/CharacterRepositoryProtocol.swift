@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol CharacterRepositoryProtocol {
+public protocol CharacterRepositoryProtocol {
     func fetchCharacters(offset: Int) async throws -> [Character]
     func save(characters: [Character]) async throws
     func fetchCachedHeroes() throws -> [Character]

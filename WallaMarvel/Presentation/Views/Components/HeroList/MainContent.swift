@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WallaMarvelDomain
 
 @available(iOS 15.0, *)
 struct MainContent: View {
