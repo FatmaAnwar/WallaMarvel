@@ -10,6 +10,7 @@ import SwiftUI
 @available(iOS 15.0, *)
 struct MainContent: View {
     @ObservedObject var viewModel: HeroesListViewModel
+    let onHeroTap: (Character) -> Void
     
     var body: some View {
         VStack(spacing: 0) {
@@ -21,7 +22,7 @@ struct MainContent: View {
                 }
                 .padding(.top, 8)
                 
-                HeroGridSection(viewModel: viewModel)
+                HeroGridSection(viewModel: viewModel, onHeroTap: onHeroTap)
                     .accessibilityIdentifier(String.identifierHeroListSection)
                     .padding(.top, 8)
             }

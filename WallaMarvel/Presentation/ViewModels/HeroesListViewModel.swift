@@ -26,8 +26,8 @@ final class HeroesListViewModel: ObservableObject {
     private var allHeroes: [Character] = []
     
     init(
-        fetchHeroesUseCase: FetchCharactersUseCaseProtocol = FetchCharactersUseCase(),
-        networkMonitor: NetworkMonitoringProtocol = NetworkMonitor.shared
+        fetchHeroesUseCase: FetchCharactersUseCaseProtocol,
+        networkMonitor: NetworkMonitoringProtocol
     ) {
         self.fetchHeroesUseCase = fetchHeroesUseCase
         self.networkMonitor = networkMonitor

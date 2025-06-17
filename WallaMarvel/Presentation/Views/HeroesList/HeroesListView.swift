@@ -7,12 +7,13 @@
 
 import SwiftUI
 
-@available(iOS 15.0, *)
+@available(iOS 16.0, *)
 struct HeroesListView: View {
-    @StateObject private var viewModel = HeroesListViewModel()
+    @StateObject var viewModel: HeroesListViewModel
+    @ObservedObject var coordinator: HeroesListCoordinatorViewModel
     
     var body: some View {
-        NavigationView {
+        NavigationStack(path: $coordinator.navigationPath) {
             ZStack {
                 BackgroundGradient()
                 
@@ -20,11 +21,16 @@ struct HeroesListView: View {
                     DiagonalHeroStreamBackgroundView(heroes: viewModel.heroCellViewModels)
                 }
                 
-                MainContent(viewModel: viewModel)
+                MainContent(viewModel: viewModel) { selectedHero in
+                    coordinator.onHeroSelected(selectedHero)
+                }
                 
                 if viewModel.isLoading && viewModel.heroCellViewModels.isEmpty {
                     LoadingOverlay()
                 }
+            }
+            .navigationDestination(for: Character.self) { hero in
+                HeroDetailScreen(viewModel: HeroDetailViewModel(character: hero))
             }
             .navigationBarTitleDisplayMode(.inline)
             .accessibilityLabel(String.accHeroListLabel)
