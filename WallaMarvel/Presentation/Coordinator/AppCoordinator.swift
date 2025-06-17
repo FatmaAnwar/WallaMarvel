@@ -26,6 +26,6 @@ final class AppCoordinator: ObservableObject {
             networkMonitor: networkMonitor
         )
         
-        return HeroesListCoordinatorView(viewModel: viewModel)
+        return HeroesListEntryView(viewModel: viewModel)
     }
 }

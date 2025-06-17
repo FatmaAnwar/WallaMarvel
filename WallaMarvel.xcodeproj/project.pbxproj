@@ -29,7 +29,7 @@
 		9EA1A7752E019D5000EB455A /* WallaMarvelApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA1A7742E019D5000EB455A /* WallaMarvelApp.swift */; };
 		9EA1A7772E019D6300EB455A /* AppLifecycleObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA1A7762E019D6300EB455A /* AppLifecycleObserver.swift */; };
 		9EA1A7792E01A25F00EB455A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA1A7782E01A25F00EB455A /* AppCoordinator.swift */; };
-		9EA1A77B2E01A8C600EB455A /* HeroesListCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA1A77A2E01A8C600EB455A /* HeroesListCoordinatorView.swift */; };
+		9EA1A77B2E01A8C600EB455A /* HeroesListEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA1A77A2E01A8C600EB455A /* HeroesListEntryView.swift */; };
 		9EA1A77D2E01B66400EB455A /* HeroesListCoordinatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA1A77C2E01B66400EB455A /* HeroesListCoordinatorViewModel.swift */; };
 		9EBA25852E003CE2000E2EF2 /* HeroCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBA25842E003CE2000E2EF2 /* HeroCardView.swift */; };
 		9EBA25892E003D03000E2EF2 /* HeroGridSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBA25882E003D03000E2EF2 /* HeroGridSection.swift */; };
@@ -54,7 +54,6 @@
 		9ECC751F2DFADB1D00236EEE /* CharacterCachePersistingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECC751E2DFADB1D00236EEE /* CharacterCachePersistingService.swift */; };
 		9ECC75262DFAF34800236EEE /* TitleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECC75252DFAF34800236EEE /* TitleHeaderView.swift */; };
 		9ECC75282DFAF37E00236EEE /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECC75272DFAF37E00236EEE /* SearchBarView.swift */; };
-		9ECC752A2DFAF38800236EEE /* HeroListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECC75292DFAF38800236EEE /* HeroListSection.swift */; };
 		9ECCCCCC2DFC2516004A68DC /* MockFetchHeroesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECCCCCB2DFC2516004A68DC /* MockFetchHeroesUseCase.swift */; };
 		9ECCCCD32DFC25D5004A68DC /* MockNetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECCCCD22DFC25D5004A68DC /* MockNetworkMonitor.swift */; };
 		9ECCCCD62DFC25E8004A68DC /* HeroesListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECCCCD52DFC25E8004A68DC /* HeroesListViewModelTests.swift */; };
@@ -121,7 +120,7 @@
 		9EA1A7742E019D5000EB455A /* WallaMarvelApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallaMarvelApp.swift; sourceTree = "<group>"; };
 		9EA1A7762E019D6300EB455A /* AppLifecycleObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLifecycleObserver.swift; sourceTree = "<group>"; };
 		9EA1A7782E01A25F00EB455A /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
-		9EA1A77A2E01A8C600EB455A /* HeroesListCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesListCoordinatorView.swift; sourceTree = "<group>"; };
+		9EA1A77A2E01A8C600EB455A /* HeroesListEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesListEntryView.swift; sourceTree = "<group>"; };
 		9EA1A77C2E01B66400EB455A /* HeroesListCoordinatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesListCoordinatorViewModel.swift; sourceTree = "<group>"; };
 		9EBA25842E003CE2000E2EF2 /* HeroCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroCardView.swift; sourceTree = "<group>"; };
 		9EBA25882E003D03000E2EF2 /* HeroGridSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroGridSection.swift; sourceTree = "<group>"; };
@@ -146,7 +145,6 @@
 		9ECC751E2DFADB1D00236EEE /* CharacterCachePersistingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCachePersistingService.swift; sourceTree = "<group>"; };
 		9ECC75252DFAF34800236EEE /* TitleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleHeaderView.swift; sourceTree = "<group>"; };
 		9ECC75272DFAF37E00236EEE /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
-		9ECC75292DFAF38800236EEE /* HeroListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroListSection.swift; sourceTree = "<group>"; };
 		9ECCCCCB2DFC2516004A68DC /* MockFetchHeroesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFetchHeroesUseCase.swift; sourceTree = "<group>"; };
 		9ECCCCD22DFC25D5004A68DC /* MockNetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkMonitor.swift; sourceTree = "<group>"; };
 		9ECCCCD52DFC25E8004A68DC /* HeroesListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesListViewModelTests.swift; sourceTree = "<group>"; };
@@ -389,7 +387,6 @@
 				9EBA25842E003CE2000E2EF2 /* HeroCardView.swift */,
 				9EBA25882E003D03000E2EF2 /* HeroGridSection.swift */,
 				9ECC75272DFAF37E00236EEE /* SearchBarView.swift */,
-				9ECC75292DFAF38800236EEE /* HeroListSection.swift */,
 				9EBA258C2E0053A2000E2EF2 /* MainContent.swift */,
 			);
 			path = HeroList;
@@ -490,7 +487,7 @@
 			isa = PBXGroup;
 			children = (
 				9EA1A7782E01A25F00EB455A /* AppCoordinator.swift */,
-				9EA1A77A2E01A8C600EB455A /* HeroesListCoordinatorView.swift */,
+				9EA1A77A2E01A8C600EB455A /* HeroesListEntryView.swift */,
 				9EA1A77C2E01B66400EB455A /* HeroesListCoordinatorViewModel.swift */,
 			);
 			path = Coordinator;
@@ -711,7 +708,7 @@
 				9ECC75182DFAD02B00236EEE /* FetchCharactersUseCaseProtocol.swift in Sources */,
 				9ECC75162DFACFC600236EEE /* CharacterRepositoryProtocol.swift in Sources */,
 				9ED8DC3D2DF743F700A44B55 /* CharacterRepository.swift in Sources */,
-				9EA1A77B2E01A8C600EB455A /* HeroesListCoordinatorView.swift in Sources */,
+				9EA1A77B2E01A8C600EB455A /* HeroesListEntryView.swift in Sources */,
 				1A7B9BBD286D81AA00EBC1A6 /* CharacterDataModel.swift in Sources */,
 				9E369E482DFBCCEE00116C97 /* HeroDetailViewModelProtocol.swift in Sources */,
 				9EBA25952E005787000E2EF2 /* AnimatedFloatingImageView.swift in Sources */,
@@ -743,7 +740,6 @@
 				9ECC750B2DFAC5BE00236EEE /* FetchCharactersUseCase.swift in Sources */,
 				9EC0D9DD2DF7EF4100D35DE5 /* HeroDetailScreen.swift in Sources */,
 				9EBA258B2E005355000E2EF2 /* DiagonalHeroStreamBackgroundView.swift in Sources */,
-				9ECC752A2DFAF38800236EEE /* HeroListSection.swift in Sources */,
 				9ECC751F2DFADB1D00236EEE /* CharacterCachePersistingService.swift in Sources */,
 				9ECC74DD2DF9643E00236EEE /* CharacterCacheRepository.swift in Sources */,
 				9ED8DC2F2DF7074900A44B55 /* MarvelAPIClientProtocol.swift in Sources */,

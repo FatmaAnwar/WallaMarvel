@@ -1,5 +1,5 @@
 //
-//  HeroesListCoordinatorView.swift
+//  HeroesListEntryView.swift
 //  WallaMarvel
 //
 //  Created by Fatma Anwar on 17/06/2025.
@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 @available(iOS 16.0, *)
-struct HeroesListCoordinatorView: View {
+struct HeroesListEntryView: View {
     @StateObject private var viewModel: HeroesListViewModel
     @StateObject private var coordinator = HeroesListCoordinatorViewModel()
     
