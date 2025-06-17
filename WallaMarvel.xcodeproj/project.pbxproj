@@ -25,10 +25,6 @@
 		9E2EF7352DFD38DE009D5836 /* CharacterMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2EF7342DFD38DE009D5836 /* CharacterMapperTests.swift */; };
 		9E2EF7382DFD4514009D5836 /* SwiftUIHeroDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2EF7372DFD4514009D5836 /* SwiftUIHeroDetailViewModelTests.swift */; };
 		9E2EF73B2DFD485C009D5836 /* SwiftUIHeroCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2EF73A2DFD485C009D5836 /* SwiftUIHeroCellViewModelTests.swift */; };
-		9E35D1E22DFFE17E0083FE6A /* HeroesListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E35D1E12DFFE17E0083FE6A /* HeroesListUITests.swift */; };
-		9E35D1E52DFFE1870083FE6A /* SearchFunctionalityUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E35D1E42DFFE1870083FE6A /* SearchFunctionalityUITests.swift */; };
-		9E35D1EB2DFFE2EC0083FE6A /* HeroDetailScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E35D1EA2DFFE2EC0083FE6A /* HeroDetailScreenUITests.swift */; };
-		9E35D1F42DFFE33F0083FE6A /* EmptyStateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E35D1F32DFFE33F0083FE6A /* EmptyStateUITests.swift */; };
 		9E369E442DFBCB8A00116C97 /* HeroCellViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E369E432DFBCB8A00116C97 /* HeroCellViewModelProtocol.swift */; };
 		9E369E462DFBCBAD00116C97 /* SwiftUIHeroCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E369E452DFBCBAD00116C97 /* SwiftUIHeroCellViewModel.swift */; };
 		9E369E482DFBCCEE00116C97 /* SwiftUIHeroDetailViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E369E472DFBCCEE00116C97 /* SwiftUIHeroDetailViewModelProtocol.swift */; };
@@ -122,10 +118,6 @@
 		9E2EF7342DFD38DE009D5836 /* CharacterMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterMapperTests.swift; sourceTree = "<group>"; };
 		9E2EF7372DFD4514009D5836 /* SwiftUIHeroDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIHeroDetailViewModelTests.swift; sourceTree = "<group>"; };
 		9E2EF73A2DFD485C009D5836 /* SwiftUIHeroCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIHeroCellViewModelTests.swift; sourceTree = "<group>"; };
-		9E35D1E12DFFE17E0083FE6A /* HeroesListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesListUITests.swift; sourceTree = "<group>"; };
-		9E35D1E42DFFE1870083FE6A /* SearchFunctionalityUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFunctionalityUITests.swift; sourceTree = "<group>"; };
-		9E35D1EA2DFFE2EC0083FE6A /* HeroDetailScreenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDetailScreenUITests.swift; sourceTree = "<group>"; };
-		9E35D1F32DFFE33F0083FE6A /* EmptyStateUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateUITests.swift; sourceTree = "<group>"; };
 		9E369E432DFBCB8A00116C97 /* HeroCellViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroCellViewModelProtocol.swift; sourceTree = "<group>"; };
 		9E369E452DFBCBAD00116C97 /* SwiftUIHeroCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIHeroCellViewModel.swift; sourceTree = "<group>"; };
 		9E369E472DFBCCEE00116C97 /* SwiftUIHeroDetailViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIHeroDetailViewModelProtocol.swift; sourceTree = "<group>"; };
@@ -399,10 +391,6 @@
 			isa = PBXGroup;
 			children = (
 				1A0E3ABB2862F7E300132FCB /* WallaMarvelUITestsLaunchTests.swift */,
-				9E35D1E12DFFE17E0083FE6A /* HeroesListUITests.swift */,
-				9E35D1E42DFFE1870083FE6A /* SearchFunctionalityUITests.swift */,
-				9E35D1EA2DFFE2EC0083FE6A /* HeroDetailScreenUITests.swift */,
-				9E35D1F32DFFE33F0083FE6A /* EmptyStateUITests.swift */,
 			);
 			path = WallaMarvelUITests;
 			sourceTree = "<group>";
@@ -778,10 +766,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E35D1E22DFFE17E0083FE6A /* HeroesListUITests.swift in Sources */,
-				9E35D1EB2DFFE2EC0083FE6A /* HeroDetailScreenUITests.swift in Sources */,
-				9E35D1E52DFFE1870083FE6A /* SearchFunctionalityUITests.swift in Sources */,
-				9E35D1F42DFFE33F0083FE6A /* EmptyStateUITests.swift in Sources */,
 				1A0E3ABC2862F7E300132FCB /* WallaMarvelUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
