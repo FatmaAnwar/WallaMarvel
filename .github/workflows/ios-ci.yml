@@ -2,47 +2,31 @@ name: iOS CI
 
 on:
   push:
-    branches: [main, develop]
+    branches: [ main ]
   pull_request:
-    branches: [main, develop]
+    branches: [ main ]
 
 jobs:
   build-and-test:
     runs-on: macos-13
 
     steps:
-      - name: Checkout project
-        uses: actions/checkout@v3
+    - uses: actions/checkout@v3
 
-      - name: Select Xcode 15.0.1
-        run: sudo xcode-select -s /Applications/Xcode_15.0.1.app
+    - name: Select Xcode 15.0.1
+      run: sudo xcode-select -s /Applications/Xcode_15.0.1.app
 
-      - name: Install dependencies
-        run: |
-          xcodebuild -resolvePackageDependencies
+    - name: Clean corrupted Package.resolved
+      run: |
+        echo "Removing corrupted Package.resolved..."
+        rm -f WallaMarvel.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
 
-      - name: Build and test
-        run: |
-          xcodebuild test \
-            -scheme WallaMarvel \
-            -workspace WallaMarvel.xcworkspace \
-            -destination 'platform=iOS Simulator,name=iPhone 14,OS=17.0' \
-            -sdk iphonesimulator \
-            -configuration Debug \
-            CODE_SIGN_IDENTITY="" \
-            CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGNING_ALLOWED=NO \
-            ONLY_ACTIVE_ARCH=NO \
-            EXCLUDED_ARCHS="arm64"
+    - name: Resolve Swift Package dependencies
+      run: xcodebuild -resolvePackageDependencies
 
-      - name: Generate coverage report (optional)
-        if: success()
-        run: |
-          xcrun xccov view --report \
-            $(xcodebuild -scheme WallaMarvel \
-            -workspace WallaMarvel.xcworkspace \
-            -destination 'platform=iOS Simulator,name=iPhone 14,OS=17.0' \
-            -enableCodeCoverage YES \
-            -sdk iphonesimulator \
-            -configuration Debug \
-            test | xcpretty --report junit)
+    - name: Build and Test
+      run: |
+        xcodebuild test \
+          -scheme WallaMarvel \
+          -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.2' \
+          -enableCodeCoverage YES
