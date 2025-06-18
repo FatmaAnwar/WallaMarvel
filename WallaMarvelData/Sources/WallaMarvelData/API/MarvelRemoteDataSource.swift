@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 public final class MarvelRemoteDataSource: MarvelRemoteDataSourceProtocol {
     private let apiClient: MarvelAPIClientProtocol
     

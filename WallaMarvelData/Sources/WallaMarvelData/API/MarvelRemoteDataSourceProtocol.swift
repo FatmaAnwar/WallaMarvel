@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 public protocol MarvelRemoteDataSourceProtocol {
     func fetchCharacters(offset: Int) async throws -> [CharacterDataModel]
 }
