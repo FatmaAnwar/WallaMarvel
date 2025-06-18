@@ -27,6 +27,7 @@ final class HeroesListViewModel: ObservableObject {
     private var wasOffline = false
     private var allHeroes: [Character] = []
     private var lastRequestedId: Int?
+    private var hasLoaded = false
     
     init(
         fetchHeroesUseCase: FetchCharactersUseCaseProtocol,
@@ -59,12 +60,15 @@ final class HeroesListViewModel: ObservableObject {
     }
     
     func initialLoad() async {
+        guard !hasLoaded else { return }
+        
         if networkMonitor.isConnected {
             await fetchHeroes()
         } else {
             loadCachedHeroes()
             showOfflineBanner = true
         }
+        hasLoaded = true
     }
     
     func loadMoreIfNeeded(currentItem: HeroCellViewModel) {
