@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import WallaMarvelCore
+import WallaMarvelDomain
 
 @available(iOS 14.0, *)
 struct TitleHeaderView: View {

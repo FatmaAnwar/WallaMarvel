@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import WallaMarvelDomain
 
 @MainActor
 final class HeroDetailViewModel: HeroDetailViewModelProtocol {

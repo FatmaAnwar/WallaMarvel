@@ -8,6 +8,8 @@
 import Foundation
 import Combine
 import SwiftUI
+import WallaMarvelDomain
+import WallaMarvelCore
 
 @MainActor
 final class HeroesListViewModel: ObservableObject {

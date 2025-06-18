@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import WallaMarvelDomain
 
 final class HeroCellViewModel: HeroCellViewModelProtocol, ObservableObject {
     let id: Int

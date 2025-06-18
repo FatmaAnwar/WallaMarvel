@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import WallaMarvelDomain
+import WallaMarvelData
 
 final class CharacterRepository: CharacterRepositoryProtocol {
     
@@ -14,9 +16,9 @@ final class CharacterRepository: CharacterRepositoryProtocol {
     private let characterMapper: CharacterMapperProtocol
     
     init(
-        remoteDataSource: MarvelRemoteDataSourceProtocol = MarvelRemoteDataSource(),
-        cacheRepository: CharacterCacheRepositoryProtocol = CharacterCacheRepository(),
-        characterMapper: CharacterMapperProtocol = CharacterMapper()
+        remoteDataSource: MarvelRemoteDataSourceProtocol,
+        cacheRepository: CharacterCacheRepositoryProtocol,
+        characterMapper: CharacterMapperProtocol
     ) {
         self.remoteDataSource = remoteDataSource
         self.cacheRepository = cacheRepository
@@ -32,6 +34,7 @@ final class CharacterRepository: CharacterRepositoryProtocol {
         try await cacheRepository.save(characters: characters)
     }
     
+    @MainActor
     func fetchCachedHeroes() throws -> [Character] {
         try cacheRepository.fetchCachedHeroes()
     }
