@@ -16,8 +16,6 @@ final class HeroesListViewModel: ObservableObject {
     @Published var heroCellViewModels: [HeroCellViewModel] = []
     @Published var searchText: String = ""
     @Published var isLoading: Bool = false
-    @Published var showOfflineBanner: Bool = false
-    @Published var showOnlineToast: Bool = false
     
     private let fetchHeroesUseCase: FetchCharactersUseCaseProtocol
     private let networkMonitor: NetworkMonitoringProtocol
@@ -66,7 +64,6 @@ final class HeroesListViewModel: ObservableObject {
             await fetchHeroes()
         } else {
             loadCachedHeroes()
-            showOfflineBanner = true
         }
         hasLoaded = true
     }
@@ -90,7 +87,10 @@ final class HeroesListViewModel: ObservableObject {
         do {
             let characters = try await fetchHeroesUseCase.execute(offset: currentOffset)
             
-            if characters.isEmpty { return }
+            if characters.isEmpty {
+                isLoading = false
+                return
+            }
             
             currentOffset += characters.count
             
@@ -102,8 +102,9 @@ final class HeroesListViewModel: ObservableObject {
             filterHeroes()
             try await fetchHeroesUseCase.save(characters: allHeroes)
         } catch {
-            print("Fetch error: \(error.localizedDescription)")
-            loadCachedHeroes()
+            if allHeroes.isEmpty {
+                loadCachedHeroes()
+            }
         }
         
         isLoading = false
@@ -150,20 +151,16 @@ final class HeroesListViewModel: ObservableObject {
     private func handleNetworkChange(isConnected: Bool) {
         if isConnected {
             if wasOffline {
-                showOfflineBanner = false
-                showOnlineToast = true
                 
                 Task { await fetchHeroes(resetBeforeFetch: true) }
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                    self.showOnlineToast = false
                 }
                 
                 wasOffline = false
             }
         } else {
             wasOffline = true
-            showOfflineBanner = true
             persistCurrentListIfNeeded()
         }
     }
