@@ -135,7 +135,6 @@
 			children = (
 				9ED8DC0A2DF693F000A44B55 /* App */,
 				9ED8DC052DF68D3600A44B55 /* Resources */,
-				1A0E3AA62862F7E300132FCB /* Info.plist */,
 				9ECC74F82DFABF6100236EEE /* Tests */,
 			);
 			path = WallaMarvel;
@@ -221,6 +220,7 @@
 		9ED8DC052DF68D3600A44B55 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1A0E3AA62862F7E300132FCB /* Info.plist */,
 				1A0E3AA12862F7E300132FCB /* Assets.xcassets */,
 				1A0E3AA32862F7E300132FCB /* LaunchScreen.storyboard */,
 			);
@@ -556,7 +556,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = S35RY8MDWL;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = WallaMarvel/Info.plist;
+				INFOPLIST_FILE = WallaMarvel/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -587,7 +587,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = S35RY8MDWL;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = WallaMarvel/Info.plist;
+				INFOPLIST_FILE = WallaMarvel/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
