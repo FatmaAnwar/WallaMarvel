@@ -14,13 +14,15 @@ struct HeroesListView: View {
     @StateObject var viewModel: HeroesListViewModel
     @ObservedObject var coordinator: HeroesListCoordinatorViewModel
     
+    @State private var streamHeroes: [HeroCellViewModel] = []
+    
     var body: some View {
         NavigationStack(path: $coordinator.navigationPath) {
             ZStack {
                 BackgroundGradient()
                 
-                if viewModel.searchText.isEmpty {
-                    DiagonalHeroStreamBackgroundView(heroes: viewModel.heroCellViewModels)
+                if !streamHeroes.isEmpty && viewModel.searchText.isEmpty {
+                    DiagonalHeroStreamBackgroundView(heroes: streamHeroes)
                 }
                 
                 MainContent(viewModel: viewModel) { selectedHero in
@@ -38,6 +40,11 @@ struct HeroesListView: View {
             .accessibilityLabel(String.accHeroListLabel)
             .onAppear {
                 Task { await viewModel.initialLoad() }
+            }
+            .onChange(of: viewModel.heroCellViewModels) { newList in
+                if streamHeroes.isEmpty && !newList.isEmpty && viewModel.searchText.isEmpty {
+                    streamHeroes = newList.shuffled()
+                }
             }
         }
     }

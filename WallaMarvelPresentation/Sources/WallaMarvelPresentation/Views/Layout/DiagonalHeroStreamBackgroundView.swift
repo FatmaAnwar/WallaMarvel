@@ -10,7 +10,7 @@ import Kingfisher
 
 @available(iOS 15.0, *)
 struct DiagonalHeroStreamBackgroundView<VM: HeroCellViewModelProtocol>: View {
-    let heroes: [VM]
+    @State private var heroRows: [[VM]]
     
     private let rows = 6
     private let cardSize: CGFloat = 100
@@ -18,26 +18,18 @@ struct DiagonalHeroStreamBackgroundView<VM: HeroCellViewModelProtocol>: View {
     private let speed: CGFloat = 20
     private let rotationAngle: Angle = .degrees(-12)
     
-    private var cachedHeroRows: [[VM]] {
-        var result: [[VM]] = []
-        for _ in 0..<rows {
-            let row = Array(heroes.shuffled().prefix(15))
-            result.append(row)
-        }
-        return result
+    init(heroes: [VM]) {
+        _heroRows = State(initialValue: (0..<rows).map { _ in Array(heroes.shuffled().prefix(15)) })
     }
     
     var body: some View {
-        let heroRows = cachedHeroRows
-        
-        return GeometryReader { geometry in
+        GeometryReader { _ in
             TimelineView(.animation) { timeline in
                 let time = timeline.date.timeIntervalSinceReferenceDate
                 
                 VStack(spacing: spacing) {
                     ForEach(0..<rows, id: \.self) { row in
-                        let rowHeroes = heroRows[row]
-                        let repeated = rowHeroes + rowHeroes + rowHeroes
+                        let repeated = heroRows[row] + heroRows[row] + heroRows[row]
                         let rowWidth = CGFloat(repeated.count) * (cardSize + spacing)
                         let xOffset = CGFloat(time * speed).truncatingRemainder(dividingBy: rowWidth)
                         

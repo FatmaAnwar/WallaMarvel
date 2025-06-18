@@ -26,6 +26,7 @@ final class HeroesListViewModel: ObservableObject {
     private var currentOffset = 0
     private var wasOffline = false
     private var allHeroes: [Character] = []
+    private var lastRequestedId: Int?
     
     init(
         fetchHeroesUseCase: FetchCharactersUseCaseProtocol,
@@ -49,8 +50,8 @@ final class HeroesListViewModel: ObservableObject {
     
     private func observeSearchText() {
         $searchText
-            .debounce(for: .seconds(debounceDuration), scheduler: DispatchQueue.main)
             .removeDuplicates()
+            .debounce(for: .milliseconds(300), scheduler: DispatchQueue.main)
             .sink { [weak self] _ in
                 self?.filterHeroes()
             }
@@ -67,7 +68,10 @@ final class HeroesListViewModel: ObservableObject {
     }
     
     func loadMoreIfNeeded(currentItem: HeroCellViewModel) {
-        guard let last = heroCellViewModels.last, currentItem.id == last.id else { return }
+        guard let last = heroCellViewModels.last else { return }
+        guard currentItem.id == last.id, currentItem.id != lastRequestedId else { return }
+        
+        lastRequestedId = currentItem.id
         Task { await fetchHeroes() }
     }
     
@@ -102,18 +106,23 @@ final class HeroesListViewModel: ObservableObject {
     }
     
     func filterHeroes() {
-        let filtered: [Character] = searchText.isEmpty
-        ? allHeroes
-        : allHeroes.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+        let currentText = searchText.lowercased()
+        let characters = allHeroes
         
-        heroCellViewModels = filtered
-            .reduce(into: [Character]()) { result, char in
-                if !result.contains(where: { $0.id == char.id }) {
-                    result.append(char)
-                }
+        Task {
+            let filtered = currentText.isEmpty ? characters : characters.filter {
+                $0.name.lowercased().contains(currentText)
             }
-            .sorted(by: { $0.name.lowercased() < $1.name.lowercased() })
-            .map(HeroCellViewModel.init)
+            let unique = Dictionary(grouping: filtered, by: \.id).compactMapValues(\.first).values.sorted {
+                $0.name.lowercased() < $1.name.lowercased()
+            }
+            
+            let viewModels = unique.map(HeroCellViewModel.init)
+            
+            await MainActor.run {
+                self.heroCellViewModels = viewModels
+            }
+        }
     }
     
     private func loadCachedHeroes() {
