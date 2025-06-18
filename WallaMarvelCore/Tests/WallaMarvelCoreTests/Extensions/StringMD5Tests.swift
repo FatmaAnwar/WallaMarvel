@@ -11,7 +11,14 @@ import XCTest
 
 final class StringMD5Tests: XCTestCase {
     func test_md5_returnsCorrectHash() {
-        let hash = "test".md5
-        XCTAssertEqual(hash, "098f6bcd4621d373cade4e832627b4f6")
+        // Given
+        let input = "test"
+        let expectedHash = "098f6bcd4621d373cade4e832627b4f6"
+        
+        // When
+        let hash = input.md5
+        
+        // Then
+        XCTAssertEqual(hash, expectedHash)
     }
 }

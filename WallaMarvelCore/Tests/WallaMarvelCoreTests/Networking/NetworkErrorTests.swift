@@ -11,8 +11,14 @@ import XCTest
 
 final class NetworkErrorTests: XCTestCase {
     func test_networkError_enumCasesExist() {
-        let _ = NetworkError.invalidURL
-        let _ = NetworkError.noData
-        let _ = NetworkError.decodingError
+        // Given & When
+        let error1 = NetworkError.invalidURL
+        let error2 = NetworkError.noData
+        let error3 = NetworkError.decodingError
+        
+        // Then
+        XCTAssertNotNil(error1)
+        XCTAssertNotNil(error2)
+        XCTAssertNotNil(error3)
     }
 }

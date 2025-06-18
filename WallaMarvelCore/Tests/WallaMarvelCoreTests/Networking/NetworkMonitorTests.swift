@@ -11,27 +11,36 @@ import Combine
 
 @MainActor
 final class NetworkMonitorTests: XCTestCase {
-
+    
     func test_initialConnectionIsTrue() {
+        // Given
         let monitor = NetworkMonitor.shared
-        XCTAssertTrue(monitor.isConnected)
+        
+        // When
+        let isConnected = monitor.isConnected
+        
+        // Then
+        XCTAssertTrue(isConnected)
     }
-
+    
     func test_isConnectedPublisher_emitsValue() {
+        // Given
         let monitor = NetworkMonitor.shared
-        let expectation = XCTestExpectation(description: "Publisher emits change")
-        var receivedValues = [Bool]()
-
+        let expectation = XCTestExpectation(description: "Publisher emits value")
+        var received = [Bool]()
+        
+        // When
         let cancellable = monitor.isConnectedPublisher
             .sink { value in
-                receivedValues.append(value)
-                if receivedValues.count > 0 {
+                received.append(value)
+                if !received.isEmpty {
                     expectation.fulfill()
                 }
             }
-
+        
+        // Then
         wait(for: [expectation], timeout: 2.0)
-        XCTAssertFalse(receivedValues.isEmpty)
+        XCTAssertFalse(received.isEmpty)
         cancellable.cancel()
     }
 }

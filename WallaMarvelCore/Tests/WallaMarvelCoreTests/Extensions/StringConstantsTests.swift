@@ -11,10 +11,22 @@ import XCTest
 
 final class StringConstantsTests: XCTestCase {
     func test_accessibilityTextBuilders_returnFormattedValues() {
-        XCTAssertEqual(String.accHeroImage(name: "Hulk"), "Image of Hulk")
-        XCTAssertEqual(String.accHeroCell(name: "Iron Man"), "Hero: Iron Man")
-        XCTAssertEqual(String.accHeroDetailLabel(name: "Thor"), "Hero name: Thor")
-        XCTAssertEqual(String.accHeroDescription(text: "Avenger"), "Hero description: Avenger")
-        XCTAssertEqual(String.accHeroImageUnavailable(name: "Spider-Man"), "No image available for Spider-Man")
+        // Given
+        let heroName = "Hulk"
+        let heroDescription = "Avenger"
+        
+        // When
+        let imageLabel = String.accHeroImage(name: heroName)
+        let cellLabel = String.accHeroCell(name: "Iron Man")
+        let detailLabel = String.accHeroDetailLabel(name: "Thor")
+        let descLabel = String.accHeroDescription(text: heroDescription)
+        let unavailableImageLabel = String.accHeroImageUnavailable(name: "Spider-Man")
+        
+        // Then
+        XCTAssertEqual(imageLabel, "Image of Hulk")
+        XCTAssertEqual(cellLabel, "Hero: Iron Man")
+        XCTAssertEqual(detailLabel, "Hero name: Thor")
+        XCTAssertEqual(descLabel, "Hero description: Avenger")
+        XCTAssertEqual(unavailableImageLabel, "No image available for Spider-Man")
     }
 }

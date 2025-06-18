@@ -18,16 +18,25 @@ final class ViewCardStyleTests: XCTestCase {
                 .cardStyle()
         }
     }
-
+    
     func test_cardStyle_appliesModifier() {
-        let expectation = XCTestExpectation(description: "Render view")
-
+        // Given
+        struct DummyView: View {
+            var body: some View {
+                Text("Card")
+                    .cardStyle()
+            }
+        }
+        let expectation = XCTestExpectation(description: "Render view with cardStyle modifier")
+        
+        // When
         Task { @MainActor in
             let view = DummyView()
             _ = view.body
             expectation.fulfill()
         }
-
+        
+        // Then
         wait(for: [expectation], timeout: 1.0)
     }
 }
