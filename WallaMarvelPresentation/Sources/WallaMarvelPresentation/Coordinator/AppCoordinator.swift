@@ -12,8 +12,10 @@ import WallaMarvelData
 
 @available(iOS 16.0, *)
 @MainActor
-final class AppCoordinator: ObservableObject {
-    func start() -> some View {
+public final class AppCoordinator: ObservableObject {
+    public init() {}
+    
+    public func start() -> some View {
         let apiService = MarvelAPIClient()
         let remoteDataSource = MarvelRemoteDataSource(apiClient: apiService)
         let repository = CharacterRepository(

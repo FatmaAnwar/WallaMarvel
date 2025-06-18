@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WallaMarvelPresentation
 
 @available(iOS 16.0, *)
 @main
