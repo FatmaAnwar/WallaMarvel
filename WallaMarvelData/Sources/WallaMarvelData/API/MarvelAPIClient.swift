@@ -8,6 +8,7 @@
 import Foundation
 import WallaMarvelCore
 
+@MainActor
 public final class MarvelAPIClient: MarvelAPIClientProtocol {
     public init() {}
     

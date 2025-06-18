@@ -15,7 +15,13 @@ public final class CoreDataStack {
     private init() {}
     
     public lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "WallaMarvel")
+        guard let modelURL = Bundle.module.url(forResource: "WallaMarvel", withExtension: "momd"),
+              let model = NSManagedObjectModel(contentsOf: modelURL) else {
+            fatalError("Failed to load Core Data model from WallaMarvelData package")
+        }
+        
+        let container = NSPersistentContainer(name: "WallaMarvel", managedObjectModel: model)
+        
         container.loadPersistentStores { _, error in
             if let error = error {
                 fatalError("CoreData error: \(error)")

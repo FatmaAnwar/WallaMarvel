@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 public protocol CharacterRepositoryProtocol {
     func fetchCharacters(offset: Int) async throws -> [Character]
     func save(characters: [Character]) async throws

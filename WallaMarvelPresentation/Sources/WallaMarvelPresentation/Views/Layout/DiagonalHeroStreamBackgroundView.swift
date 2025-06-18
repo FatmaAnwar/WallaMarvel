@@ -42,7 +42,7 @@ struct DiagonalHeroStreamBackgroundView<VM: HeroCellViewModelProtocol>: View {
                         let xOffset = CGFloat(time * speed).truncatingRemainder(dividingBy: rowWidth)
                         
                         HStack(spacing: spacing) {
-                            ForEach(repeated, id: \.id) { hero in
+                            ForEach(Array(repeated.enumerated()), id: \.offset) { _, hero in
                                 KFImage(hero.imageURL)
                                     .resizable()
                                     .scaledToFill()

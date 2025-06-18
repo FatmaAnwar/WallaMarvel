@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 public protocol MarvelAPIClientProtocol {
     func getHeroes(offset: Int) async throws -> CharacterDataContainer
 }
