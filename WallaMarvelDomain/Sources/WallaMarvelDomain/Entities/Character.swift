@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Character: Hashable, Identifiable {
+public struct Character: Hashable, Identifiable, Sendable {
     public let id: Int
     public let name: String
     public let imageUrl: String

@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import WallaMarvelDomain
 
+@MainActor
 public protocol FetchCharactersUseCaseProtocol {
     func execute(offset: Int) async throws -> [Character]
     func fetchCachedHeroes() throws -> [Character]

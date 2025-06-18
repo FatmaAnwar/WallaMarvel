@@ -9,6 +9,7 @@ import Foundation
 import WallaMarvelDomain
 import WallaMarvelData
 
+@MainActor
 final class CharacterRepository: CharacterRepositoryProtocol {
     
     private let remoteDataSource: MarvelRemoteDataSourceProtocol

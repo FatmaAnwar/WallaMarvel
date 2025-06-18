@@ -7,27 +7,27 @@
 
 import Foundation
 import WallaMarvelDomain
-import WallaMarvelData
 
-final class FetchCharactersUseCase: FetchCharactersUseCaseProtocol {
+@MainActor
+public final class FetchCharactersUseCase: FetchCharactersUseCaseProtocol {
     private let repository: CharacterRepositoryProtocol
     
-    init(
+    public init(
         repository: CharacterRepositoryProtocol
     ) {
         self.repository = repository
     }
     
-    func execute(offset: Int) async throws -> [Character] {
+    public func execute(offset: Int) async throws -> [Character] {
         try await repository.fetchCharacters(offset: offset)
     }
     
-    func save(characters: [Character]) async throws {
+    public func save(characters: [Character]) async throws {
         try await repository.save(characters: characters)
     }
     
     @MainActor
-    func fetchCachedHeroes() throws -> [Character] {
+    public func fetchCachedHeroes() throws -> [Character] {
         try repository.fetchCachedHeroes()
     }
 }
