@@ -30,12 +30,15 @@ struct HeroDetailScreen<ViewModel: HeroDetailViewModelProtocol>: View {
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.leading)
                     .padding()
+                    .frame(maxWidth: .infinity)
                     .background(Color(.systemBackground))
                     .cornerRadius(12)
                     .shadow(color: .black.opacity(0.05), radius: 4, x: 0, y: 2)
                     .accessibilityIdentifier(String.identifierHeroDetailDescription)
             }
+            .padding(.horizontal, 24)
             .padding(.bottom, 40)
+            .frame(maxWidth: .infinity)
         }
         .background(Color(.systemGroupedBackground).ignoresSafeArea())
         .navigationTitle(viewModel.name)
