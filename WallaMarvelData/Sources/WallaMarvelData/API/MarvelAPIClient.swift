@@ -8,8 +8,10 @@
 import Foundation
 import WallaMarvelCore
 
-final class MarvelAPIClient: MarvelAPIClientProtocol {
-    func getHeroes(offset: Int) async throws -> CharacterDataContainer {
+public final class MarvelAPIClient: MarvelAPIClientProtocol {
+    public init() {}
+    
+    public func getHeroes(offset: Int) async throws -> CharacterDataContainer {
         guard let request = MarvelRequestBuilder.characters(offset: offset).buildRequest() else {
             throw NetworkError.invalidURL
         }

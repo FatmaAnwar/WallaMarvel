@@ -1,6 +1,6 @@
 import Foundation
 
-struct CharacterDataModel: Decodable {
+public struct CharacterDataModel: Decodable {
     let id: Int
     let name: String
     let thumbnail: Thumbnail

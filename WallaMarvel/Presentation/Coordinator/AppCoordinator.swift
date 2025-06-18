@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import WallaMarvelCore
+import WallaMarvelData
 
 @available(iOS 16.0, *)
 @MainActor

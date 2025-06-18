@@ -7,14 +7,14 @@
 
 import Foundation
 
-final class MarvelRemoteDataSource: MarvelRemoteDataSourceProtocol {
+public final class MarvelRemoteDataSource: MarvelRemoteDataSourceProtocol {
     private let apiClient: MarvelAPIClientProtocol
-
-    init(apiClient: MarvelAPIClientProtocol = MarvelAPIClient()) {
+    
+    public init(apiClient: MarvelAPIClientProtocol = MarvelAPIClient()) {
         self.apiClient = apiClient
     }
-
-    func fetchCharacters(offset: Int) async throws -> [CharacterDataModel] {
+    
+    public func fetchCharacters(offset: Int) async throws -> [CharacterDataModel] {
         let container = try await apiClient.getHeroes(offset: offset)
         return container.characters
     }

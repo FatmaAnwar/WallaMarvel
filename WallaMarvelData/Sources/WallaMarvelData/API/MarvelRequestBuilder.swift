@@ -36,4 +36,3 @@ struct MarvelRequestBuilder {
         return URLRequest(url: url)
     }
 }
-

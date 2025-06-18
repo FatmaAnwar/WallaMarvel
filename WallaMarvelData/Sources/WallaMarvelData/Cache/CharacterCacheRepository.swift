@@ -9,14 +9,16 @@ import Foundation
 import CoreData
 import WallaMarvelDomain
 
-final class CharacterCacheRepository: CharacterCacheRepositoryProtocol {
+@MainActor
+public final class CharacterCacheRepository: CharacterCacheRepositoryProtocol {
     private let context: NSManagedObjectContext
     
-    init(context: NSManagedObjectContext = CoreDataStack.shared.context) {
+    @MainActor
+    public init(context: NSManagedObjectContext = CoreDataStack.shared.context) {
         self.context = context
     }
     
-    func save(characters: [Character]) async throws {
+    public func save(characters: [Character]) async throws {
         try clearCache()
         
         for character in characters {
@@ -30,7 +32,7 @@ final class CharacterCacheRepository: CharacterCacheRepositoryProtocol {
         try context.save()
     }
     
-    func fetchCachedHeroes() throws -> [Character] {
+    public func fetchCachedHeroes() throws -> [Character] {
         let request: NSFetchRequest<CDCharacter> = CDCharacter.fetchRequest()
         let results = try context.fetch(request)
         
@@ -44,7 +46,7 @@ final class CharacterCacheRepository: CharacterCacheRepositoryProtocol {
         }
     }
     
-    func clearCache() throws {
+    public func clearCache() throws {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = CDCharacter.fetchRequest()
         
         if context.persistentStoreCoordinator?.persistentStores.first?.type == NSInMemoryStoreType {

@@ -8,12 +8,13 @@
 import Foundation
 import CoreData
 
-final class CoreDataStack {
-    static let shared = CoreDataStack()
+@MainActor
+public final class CoreDataStack {
+    public static let shared = CoreDataStack()
     
     private init() {}
     
-    lazy var persistentContainer: NSPersistentContainer = {
+    public lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "WallaMarvel")
         container.loadPersistentStores { _, error in
             if let error = error {
@@ -23,11 +24,11 @@ final class CoreDataStack {
         return container
     }()
     
-    var context: NSManagedObjectContext {
+    public var context: NSManagedObjectContext {
         persistentContainer.viewContext
     }
     
-    func saveContext() {
+    public func saveContext() {
         let context = persistentContainer.viewContext
         if context.hasChanges {
             do {

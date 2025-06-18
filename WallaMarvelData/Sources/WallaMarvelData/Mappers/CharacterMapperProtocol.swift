@@ -8,6 +8,6 @@
 import Foundation
 import WallaMarvelDomain
 
-protocol CharacterMapperProtocol {
+public protocol CharacterMapperProtocol {
     func map(_ dtos: [CharacterDataModel]) -> [Character]
 }

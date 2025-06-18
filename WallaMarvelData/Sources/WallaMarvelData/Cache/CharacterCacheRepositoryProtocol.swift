@@ -8,7 +8,8 @@
 import Foundation
 import WallaMarvelDomain
 
-protocol CharacterCacheRepositoryProtocol {
+@MainActor
+public protocol CharacterCacheRepositoryProtocol {
     func save(characters: [Character]) async throws
     func fetchCachedHeroes() throws -> [Character]
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CharacterDataContainer: Decodable {
+public struct CharacterDataContainer: Decodable {
     let count: Int
     let limit: Int
     let offset: Int
