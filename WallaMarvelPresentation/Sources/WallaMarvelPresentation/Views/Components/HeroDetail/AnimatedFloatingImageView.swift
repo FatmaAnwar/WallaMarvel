@@ -27,7 +27,7 @@ struct AnimatedFloatingImageView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 24))
                 .background(
                     RoundedRectangle(cornerRadius: 24)
-                        .fill(Color(.systemGroupedBackground))
+                        .fill(Color(.systemBackground))
                 )
                 .shadow(color: .black.opacity(0.15), radius: 10, x: 0, y: 4)
                 .offset(y: yOffset)

@@ -18,7 +18,7 @@ struct SearchBarView: View {
         ZStack(alignment: .trailing) {
             TextField(String.searchHeroesPlaceholder, text: $text)
                 .padding(10)
-                .background(Color(.systemGray6))
+                .background(Color(.secondarySystemBackground))
                 .cornerRadius(10)
                 .shadow(radius: 1)
                 .onChange(of: text) { _ in onChange() }
