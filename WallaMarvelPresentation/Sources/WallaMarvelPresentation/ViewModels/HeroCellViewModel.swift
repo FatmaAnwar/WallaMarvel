@@ -8,7 +8,7 @@
 import Foundation
 import WallaMarvelDomain
 
-final class HeroCellViewModel: HeroCellViewModelProtocol, ObservableObject {
+final class HeroCellViewModel: HeroCellViewModelProtocol, ObservableObject, Equatable {
     let id: Int
     let character: Character
     
@@ -23,5 +23,9 @@ final class HeroCellViewModel: HeroCellViewModelProtocol, ObservableObject {
     init(character: Character) {
         self.id = character.id
         self.character = character
+    }
+    
+    static func == (lhs: HeroCellViewModel, rhs: HeroCellViewModel) -> Bool {
+        lhs.id == rhs.id
     }
 }

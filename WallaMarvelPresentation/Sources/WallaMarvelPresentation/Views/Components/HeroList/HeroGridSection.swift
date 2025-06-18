@@ -36,5 +36,17 @@ struct HeroGridSection: View {
             .padding(.horizontal, 16)
             .padding(.top, 20)
         }
+        .overlay(
+            Group {
+                if viewModel.isLoading && !viewModel.heroCellViewModels.isEmpty {
+                    ZStack {
+                        Color.black.opacity(0.05)
+                            .ignoresSafeArea()
+                        LoadingOverlay()
+                    }
+                    .transition(.opacity)
+                }
+            }
+        )
     }
 }

@@ -16,8 +16,6 @@ final class HeroesListViewModel: ObservableObject {
     @Published var heroCellViewModels: [HeroCellViewModel] = []
     @Published var searchText: String = ""
     @Published var isLoading: Bool = false
-    @Published var showOfflineBanner: Bool = false
-    @Published var showOnlineToast: Bool = false
     
     private let fetchHeroesUseCase: FetchCharactersUseCaseProtocol
     private let networkMonitor: NetworkMonitoringProtocol
@@ -26,6 +24,8 @@ final class HeroesListViewModel: ObservableObject {
     private var currentOffset = 0
     private var wasOffline = false
     private var allHeroes: [Character] = []
+    private var lastRequestedId: Int?
+    private var hasLoaded = false
     
     init(
         fetchHeroesUseCase: FetchCharactersUseCaseProtocol,
@@ -49,8 +49,8 @@ final class HeroesListViewModel: ObservableObject {
     
     private func observeSearchText() {
         $searchText
-            .debounce(for: .seconds(debounceDuration), scheduler: DispatchQueue.main)
             .removeDuplicates()
+            .debounce(for: .milliseconds(300), scheduler: DispatchQueue.main)
             .sink { [weak self] _ in
                 self?.filterHeroes()
             }
@@ -58,16 +58,21 @@ final class HeroesListViewModel: ObservableObject {
     }
     
     func initialLoad() async {
+        guard !hasLoaded else { return }
+        
         if networkMonitor.isConnected {
             await fetchHeroes()
         } else {
             loadCachedHeroes()
-            showOfflineBanner = true
         }
+        hasLoaded = true
     }
     
     func loadMoreIfNeeded(currentItem: HeroCellViewModel) {
-        guard let last = heroCellViewModels.last, currentItem.id == last.id else { return }
+        guard let last = heroCellViewModels.last else { return }
+        guard currentItem.id == last.id, currentItem.id != lastRequestedId else { return }
+        
+        lastRequestedId = currentItem.id
         Task { await fetchHeroes() }
     }
     
@@ -82,7 +87,10 @@ final class HeroesListViewModel: ObservableObject {
         do {
             let characters = try await fetchHeroesUseCase.execute(offset: currentOffset)
             
-            if characters.isEmpty { return }
+            if characters.isEmpty {
+                isLoading = false
+                return
+            }
             
             currentOffset += characters.count
             
@@ -94,26 +102,32 @@ final class HeroesListViewModel: ObservableObject {
             filterHeroes()
             try await fetchHeroesUseCase.save(characters: allHeroes)
         } catch {
-            print("Fetch error: \(error.localizedDescription)")
-            loadCachedHeroes()
+            if allHeroes.isEmpty {
+                loadCachedHeroes()
+            }
         }
         
         isLoading = false
     }
     
     func filterHeroes() {
-        let filtered: [Character] = searchText.isEmpty
-        ? allHeroes
-        : allHeroes.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+        let currentText = searchText.lowercased()
+        let characters = allHeroes
         
-        heroCellViewModels = filtered
-            .reduce(into: [Character]()) { result, char in
-                if !result.contains(where: { $0.id == char.id }) {
-                    result.append(char)
-                }
+        Task {
+            let filtered = currentText.isEmpty ? characters : characters.filter {
+                $0.name.lowercased().contains(currentText)
             }
-            .sorted(by: { $0.name.lowercased() < $1.name.lowercased() })
-            .map(HeroCellViewModel.init)
+            let unique = Dictionary(grouping: filtered, by: \.id).compactMapValues(\.first).values.sorted {
+                $0.name.lowercased() < $1.name.lowercased()
+            }
+            
+            let viewModels = unique.map(HeroCellViewModel.init)
+            
+            await MainActor.run {
+                self.heroCellViewModels = viewModels
+            }
+        }
     }
     
     private func loadCachedHeroes() {
@@ -137,20 +151,16 @@ final class HeroesListViewModel: ObservableObject {
     private func handleNetworkChange(isConnected: Bool) {
         if isConnected {
             if wasOffline {
-                showOfflineBanner = false
-                showOnlineToast = true
                 
                 Task { await fetchHeroes(resetBeforeFetch: true) }
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                    self.showOnlineToast = false
                 }
                 
                 wasOffline = false
             }
         } else {
             wasOffline = true
-            showOfflineBanner = true
             persistCurrentListIfNeeded()
         }
     }

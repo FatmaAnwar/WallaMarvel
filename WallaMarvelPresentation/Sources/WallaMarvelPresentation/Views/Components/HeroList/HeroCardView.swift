@@ -8,16 +8,27 @@
 import SwiftUI
 import Kingfisher
 
+@preconcurrency
 @available(iOS 15.0, *)
-struct HeroCardView<VM: HeroCellViewModelProtocol>: View {
+struct HeroCardView<VM: HeroCellViewModelProtocol>: View, Equatable {
     let viewModel: VM
+    nonisolated let id: Int
+    
+    init(viewModel: VM) {
+        self.viewModel = viewModel
+        self.id = viewModel.id
+    }
+    
+    nonisolated static func == (lhs: HeroCardView<VM>, rhs: HeroCardView<VM>) -> Bool {
+        lhs.id == rhs.id
+    }
     
     var body: some View {
         VStack(spacing: 12) {
             KFImage(viewModel.imageURL)
                 .placeholder {
                     RoundedRectangle(cornerRadius: 24)
-                        .fill(Color.gray.opacity(0.2))
+                        .fill(Color(.tertiarySystemFill))
                 }
                 .resizable()
                 .scaledToFill()
@@ -25,24 +36,24 @@ struct HeroCardView<VM: HeroCellViewModelProtocol>: View {
                 .clipShape(RoundedRectangle(cornerRadius: 24))
                 .overlay(
                     RoundedRectangle(cornerRadius: 24)
-                        .stroke(Color.white.opacity(0.3), lineWidth: 0.5)
+                        .stroke(Color(.separator), lineWidth: 0.5)
                 )
-                .shadow(color: .black.opacity(0.15), radius: 8, x: 0, y: 6)
+                .shadow(color: Color.black.opacity(0.15), radius: 8, x: 0, y: 6)
             
             Text(viewModel.name)
                 .font(.system(size: 14, weight: .semibold))
                 .multilineTextAlignment(.center)
-                .foregroundColor(.primary)
+                .foregroundColor(Color.primary)
                 .lineLimit(2)
                 .frame(maxWidth: 140)
         }
         .padding(12)
         .background(
             RoundedRectangle(cornerRadius: 24)
-                .fill(Color.white)
-                .shadow(color: .black.opacity(0.05), radius: 10, x: 0, y: 5)
+                .fill(Color(.systemBackground))
+                .shadow(color: Color.black.opacity(0.05), radius: 10, x: 0, y: 5)
         )
         .frame(width: 160, height: 210)
-        .accessibilityIdentifier("heroCard_\(viewModel.id)")
+        .accessibilityIdentifier("heroCard_\(id)")
     }
 }

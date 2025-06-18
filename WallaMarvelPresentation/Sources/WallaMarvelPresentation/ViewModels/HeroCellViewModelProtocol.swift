@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol HeroCellViewModelProtocol: Identifiable {
+protocol HeroCellViewModelProtocol: Identifiable where ID == Int {
     var name: String { get }
     var imageURL: URL? { get }
 }

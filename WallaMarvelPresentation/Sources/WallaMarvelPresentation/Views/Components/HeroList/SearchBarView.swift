@@ -12,20 +12,24 @@ struct SearchBarView: View {
     @Binding var text: String
     var onChange: () -> Void
     
+    @State private var isEditing = false
+    
     var body: some View {
         ZStack(alignment: .trailing) {
             TextField(String.searchHeroesPlaceholder, text: $text)
                 .padding(10)
-                .background(Color(.systemGray6))
+                .background(Color(.secondarySystemBackground))
                 .cornerRadius(10)
                 .shadow(radius: 1)
                 .onChange(of: text) { _ in onChange() }
+                .onTapGesture { isEditing = true }
                 .accessibilityIdentifier(String.identifierSearchField)
             
             if !text.isEmpty {
                 Button(action: {
                     text = ""
                     onChange()
+                    isEditing = false
                 }) {
                     Image(systemName: "xmark.circle.fill")
                         .foregroundColor(.gray)
