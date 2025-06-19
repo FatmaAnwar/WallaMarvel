@@ -42,7 +42,7 @@ Each module is:
 
 ---
 
-## ⚙CI Integration
+## CI Integration
 
 This project includes a lightweight **GitHub Actions** CI setup that performs a **sanity check** on every push and pull request to the `main` branch.
 
@@ -110,6 +110,29 @@ open WallaMarvel.xcodeproj
 ```
 
 Make sure to run on iOS 15.0+.
+
+---
+
+## Troubleshooting
+
+If you encounter a build failure like:
+
+```
+No such module 'Kingfisher'
+```
+
+This is a common issue when Swift Packages don’t resolve properly on first launch.
+
+Please follow these steps to fix it:
+
+1. In Xcode, go to the **File** menu
+2. Select **Packages > Resolve Package Versions**
+3. Then choose **File > Packages > Update to Latest Package Versions**
+4. **Clean the build folder**: `Shift + Cmd + K`
+5. Then **Build**: `Cmd + B`
+6. If the issue persists, repeat the build again
+
+This should resolve the package visibility and allow the app to compile successfully.
 
 ---
 
