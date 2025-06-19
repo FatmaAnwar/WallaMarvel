@@ -14,6 +14,7 @@
 		9E669E832E01F83C00E86E9B /* WallaMarvelCore in Frameworks */ = {isa = PBXBuildFile; productRef = 9E669E822E01F83C00E86E9B /* WallaMarvelCore */; };
 		9EA1A7752E019D5000EB455A /* WallaMarvelApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA1A7742E019D5000EB455A /* WallaMarvelApp.swift */; };
 		9EA1A7772E019D6300EB455A /* AppLifecycleObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA1A7762E019D6300EB455A /* AppLifecycleObserver.swift */; };
+		9EA47A2E2E03E9CA007C9B96 /* WallaMarvelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA47A2D2E03E9CA007C9B96 /* WallaMarvelUITests.swift */; };
 		9EAE767E2E02718E0073AB6A /* WallaMarvelData in Frameworks */ = {isa = PBXBuildFile; productRef = 9EAE767D2E02718E0073AB6A /* WallaMarvelData */; };
 		9EB6C6612E02C7430058A7A9 /* WallaMarvelPresentation in Frameworks */ = {isa = PBXBuildFile; productRef = 9EB6C6602E02C7430058A7A9 /* WallaMarvelPresentation */; };
 		9EE949822E0004390072558D /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 9EE949812E0004390072558D /* Kingfisher */; };
@@ -53,6 +54,7 @@
 		9E669E812E01F83200E86E9B /* WallaMarvelCore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = WallaMarvelCore; sourceTree = "<group>"; };
 		9EA1A7742E019D5000EB455A /* WallaMarvelApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallaMarvelApp.swift; sourceTree = "<group>"; };
 		9EA1A7762E019D6300EB455A /* AppLifecycleObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLifecycleObserver.swift; sourceTree = "<group>"; };
+		9EA47A2D2E03E9CA007C9B96 /* WallaMarvelUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallaMarvelUITests.swift; sourceTree = "<group>"; };
 		9EAE767C2E02716F0073AB6A /* WallaMarvelData */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = WallaMarvelData; sourceTree = "<group>"; };
 		9EB6C65F2E02C72A0058A7A9 /* WallaMarvelPresentation */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = WallaMarvelPresentation; sourceTree = "<group>"; };
 		9EFC871D2E03CF14006F0791 /* HeroCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroCellViewModelTests.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				1A0E3ABB2862F7E300132FCB /* WallaMarvelUITestsLaunchTests.swift */,
+				9EA47A2D2E03E9CA007C9B96 /* WallaMarvelUITests.swift */,
 			);
 			path = UITests;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EA47A2E2E03E9CA007C9B96 /* WallaMarvelUITests.swift in Sources */,
 				1A0E3ABC2862F7E300132FCB /* WallaMarvelUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
