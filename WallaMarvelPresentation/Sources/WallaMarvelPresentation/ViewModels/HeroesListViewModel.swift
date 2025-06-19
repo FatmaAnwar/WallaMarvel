@@ -22,10 +22,10 @@ final class HeroesListViewModel: ObservableObject {
     private let debounceDuration: TimeInterval = 0.4
     private var cancellables = Set<AnyCancellable>()
     private var currentOffset = 0
-    private var wasOffline = false
-    private var allHeroes: [Character] = []
     private var lastRequestedId: Int?
-    private var hasLoaded = false
+    var wasOffline = false
+    var allHeroes: [Character] = []
+    var hasLoaded = false
     
     init(
         fetchHeroesUseCase: FetchCharactersUseCaseProtocol,
@@ -148,7 +148,7 @@ final class HeroesListViewModel: ObservableObject {
         }
     }
     
-    private func handleNetworkChange(isConnected: Bool) {
+    func handleNetworkChange(isConnected: Bool) {
         if isConnected {
             if wasOffline {
                 
