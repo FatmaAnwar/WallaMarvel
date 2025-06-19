@@ -28,6 +28,12 @@ final class HeroDetailViewModel: HeroDetailViewModelProtocol {
         let trimmedDescription = character.description.trimmingCharacters(in: .whitespacesAndNewlines)
         description = trimmedDescription.isEmpty ? String.noDescription : trimmedDescription
         
-        imageURL = URL(string: character.imageUrl)
+        if let url = URL(string: character.imageUrl),
+           let scheme = url.scheme, (scheme == "http" || scheme == "https"),
+           url.host != nil {
+            imageURL = url
+        } else {
+            imageURL = nil
+        }
     }
 }

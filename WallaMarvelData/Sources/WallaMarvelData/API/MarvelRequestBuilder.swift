@@ -10,8 +10,8 @@ import WallaMarvelCore
 import WallaMarvelDomain
 
 struct MarvelRequestBuilder {
-    private let path: String
-    private let query: [String: String]
+    let path: String
+    let query: [String: String]
     
     static func characters(offset: Int) -> MarvelRequestBuilder {
         let timestamp = String(Int(Date().timeIntervalSince1970))

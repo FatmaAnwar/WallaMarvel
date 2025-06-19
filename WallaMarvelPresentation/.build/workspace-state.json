@@ -1,0 +1,52 @@
+{
+  "object" : {
+    "artifacts" : [
+
+    ],
+    "dependencies" : [
+      {
+        "basedOn" : null,
+        "packageRef" : {
+          "identity" : "wallamarvelcore",
+          "kind" : "fileSystem",
+          "location" : "/Users/fatmaanwar/Documents/GitHub/WallaMarvel/WallaMarvelCore",
+          "name" : "WallaMarvelCore"
+        },
+        "state" : {
+          "name" : "fileSystem",
+          "path" : "/Users/fatmaanwar/Documents/GitHub/WallaMarvel/WallaMarvelCore"
+        },
+        "subpath" : "wallamarvelcore"
+      },
+      {
+        "basedOn" : null,
+        "packageRef" : {
+          "identity" : "wallamarveldata",
+          "kind" : "fileSystem",
+          "location" : "/Users/fatmaanwar/Documents/GitHub/WallaMarvel/WallaMarvelData",
+          "name" : "WallaMarvelData"
+        },
+        "state" : {
+          "name" : "fileSystem",
+          "path" : "/Users/fatmaanwar/Documents/GitHub/WallaMarvel/WallaMarvelData"
+        },
+        "subpath" : "wallamarveldata"
+      },
+      {
+        "basedOn" : null,
+        "packageRef" : {
+          "identity" : "wallamarveldomain",
+          "kind" : "fileSystem",
+          "location" : "/Users/fatmaanwar/Documents/GitHub/WallaMarvel/WallaMarvelDomain",
+          "name" : "WallaMarvelDomain"
+        },
+        "state" : {
+          "name" : "fileSystem",
+          "path" : "/Users/fatmaanwar/Documents/GitHub/WallaMarvel/WallaMarvelDomain"
+        },
+        "subpath" : "wallamarveldomain"
+      }
+    ]
+  },
+  "version" : 6
+}
