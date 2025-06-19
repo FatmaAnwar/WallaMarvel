@@ -1,4 +1,3 @@
-
 # WallaMarvel
 
 WallaMarvel is a Marvel superhero explorer app built with SwiftUI, using **Clean Architecture**, **MVVM-C**, **CoreData** for offline support, and **Modularization** via Swift Packages. This app demonstrates a robust architecture ready for production-scale features, testability, and modularization.
